@@ -18,7 +18,7 @@
   :ring {:handler modern-cljs.core/handler}
 
   ;; cljsbuild tasks configuration
-  :main modern-cljs.core
+
   :cljsbuild {:builds
               [{;; clojurescript source code path
                 :source-paths ["src/cljs"]
@@ -30,4 +30,6 @@
                            ;; minimum optimization
                            :optimizations :whitespace
                            ;; prettyfying emitted JS
-                           :pretty-print true}}]})
+                           :pretty-print true}}]}
+  :main modern-cljs.core
+  )
