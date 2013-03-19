@@ -3,9 +3,8 @@
   (:use [modern-cljs.models.db :as db])
   )
 
-(defn ey [user]
+(defn insert [user]
     (db/maybe-init url_db )
     (m/insert! :users user)
-
   )
 
