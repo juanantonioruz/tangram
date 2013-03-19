@@ -23,6 +23,11 @@
 (def handler
   (handler/site app-routes))
 
-(defn start []
-  (jetty/run-jetty handler {:port 3000})
+(defn -main [& m ]
+  (let [ port (Integer. (get (System/getenv) "PORT" "8080"))]
+    (jetty/run-jetty handler {:port port })
+    )
+  
   )
+
+

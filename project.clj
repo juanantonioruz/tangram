@@ -18,6 +18,7 @@
   :ring {:handler modern-cljs.core/handler}
 
   ;; cljsbuild tasks configuration
+  :main modern-cljs.core
   :cljsbuild {:builds
               [{;; clojurescript source code path
                 :source-paths ["src/cljs"]
