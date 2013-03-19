@@ -1,7 +1,10 @@
 (ns modern-cljs.core
   (:use [compojure.core] )
-  (:require [compojure.handler :as handler][ring.adapter.jetty :as jetty]
-            [compojure.route :as route]))
+  (:require
+   [compojure.handler :as handler]
+   [ring.adapter.jetty :as jetty]
+   [compojure.route :as route]
+   [modern-cljs.models.user :as user]))
 
 ;; defroutes macro defines a function that chains individual route
 ;; functions together. The request map is passed to each function in
@@ -10,7 +13,12 @@
 (defroutes app-routes
   ; to serve document root address
   (GET "/" [] "<p>Hello from compojure</p>")
-  (GET "/aa" [] "<p>Hellaaaao from compojure</p>")
+  (GET "/insert-user/:name" [name]
+       (user/insert {:name name})
+      
+       (str "<p>Inserted:" name "</p>" (user/user-list))
+       
+       )
 
   ; to server static pages saved in resources/public directory
   (route/resources "/pub")
@@ -29,5 +37,7 @@
     )
   
   )
+(defn start []
+  (jetty/run-jetty handler {:port 3000 }))
 
 
