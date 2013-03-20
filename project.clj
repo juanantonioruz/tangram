@@ -10,16 +10,19 @@
 
   :dependencies [
                  [org.clojure/clojure "1.5.1"]
-                 [org.clojure/clojurescript "0.0-1552"]
+                 [org.clojure/clojurescript "0.0-1586"]
                  [compojure "1.1.5"]
                  [ring/ring-jetty-adapter "1.1.0"]
-                 [congomongo "0.3.2"]]
+                 [congomongo "0.3.2"]
+                 [hiccups "0.2.0"]
+                 [shoreleave/shoreleave-remote-ring "0.3.0"]
+                 [shoreleave/shoreleave-remote "0.3.0"]]
 
   :plugins [[lein-cljsbuild "0.3.0"]
             [lein-ring "0.8.3"][lein-swank "1.4.5"]]
 
   ;; ring tasks configuration
-  :ring {:handler modern-cljs.core/handler}
+  :ring {:handler elavio.remotes/app}
 
   ;; cljsbuild tasks configuration
 

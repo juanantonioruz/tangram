@@ -13,13 +13,13 @@
 (defroutes app-routes
   ; to serve document root address
   (GET "/" [] "<p>Hello from compojure</p>")
+  (GET "/jor" [] "<p>JOR</p>")
   (GET "/insert-user/:name" [name]
        (user/insert {:name name})
       
        (str "<p>Inserted:" name "</p>" (user/user-list))
        
        )
-
   ; to server static pages saved in resources/public directory
   (route/resources "/pub")
   ; if page is not found
