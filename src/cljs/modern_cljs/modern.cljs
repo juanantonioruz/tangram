@@ -1,3 +1,7 @@
 (ns modern-cljs.modern)
 
-(.write js/document "Hello, ClojureScript!")
+
+(defn ^{:export greet} holatio  []
+  (.write js/document "Hello, ClojureSasdasdcript!")
+  (str "")
+  )
