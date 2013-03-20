@@ -32,6 +32,15 @@ http://localhost:5000/pub/simple.html
 
 
 
+#clojurescript refresh changes
+
+http://stackoverflow.com/questions/14694222/clojurescript-namespace-refresh
+
+The browser repl-listen depends on browser refresh, so if we changes the cljs source files and we are compiling with "lein trampoline cljsbuild auto" then only rest to refresh browser to let brepl access to the changes
+
+
+
+
 
 .....
 If you want to connect to REST services you have to start mongo db and ring server
