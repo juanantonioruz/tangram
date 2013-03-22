@@ -14,6 +14,22 @@ Tool to easy compile (better development) clojure in javascript
 
 It's necesary to have a file to connect cljs/modern-cljs/connect.cljs
 
+### OPEN SHELL
+First you need to have installed:
+
+mongodb
+
+create db "db" with auth user "root", password "root"
+setenv var with this key/value "MONGOHQ_URL" "mongodb://root:root@127.0.0.1:27017/db"
+
+Usage
+
+start mongod from console: $mongod --auth
+lein deps
+lein run
+
+
+
 ###OPEN SHELL:
 
 $ lein ring server-headless ---> will startup listening in port 3000 
