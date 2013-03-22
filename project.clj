@@ -10,8 +10,8 @@
 
   :dependencies [
                  [org.clojure/clojure "1.5.1"]
-                 [org.clojure/clojurescript "0.0-1586"]
                  [compojure "1.1.5"]
+                 [domina "1.0.2-SNAPSHOT"]
                  [ring/ring-jetty-adapter "1.1.0"]
                  [congomongo "0.3.2"]
                  [hiccups "0.2.0"]

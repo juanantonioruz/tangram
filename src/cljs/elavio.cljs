@@ -1,9 +1,9 @@
 (ns elavio
   (:require 
-            
-            
             [shoreleave.remotes.http-rpc :refer [remote-callback]]
-            [cljs.reader :refer [read-string]]))
+            [cljs.reader :refer [read-string]])
+  (:use [domina :only [by-id value]])
+  )
 
 
 (defn calculate  [quantity price tax discount]
@@ -15,5 +15,5 @@
   (str "")))
 
 (defn ^:export other []
-  (str "ey"))
+  (str "ey" (-> (by-id "email") value)))
 

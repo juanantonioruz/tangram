@@ -3,6 +3,12 @@ tangram
 
 clojure and clojurescript webapp to manage a coworking space
 
+#Requirements
+
+* *lein-ring* https://github.com/weavejester/lein-ring
+How to startup ring server from $ run lein
+* *lein-cljsbuild* https://github.com/emezeske/lein-cljsbuild
+Tool to easy compile (better development) clojure in javascript
 
 # Developing process:
 
@@ -29,6 +35,12 @@ http://localhost:5000/pub/simple.html
 
 (js/alert "whatever phrase")
 
+
+
+### if there is errors
+* lein clean
+* lein trampoline cljsbuild clean
+* lein  trampoline cljsbuild repl-listen
 
 
 
