@@ -1,1 +1,1 @@
-web: lein run -m modern-cljs.core
+web: lein ring server-headless $PORT
