@@ -8,10 +8,35 @@
     <![endif]-->
 <script  src="http://code.jquery.com/jquery-1.7.1.min.js">
 </script>
+<style>
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('/pub/images/loading.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+body.loading {
+   overflow: hidden;   
+}
+
+body.loading .modal {
+    display: block;
+}
+</style>
 </head>
 <body>
+<div id="messages"><!-- Place at bottom of page --></div>
+<div class="modal"><!-- Place at bottom of page --></div>
        <h1>ey</h1>
-              <input type="button" value="show results" id="users">    
+              <input type="button" value="show users" id="users">    
        <div id="interface">la interface</div>
        <form action="login.php" method="post" id="loginForm"  novalidate>
         <fieldset>

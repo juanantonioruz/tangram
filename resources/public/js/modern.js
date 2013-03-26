@@ -32435,9 +32435,34 @@ goog.require("hiccups.runtime");
 goog.require("cljs.reader");
 goog.require("clojure.string");
 goog.require("shoreleave.remotes.http_rpc");
+elavio.init_loading = function init_loading() {
+  return jayq.core.add_class.call(null, jayq.core.$.call(null, "\ufdd0'body"), "\ufdd0'loading")
+};
+elavio.finish_loading = function() {
+  var finish_loading = null;
+  var finish_loading__0 = function() {
+    return jayq.core.remove_class.call(null, jayq.core.$.call(null, "\ufdd0'body"), "\ufdd0'loading")
+  };
+  var finish_loading__1 = function(message) {
+    jayq.core.remove_class.call(null, jayq.core.$.call(null, "\ufdd0'body"), "\ufdd0'loading");
+    return jayq.core.inner.call(null, jayq.core.$.call(null, "\ufdd0'#messages"), message)
+  };
+  finish_loading = function(message) {
+    switch(arguments.length) {
+      case 0:
+        return finish_loading__0.call(this);
+      case 1:
+        return finish_loading__1.call(this, message)
+    }
+    throw new Error("Invalid arity: " + arguments.length);
+  };
+  finish_loading.cljs$lang$arity$0 = finish_loading__0;
+  finish_loading.cljs$lang$arity$1 = finish_loading__1;
+  return finish_loading
+}();
 elavio.calculate = function calculate(quantity, price, tax, discount) {
-  return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'calculate", cljs.core.PersistentVector.fromArray([quantity, price, tax, discount], true), function(p1__29506_SHARP_) {
-    return alert(p1__29506_SHARP_.toFixed(2))
+  return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'calculate", cljs.core.PersistentVector.fromArray([quantity, price, tax, discount], true), function(p1__35531_SHARP_) {
+    return alert(p1__35531_SHARP_.toFixed(2))
   })
 };
 elavio.consoleta = function consoleta(message) {
@@ -32445,22 +32470,22 @@ elavio.consoleta = function consoleta(message) {
 };
 elavio.generate_html = function generate_html(rows) {
   return[cljs.core.str("<ul"), cljs.core.str(' class="foo"'), cljs.core.str(">"), cljs.core.str(cljs.core.apply.call(null, cljs.core.str, function() {
-    var iter__2609__auto__ = function iter__29678(s__29679) {
+    var iter__2609__auto__ = function iter__35536(s__35537) {
       return new cljs.core.LazySeq(null, false, function() {
-        var s__29679__$1 = s__29679;
+        var s__35537__$1 = s__35537;
         while(true) {
-          var temp__4092__auto__ = cljs.core.seq.call(null, s__29679__$1);
+          var temp__4092__auto__ = cljs.core.seq.call(null, s__35537__$1);
           if(temp__4092__auto__) {
             var xs__4579__auto__ = temp__4092__auto__;
             var x = cljs.core.first.call(null, xs__4579__auto__);
             return cljs.core.cons.call(null, [cljs.core.str(function() {
-              var attrs29681 = (new cljs.core.Keyword("\ufdd0'mail")).call(null, x);
-              if(cljs.core.map_QMARK_.call(null, attrs29681)) {
-                return[cljs.core.str("<li"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.merge.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id", "\ufdd0'class"], {"\ufdd0'id":null, "\ufdd0'class":null}), attrs29681))), cljs.core.str(">"), cljs.core.str("</li>")].join("")
+              var attrs35539 = (new cljs.core.Keyword("\ufdd0'mail")).call(null, x);
+              if(cljs.core.map_QMARK_.call(null, attrs35539)) {
+                return[cljs.core.str("<li"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.merge.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id", "\ufdd0'class"], {"\ufdd0'id":null, "\ufdd0'class":null}), attrs35539))), cljs.core.str(">"), cljs.core.str("</li>")].join("")
               }else {
-                return[cljs.core.str("<li>"), cljs.core.str(hiccups.runtime.render_html.call(null, attrs29681)), cljs.core.str("</li>")].join("")
+                return[cljs.core.str("<li>"), cljs.core.str(hiccups.runtime.render_html.call(null, attrs35539)), cljs.core.str("</li>")].join("")
               }
-            }())].join(""), iter__29678.call(null, cljs.core.rest.call(null, s__29679__$1)))
+            }())].join(""), iter__35536.call(null, cljs.core.rest.call(null, s__35537__$1)))
           }else {
             return null
           }
@@ -32483,28 +32508,26 @@ elavio.show_results = function show_results(res) {
   return jayq.core.attr.call(null, jayq.core.$.call(null, "\ufdd0'#users"), "value", "hidde users")
 };
 elavio.print_users = function print_users() {
-  return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'user-list", cljs.core.PersistentVector.EMPTY, function(p1__29682_SHARP_) {
-    return elavio.show_results.call(null, p1__29682_SHARP_)
+  elavio.init_loading.call(null);
+  return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'user-list", cljs.core.PersistentVector.EMPTY, function(x) {
+    elavio.show_results.call(null, x);
+    return elavio.finish_loading.call(null)
   })
 };
 elavio.j_query = function j_query() {
   var $interface = jayq.core.$.call(null, "\ufdd0'#interface");
   return jayq.core.inner.call(null, jayq.core.css.call(null, $interface, cljs.core.ObjMap.fromObject(["\ufdd0'background"], {"\ufdd0'background":"blue"})), [cljs.core.str('<span class="foo">bar</span>')].join(""))
 };
-elavio.hidden_form = function hidden_form() {
-  return domina.set_styles_BANG_.call(null, domina.by_id.call(null, "loginForm"), cljs.core.ObjMap.fromObject(["\ufdd0'background-color", "\ufdd0'color"], {"\ufdd0'background-color":"black", "\ufdd0'color":"white"}))
-};
 elavio.get_value = function get_value(id) {
   return domina.value.call(null, domina.by_id.call(null, id))
 };
 elavio.send_new_user = function send_new_user() {
+  elavio.init_loading.call(null);
   var email = elavio.get_value.call(null, "email");
   var password = elavio.get_value.call(null, "password");
-  alert(email);
-  shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'save-new-user", cljs.core.PersistentVector.fromArray([email, password], true), function(p1__29687_SHARP_) {
-    return alert([cljs.core.str("returning remote result: "), cljs.core.str(p1__29687_SHARP_)].join(""))
-  });
-  return elavio.hidden_form.call(null)
+  return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'save-new-user", cljs.core.PersistentVector.fromArray([email, password], true), function(x) {
+    return elavio.finish_loading.call(null, "user saved ok!")
+  })
 };
 elavio.show_users_event = function show_users_event(evt) {
   var text_button = jayq.core.attr.call(null, jayq.core.$.call(null, "\ufdd0'#users"), "value");

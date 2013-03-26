@@ -7,11 +7,23 @@
             [domina.events :refer [listen! prevent-default current-target target]])
   (:require-macros [hiccups.core :as hiccups])
   (:use [domina :only [by-id value set-styles! set-value! text attr]]
-        [jayq.core :only [$ css inner hide show attr]]
+        [jayq.core :only [$ css inner hide show attr add-class remove-class]]
         )
   )
 
+(defn init-loading []
+  (-> ($ :body) (add-class :loading))
+  )
 
+(defn finish-loading
+  ([] (-> ($ :body) (remove-class :loading)))
+  ([message]
+     (-> ($ :body) (remove-class :loading))
+     (-> ($ :#messages) (inner message))
+     
+     )
+
+  )
 (defn calculate  [quantity price tax discount]
   (remote-callback :calculate
                      [quantity price tax discount]
@@ -54,8 +66,12 @@ user=> (html [:ul
     )
   )
 
+
+
+
 (defn print-users []
-  (remote-callback :user-list [] #(show-results % ))
+  (init-loading)
+  (remote-callback :user-list [] (fn [x]  (show-results x) (finish-loading)))
   )
 
 (defn j-query []
@@ -68,22 +84,18 @@ user=> (html [:ul
   )
 
 
-(defn hidden-form []
-  (set-styles! (by-id "loginForm")
-               {:background-color "black"
-                :color "white"})  )
 (defn get-value [id]
   (-> (by-id id) value)
   )
 
 (defn  send-new-user []
+  (init-loading)
   (let [email (get-value "email")
         password (get-value "password")
         ]
-    (js/alert email)
-    (remote-callback :save-new-user [email password] #(js/alert  (str "returning remote result: " %)))
-;;    (calculate 10 10 10 10)
-    (hidden-form)    
+    (remote-callback :save-new-user [email password] (fn [x] (finish-loading "user saved ok!")))
+
+    
     )
   )
 
@@ -91,9 +103,8 @@ user=> (html [:ul
   (let [text-button (-> ($ :#users) (attr "value" )) 
         searched (.search text-button "show")]
     (if (>= searched 0)
-     
       (print-users)
- (hidden-results)
+      (hidden-results)
       )
     
     )
