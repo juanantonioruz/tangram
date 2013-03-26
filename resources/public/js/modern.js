@@ -32436,8 +32436,8 @@ goog.require("cljs.reader");
 goog.require("clojure.string");
 goog.require("shoreleave.remotes.http_rpc");
 elavio.calculate = function calculate(quantity, price, tax, discount) {
-  return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'calculate", cljs.core.PersistentVector.fromArray([quantity, price, tax, discount], true), function(p1__28724_SHARP_) {
-    return alert(p1__28724_SHARP_.toFixed(2))
+  return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'calculate", cljs.core.PersistentVector.fromArray([quantity, price, tax, discount], true), function(p1__29506_SHARP_) {
+    return alert(p1__29506_SHARP_.toFixed(2))
   })
 };
 elavio.consoleta = function consoleta(message) {
@@ -32445,22 +32445,22 @@ elavio.consoleta = function consoleta(message) {
 };
 elavio.generate_html = function generate_html(rows) {
   return[cljs.core.str("<ul"), cljs.core.str(' class="foo"'), cljs.core.str(">"), cljs.core.str(cljs.core.apply.call(null, cljs.core.str, function() {
-    var iter__2609__auto__ = function iter__28896(s__28897) {
+    var iter__2609__auto__ = function iter__29678(s__29679) {
       return new cljs.core.LazySeq(null, false, function() {
-        var s__28897__$1 = s__28897;
+        var s__29679__$1 = s__29679;
         while(true) {
-          var temp__4092__auto__ = cljs.core.seq.call(null, s__28897__$1);
+          var temp__4092__auto__ = cljs.core.seq.call(null, s__29679__$1);
           if(temp__4092__auto__) {
             var xs__4579__auto__ = temp__4092__auto__;
             var x = cljs.core.first.call(null, xs__4579__auto__);
             return cljs.core.cons.call(null, [cljs.core.str(function() {
-              var attrs28899 = (new cljs.core.Keyword("\ufdd0'mail")).call(null, x);
-              if(cljs.core.map_QMARK_.call(null, attrs28899)) {
-                return[cljs.core.str("<li"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.merge.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id", "\ufdd0'class"], {"\ufdd0'id":null, "\ufdd0'class":null}), attrs28899))), cljs.core.str(">"), cljs.core.str("</li>")].join("")
+              var attrs29681 = (new cljs.core.Keyword("\ufdd0'mail")).call(null, x);
+              if(cljs.core.map_QMARK_.call(null, attrs29681)) {
+                return[cljs.core.str("<li"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.merge.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id", "\ufdd0'class"], {"\ufdd0'id":null, "\ufdd0'class":null}), attrs29681))), cljs.core.str(">"), cljs.core.str("</li>")].join("")
               }else {
-                return[cljs.core.str("<li>"), cljs.core.str(hiccups.runtime.render_html.call(null, attrs28899)), cljs.core.str("</li>")].join("")
+                return[cljs.core.str("<li>"), cljs.core.str(hiccups.runtime.render_html.call(null, attrs29681)), cljs.core.str("</li>")].join("")
               }
-            }())].join(""), iter__28896.call(null, cljs.core.rest.call(null, s__28897__$1)))
+            }())].join(""), iter__29678.call(null, cljs.core.rest.call(null, s__29679__$1)))
           }else {
             return null
           }
@@ -32483,8 +32483,8 @@ elavio.show_results = function show_results(res) {
   return jayq.core.attr.call(null, jayq.core.$.call(null, "\ufdd0'#users"), "value", "hidde users")
 };
 elavio.print_users = function print_users() {
-  return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'user-list", cljs.core.PersistentVector.EMPTY, function(p1__28900_SHARP_) {
-    return elavio.show_results.call(null, p1__28900_SHARP_)
+  return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'user-list", cljs.core.PersistentVector.EMPTY, function(p1__29682_SHARP_) {
+    return elavio.show_results.call(null, p1__29682_SHARP_)
   })
 };
 elavio.j_query = function j_query() {
@@ -32501,8 +32501,8 @@ elavio.send_new_user = function send_new_user() {
   var email = elavio.get_value.call(null, "email");
   var password = elavio.get_value.call(null, "password");
   alert(email);
-  shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'save-new-user", cljs.core.PersistentVector.fromArray([email, password], true), function(p1__28905_SHARP_) {
-    return alert([cljs.core.str("returning remote result: "), cljs.core.str(p1__28905_SHARP_)].join(""))
+  shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'save-new-user", cljs.core.PersistentVector.fromArray([email, password], true), function(p1__29687_SHARP_) {
+    return alert([cljs.core.str("returning remote result: "), cljs.core.str(p1__29687_SHARP_)].join(""))
   });
   return elavio.hidden_form.call(null)
 };
@@ -32524,11 +32524,12 @@ elavio.init = function init() {
       return and__3941__auto__
     }
   }())) {
-    return domina.events.listen_BANG_.call(null, domina.by_id.call(null, "submit"), "\ufdd0'click", elavio.send_new_user)
-  }else {
+    domina.events.listen_BANG_.call(null, domina.by_id.call(null, "submit"), "\ufdd0'click", elavio.send_new_user);
     return domina.events.listen_BANG_.call(null, domina.by_id.call(null, "users"), "\ufdd0'click", function(evt) {
       return elavio.show_users_event.call(null, evt)
     })
+  }else {
+    return null
   }
 };
 goog.exportSymbol("elavio.init", elavio.init);
