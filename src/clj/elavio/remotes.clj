@@ -16,9 +16,12 @@
   (let [users (bird/user-list )]
     (reduce (fn [col-returned item] (conj col-returned {:mail (:mail item) :password (:password item)})) [] users)    
     )
-
-
   )
+
+(defremote user-delete-all []
+  (bird/delete-all)
+  )
+
 
 
 (defremote calculate [quantity price tax discount]

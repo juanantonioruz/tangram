@@ -11,5 +11,10 @@
 (defn user-list []
   (db/maybe-init db/url_db)
   (m/fetch :users)
- )
+  )
+
+(defn delete-all []
+  (db/maybe-init db/url_db)
+  (m/drop-coll! :users)
+  )
 

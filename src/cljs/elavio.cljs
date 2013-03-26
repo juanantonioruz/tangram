@@ -1,14 +1,15 @@
 (ns elavio
   (:require 
-            [shoreleave.remotes.http-rpc :refer [remote-callback]]
-            [clojure.string :refer [read-string]]
-            [cljs.reader :refer [read-string]]
-            [hiccups.runtime :as hiccupsrt]
-            [domina.events :refer [listen! prevent-default current-target target]])
+   [shoreleave.remotes.http-rpc :refer [remote-callback]]
+   [clojure.string :refer [read-string]]
+   [cljs.reader :refer [read-string]]
+   [hiccups.runtime :as hiccupsrt]
+   [domina.events :refer [listen! prevent-default current-target target]])
   (:require-macros [hiccups.core :as hiccups])
-  (:use [domina :only [by-id value set-styles! set-value! text attr]]
-        [jayq.core :only [$ css inner hide show attr add-class remove-class]]
-        )
+  (:use
+   [domina :only [by-id value set-styles! set-value! text attr]]
+   [jayq.core :only [$ css inner hide show attr add-class remove-class]]
+   )
   )
 
 (defn init-loading []
@@ -34,14 +35,8 @@
   (js/console.info message)
   )
 
-(comment
-user=> (html [:ul
-               (for [x (range 1 4)]
-                 [:li x])])
-"<ul><li>1</li><li>2</li><li>3</li></ul>"
 
-  )
-(defn generate-html [rows]
+(defn generate-html-user-list [rows]
   (hiccups/html [:ul {:class "foo"}
                  (for [x rows]
                    [:li (:mail x)])
@@ -55,25 +50,32 @@ user=> (html [:ul
     )
   )
 
-(defn show-results [res]
+(defn show-users-results [res]
   (let [$interface ($ :#interface)
-        _html (generate-html res) ]
+        html-user-list (generate-html-user-list res)
+        html-delete-all-button (hiccups/html [:input {:type "button" :id :delete-all-users :value :delete-all-users}])
+        ]
     (-> $interface
         (show)
-        (css {:background "blue"})        
-        (inner _html))
+        (css {:background "pink"})        
+        (inner (str html-delete-all-button html-user-list)))
     (-> ($ :#users) (attr "value" "hidde users"))
     )
   )
-
-
-
-
 (defn print-users []
   (init-loading)
-  (remote-callback :user-list [] (fn [x]  (show-results x) (finish-loading)))
+  (remote-callback :user-list  []  (fn [x]  (show-users-results x)
+                                   (finish-loading)(listen! (by-id :delete-all-users) :click -delete-all)) )
+  )
+(defn -delete-all []
+  (hidden-results)
+  (remote-callback :user-delete-all  []  (fn [x]  (print-users)
+                                   (finish-loading)) )
   )
 
+
+
+;
 (defn j-query []
   (let [
         $interface ($ :#interface)]
@@ -116,8 +118,8 @@ user=> (html [:ul
   (if (and js/document
            (.-getElementById js/document))
     (do
-          (listen! (by-id "submit") :click send-new-user)
-    (listen! (by-id "users") :click (fn [evt] (show-users-event evt)) 
+      (listen! (by-id "submit") :click send-new-user)
+      (listen! (by-id "users") :click (fn [evt] (show-users-event evt)) 
 )
              )
     
