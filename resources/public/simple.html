@@ -22,7 +22,8 @@
                 50% 50% 
                 no-repeat;
 }
-
+#messages{display:none;
+background:yellow;}
 body.loading {
    overflow: hidden;   
 }
@@ -33,32 +34,12 @@ body.loading .modal {
 </style>
 </head>
 <body>
-<div id="messages"><!-- Place at bottom of page --></div>
+<div id="messages" >hey</div>
 <div class="modal"><!-- Place at bottom of page --></div>
-       <h1>ey</h1>
-              <input type="button" value="show users" id="users">    
-       <div id="interface">la interface</div>
-       <form action="login.php" method="post" id="loginForm"  novalidate>
-        <fieldset>
-            <legend>Login</legend>
+<h1>EL AVIO</h1>
 
-            <div>
-              <label for="email">Email Address</label>
-              <input type="email" name="email" id="email" required>
-            </div>
-
-            <div>
-              <label for="password">Password</label>
-              <input type="password" name="password" id="password" required>
-            </div>
-
-            <div>
-              <label for="submit"></label>
-              <input type="button" value="Login &rarr;" id="submit">
-            </div>
-
-                 </fieldset>
-          </form>
+       <div id="interface"></div>
+      
     <script src="js/modern.js"></script>
 <script>    
       elavio.init();

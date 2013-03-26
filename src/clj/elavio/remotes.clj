@@ -1,4 +1,6 @@
 (ns elavio.remotes
+  (:use
+   [ring.middleware.session] )
   (:require
    [elavio.models.bird :as bird]
    [modern-cljs.core :refer [handler]]
@@ -9,6 +11,13 @@
 (defremote save-new-user [mail password]
   (:mail (bird/insert {:mail mail :password password}))
 
+  )
+
+(defremote login [name pass]
+  (if (and (= pass "jaruz") (= name "jaruz"))
+    true
+    false
+    )
   )
 
 
@@ -37,5 +46,6 @@
 
 
 (def app (-> (var handler)
+;             (wrap-session)
              (wrap-rpc)
              (site)))

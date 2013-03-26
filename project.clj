@@ -9,6 +9,7 @@
   :source-paths ["src/clj"]
 
   :dependencies [
+
                  [hiccups "0.2.0"]
                  [org.clojure/clojure "1.5.1"]
                  [jayq "2.3.0"]

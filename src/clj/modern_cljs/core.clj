@@ -1,5 +1,5 @@
 (ns modern-cljs.core
-  (:use [compojure.core] )
+  (:use [compojure.core][ring.middleware.session]  )
   (:require
    [compojure.handler :as handler]
    [ring.adapter.jetty :as jetty]
@@ -28,7 +28,7 @@
 
 ;; site function create an handler suitable for a standard website,
 ;; adding a bunch of standard ring middleware to app-route:
-(def handler
+(def handler  
   (handler/site app-routes))
 
 (defn -main [& m ]
