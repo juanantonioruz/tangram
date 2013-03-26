@@ -104,7 +104,7 @@ user=> (html [:ul
   ;; property
   (if (and js/document
            (.-getElementById js/document))
-  ;  (listen! (by-id "submit") :click send-new-user)
+   (listen! (by-id "submit") :click send-new-user)
     (listen! (by-id "users") :click (fn [evt] (show-users-event evt)) 
              )
     
