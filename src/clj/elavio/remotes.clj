@@ -6,10 +6,20 @@
    [shoreleave.middleware.rpc :refer [defremote wrap-rpc]]))
 
 
-(defremote save [mail password]
+(defremote save-new-user [mail password]
   (:mail (bird/insert {:mail mail :password password}))
 
   )
+
+
+(defremote user-list []
+  (let [users (bird/user-list )]
+    (reduce (fn [col-returned item] (conj col-returned [:mail (:mail item) :password (:password item)])) [] users)    
+    )
+
+
+  )
+
 
 (defremote calculate [quantity price tax discount]
 

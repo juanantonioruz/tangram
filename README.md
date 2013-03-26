@@ -42,6 +42,10 @@ $ lein trampoline cljsbuild auto
 
 $ lein trampoline cljsbuild repl-listen
 
+or with readline for better editing.... 
+´´´cljs-repl listen´´´ but doesn't work on emacs for me
+https://github.com/emezeske/lein-cljsbuild/wiki/Using-Readline-with-REPLs-for-Better-Editing
+
 ###OPEN WEB PAGE: 
 
 http://localhost:5000/pub/simple.html
