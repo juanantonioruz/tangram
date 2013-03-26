@@ -14,7 +14,7 @@
 
 (defremote user-list []
   (let [users (bird/user-list )]
-    (reduce (fn [col-returned item] (conj col-returned [:mail (:mail item) :password (:password item)])) [] users)    
+    (reduce (fn [col-returned item] (conj col-returned {:mail (:mail item) :password (:password item)})) [] users)    
     )
 
 

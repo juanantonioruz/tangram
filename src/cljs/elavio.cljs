@@ -1,12 +1,13 @@
 (ns elavio
   (:require 
             [shoreleave.remotes.http-rpc :refer [remote-callback]]
+            [clojure.string :refer [read-string]]
             [cljs.reader :refer [read-string]]
             [hiccups.runtime :as hiccupsrt]
-            [domina.events :refer [listen! prevent-default]])
+            [domina.events :refer [listen! prevent-default current-target target]])
   (:require-macros [hiccups.core :as hiccups])
-  (:use [domina :only [by-id value set-styles! set-value!]]
-        [jayq.core :only [$ css inner hide show]]
+  (:use [domina :only [by-id value set-styles! set-value! text attr]]
+        [jayq.core :only [$ css inner hide show attr]]
         )
   )
 
@@ -31,13 +32,14 @@ user=> (html [:ul
 (defn generate-html [rows]
   (hiccups/html [:ul {:class "foo"}
                  (for [x rows]
-                   [:li x])
+                   [:li (:mail x)])
                  ])
   )
 
 (defn hidden-results []
 (let [$interface ($ :#interface) ]
-    (hide $interface)
+  (hide $interface)
+  (-> ($ :#users) (attr "value" "show users"))
     )
   )
 
@@ -48,6 +50,7 @@ user=> (html [:ul
         (show)
         (css {:background "blue"})        
         (inner _html))
+    (-> ($ :#users) (attr "value" "hidde users"))
     )
   )
 
@@ -78,14 +81,22 @@ user=> (html [:ul
         password (get-value "password")
         ]
     (js/alert email)
-
     (remote-callback :save-new-user [email password] #(js/alert  (str "returning remote result: " %)))
 ;;    (calculate 10 10 10 10)
-    (hidden-form)
-
-     
+    (hidden-form)    
     )
+  )
 
+(defn show-users-event [evt]
+  (let [text-button (-> ($ :#users) (attr "value" )) 
+        searched (.search text-button "show")]
+    (if (>= searched 0)
+     
+      (print-users)
+ (hidden-results)
+      )
+    
+    )
   )
 
 (defn ^:export init []
@@ -93,7 +104,9 @@ user=> (html [:ul
   ;; property
   (if (and js/document
            (.-getElementById js/document))
-    (listen! (by-id "submit") :click send-new-user)
+  ;  (listen! (by-id "submit") :click send-new-user)
+    (listen! (by-id "users") :click (fn [evt] (show-users-event evt)) 
+             )
     
 
     )
