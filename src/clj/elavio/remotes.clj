@@ -8,9 +8,8 @@
    [shoreleave.middleware.rpc :refer [defremote wrap-rpc]]))
 
 
-(defremote save-new-user [mail password]
-  (:mail (bird/insert {:mail mail :password password}))
-
+(defremote save-new-user [name mail password started ended]
+  (:mail (bird/insert {:mail mail :password password :name name :started started :ended ended}))
   )
 
 (defremote login [name pass]
@@ -23,7 +22,7 @@
 
 (defremote user-list []
   (let [users (bird/user-list )]
-    (reduce (fn [col-returned item] (conj col-returned {:mail (:mail item) :password (:password item)})) [] users)    
+    (reduce (fn [col-returned item] (conj col-returned {:mail (:mail item) :password (:password item) :name (:name item) :ended (:ended item) :started (:started item)})) [] users)    
     )
   )
 
