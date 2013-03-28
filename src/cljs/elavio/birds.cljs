@@ -11,20 +11,16 @@
    )
   )
 
-(defn generate-html-user-list [rows]
-  (hiccups/html [:h1 "User List"] [:ul {:class "foo"}
-                 (for [x rows]
-                   [:li (str (:name x) "-" (:mail x)  "-" (:started x)  "-" (:ended x) ) ])
-                 ])
-  )
+
 
 (defn show-users-results [res]
   (let [$interface ($ :#interface)
-        html-user-list (generate-html-user-list res)
-        html-delete-all-button (hiccups/html
-                                [:a {:href "#" :id :delete-all-users :value :delete-all-users} :delete-all-users]
-                                )
-        html-new-user (hiccups/html [
+        html-user-list  [:ul {:class "foo"}
+                 (for [x res]
+                   [:li (str (:name x) "-" (:mail x)  "-" (:started x)  "-" (:ended x) ) ])
+                 ] 
+        html-delete-all-button [:a {:href "#" :id :delete-all-users :value :delete-all-users} :delete-all-users]
+        html-new-user [
                  :div {:id "new-bird-div"}
                                      [:h1 "insert new user"]
                                      [:label "bird-name"]
@@ -37,22 +33,38 @@
                                      [:input {:type :password :id :bird-password } ]
                                      [:br]
                                      [:label "bird-started"]
-                                     [:input {:type :text :id :bird-started } ]
+                                     [:input {:type :text :id :bird-started :class :bird-date} ]
                                      [:br]
                                      [:label "bird-ended"]
-                                     [:input {:type :text :id :bird-ended } ]
+                                     [:input {:type :text :id :bird-ended :class :bird-date} ]
                                      [:br]
                                      [:input {:type :button :id :new-bird :value "new-bird"}]
-                 ])
+                       ]        
+        inner-html (hiccups/html
+                    [:div {:id "tabs"}
+                     [:ul
+                      [:li [:a {:href "#tabs-1"} "User List"]]
+                      [:li [:a {:href "#tabs-2"} "New User"]]
+                      [:li [:a {:href "#tabs-3"} "Delete All Users"]]
+                      ]
+                     [:div {:id "tabs-1"} html-user-list]
+                     [:div {:id "tabs-2"} html-new-user]
+                     [:div {:id "tabs-3"} html-delete-all-button]
+                     ]
+                    )
         ]
     (-> $interface
         (show)
         (css {:background "pink"})        
-        (inner (str html-user-list    html-new-user "<hr>" html-delete-all-button)))
+        (inner inner-html))
     (-> ($ :#user-list) (attr "value" "hidde users"))
     )
   (listen! (by-id :delete-all-users) :click delete-all-users)
-  (listen! (by-id :new-bird) :click send-new-user)      
+  (listen! (by-id :new-bird) :click send-new-user)
+
+  (.tabs ($ :#tabs) )
+  (.datepicker ($ :.bird-date) )
+  
   )
 (defn delete-all-users []
 ;  (hidden-results)

@@ -40,13 +40,14 @@
                               (fn [x]
                                 (if (== x true)
                                   (do
+                                    (ui/hidden-results)
                                     (logging/admin-login)
                                     (ui/menu-value (hiccups/html [
                                                                        :div {:id "ADMIN-ZONE"}
                                                                        [:input {:type :button :id :user-list :value "show users"}]                                                                       ]))
                                     (listen! (by-id :user-list) :click (fn [evt] (show-users-event evt)))
                                         ;(birds/print-users)
-                                    (ui/hidden-results)
+
                                     
                                     )
                                   (ui/message-to-user "INVALID LOGIN!, TRY AGAIN"))
@@ -60,7 +61,13 @@
   ;; property
   (if (and js/document
            (.-getElementById js/document))
-    (first-display)
+    (do
+      (first-display)
+      (.button ($ (keyword ":button")) )
+      ;    $( "#tabs" ).tabs();
+
+      )
+    
     )
 
   ;       <input type="button" value="show users" id="user-list">    
