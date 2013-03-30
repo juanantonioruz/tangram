@@ -20,12 +20,12 @@
   (m/fetch-by-id :users (m/object-id id))
 
   )
-(defn remove [id]
+(defn remove-bird [id]
   (db/maybe-init db/url_db)
   (m/destroy! :users {:_id (m/object-id id)})
  ; (println )
   )
-(defn update [spec]
+(defn update-bird [spec]
   (println (:id spec))
   (println (fetch-by-id (:id spec)))
   (m/update! :users (fetch-by-id (:id spec)) (merge (dissoc spec :id)) )

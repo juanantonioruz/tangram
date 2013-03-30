@@ -14,11 +14,11 @@
   )
 
 (defremote update-user [id name mail password started ended]
-  (:mail (bird/update {:id id :mail mail :password password :name name :started started :ended ended}))
+  (:mail (bird/update-bird {:id id :mail mail :password password :name name :started started :ended ended}))
   )
 
 (defremote remove-user [id]
-  (:mail (bird/remove id))
+  (:mail (bird/remove-bird id))
   )
 
 (defremote login [name pass]
