@@ -13,10 +13,24 @@
 
 (defn show-users-results [res]
   (let [$interface ($ :#interface)
-        html-user-list  [:ul {:class "foo"}
-                 (for [x res]
-                   [:li (str  (:name x) "-" (:mail x)  "-" (:started x)  "-" (:ended x) ) [:a {:href "#" :bird (:id x ) :class :edit-bird} "edit"]])
-                 ] 
+        html-user-list  [
+                         :div [:table {:border 1 :width "100%"}
+                               [:tr [:th "name"] [:th "mail"][:th "started"][:th "ended"][:th "..."]]
+                          (for [x res]
+                            [:tr
+                             [:td (:name x)]
+                             [:td (:mail x)]
+                             [:td (:started x)]
+                             [:td (:ended x)]
+                             [:td
+                              [:a {:href "#" :bird (:id x ) :class :edit-bird} "edit"]
+                              [:a {:href "#" :bird (:id x ) :class :remove-bird} "remove"]]
+                             ])]
+                         (comment [:ul {:class "foo"}
+                           (for [x res]
+                             [:li (str  (:name x) "-" (:mail x)  "-" (:started x)  "-" (:ended x) ) [:a {:href "#" :bird (:id x ) :class :edit-bird} "edit"]])
+                           ])
+                         ] 
         html-delete-all-button [:a {:href "#" :id :delete-all-users :value :delete-all-users} :delete-all-users]
         html-new-user [
                  :div {:id "new-bird-div"}
@@ -41,7 +55,7 @@
         inner-html (hiccups/html
                     [:div {:id "tabs"}
                      [:ul
-                      [:li [:a {:href "#tabs-1"} "User List"]]
+                      [:li [:a {:href "#tabs-1" :id :user-list} "User List"]]
                       [:li [:a {:href "#tabs-2"} "New User"]]
                       [:li [:a {:href "#tabs-3"} "Delete All Users"]]
                       ]
@@ -60,11 +74,47 @@
   (listen! (by-id :delete-all-users) :click delete-all-users)
   (listen! (by-id :new-bird) :click send-new-user)
   (listen! (by-class :edit-bird) :click (fn [evt] (edit-bird evt)))
+  (listen! (by-class :remove-bird) :click (fn [evt] (remove-bird evt)))
+  (listen! (by-id :user-list) :click print-users)
 
   (.tabs ($ :#tabs) )
   (.datepicker ($ :.bird-date) )
   
   )
+
+(defn remove-bird [evt]
+
+    (ui/init-loading)
+  (let [bird-id (-> (current-target evt) (.getAttribute "bird"))]
+    (remote-callback :find-user  [bird-id]
+                     (fn [x]
+                           
+                       (-> ($ :#tabs-1)
+                           (show)
+                           (css {:background "pink"})        
+                           (inner (hiccups/html
+                                   [:div {:id "edit-bird-div"}
+                                    [:h1 "Are you sure?"]
+                                    [:br]
+                                     [:input {:type :hidden :id :bird-id :value (:id x) } ]
+                                     [:input {:type :button :id :confirm-remove-bird :value "confirm-remove-bird"}]]
+                                   (comment [:p (str "user found" x)]))))
+                       (ui/message-to-user (str "user found" x))
+                       (.datepicker ($ :.bird-date) )
+                       (listen! (by-id :confirm-remove-bird) :click confirm-remove-bird)
+                       (ui/finish-loading)
+
+                       
+                       
+                     ))
+
+)
+  
+  
+  )
+
+
+
 
 (defn edit-bird [evt]
 
@@ -113,6 +163,24 @@
   
   )
 
+
+(defn confirm-remove-bird []
+
+  (ui/init-loading)
+  (let [id (get-value "bird-id")
+        ]
+    (remote-callback :remove-user [id]
+                     (fn [x]
+                         (-> ($ :#tabs-1)
+                           (show)
+                           (css {:background "pink"})        
+                           (inner "permanently erased"))
+                         (ui/finish-loading "user removed ok!")))
+    )
+
+
+  )
+
 (defn update-bird []
 
   (ui/init-loading)
@@ -123,22 +191,17 @@
         ended (get-value "bird-ended")
         id (get-value "bird-id")
         ]
-    (remote-callback :update-user [id name mail password started ended] (fn [x] (ui/finish-loading "user updated ok!")))
+    (remote-callback :update-user [id name mail password started ended]
+                     (fn [x]
+                         (-> ($ :#tabs-1)
+                           (show)
+                           (css {:background "pink"})        
+                           (inner "OLE"))
+                         (ui/finish-loading "user updated ok!")))
     )
 
 
   )
-
-
-
-
-
-
-
-
-
-
-
 
 
 

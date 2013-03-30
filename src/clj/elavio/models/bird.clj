@@ -20,7 +20,11 @@
   (m/fetch-by-id :users (m/object-id id))
 
   )
-
+(defn remove [id]
+  (db/maybe-init db/url_db)
+  (m/destroy! :users {:_id (m/object-id id)})
+ ; (println )
+  )
 (defn update [spec]
   (println (:id spec))
   (println (fetch-by-id (:id spec)))
