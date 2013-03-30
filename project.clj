@@ -20,6 +20,7 @@
                  [hiccups "0.2.0"]
                  [shoreleave/shoreleave-remote-ring "0.3.0"]
                  [shoreleave/shoreleave-remote "0.3.0"]
+                 [javax.mail/mail "1.4.3"]
                  ]
   
 
