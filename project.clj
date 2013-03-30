@@ -19,7 +19,9 @@
                  [congomongo "0.3.2"]
                  [hiccups "0.2.0"]
                  [shoreleave/shoreleave-remote-ring "0.3.0"]
-                 [shoreleave/shoreleave-remote "0.3.0"]]
+                 [shoreleave/shoreleave-remote "0.3.0"]
+                 ]
+  
 
   :plugins [[lein-cljsbuild "0.3.0"]
             [lein-ring "0.8.3"][lein-swank "1.4.5"]]

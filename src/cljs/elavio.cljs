@@ -64,6 +64,7 @@
     (do
       (first-display)
       (.button ($ (keyword ":button")) )
+      (logging/admin-login)
       ;    $( "#tabs" ).tabs();
 
       )

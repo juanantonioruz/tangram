@@ -1,15 +1,6 @@
-(ns elavio.birds
-  (:require
-   [shoreleave.remotes.http-rpc :refer [remote-callback]]
-   [elavio.ui :as ui]
-   [elavio.logging :as logging]
-   [domina.events :refer [listen! prevent-default current-target target]])
-  (:require-macros [hiccups.core :as hiccups])
-  (:use
-   [domina :only [by-id by-class value set-styles! set-value! text attr]]
-   [jayq.core :only [$ css inner hide show attr add-class remove-class fade-in fade-out]]
-   )
-  )
+
+
+
 
 (defn show-users-results [res]
   (let [$interface ($ :#interface)
@@ -67,7 +58,6 @@
   )
 
 (defn edit-bird [evt]
-
     (ui/init-loading)
   (let [bird-id (-> (current-target evt) (.getAttribute "bird"))]
     (remote-callback :find-user  [bird-id]
@@ -79,9 +69,9 @@
                            (inner (hiccups/html
                                    [:div {:id "edit-bird-div"}
                                     [:h1 "Edit user"]
-                                    (comment [:label "bird-id"])
-                                    [:input {:type :hidden :id :bird-id :value (:id x) } ]
-                                    (comment [:br])
+                                    [:label "bird-id"]
+                                    [:input {:type :text :id :bird-id :value (:id x) } ]
+                                    [:br]
                                     [:label "bird-name"]
                                      [:input {:type :text :id :bird-name :value (:name x) } ]
                                      [:br]
@@ -97,23 +87,22 @@
                                      [:label "bird-ended"]
                                      [:input {:type :text :id :bird-ended :class :bird-date :value (:ended x)}  ]
                                      [:br]
-                                     [:input {:type :button :id :update-bird :value "update-bird"}]]
-                                   (comment [:p (str "user found" x)]))))
+                                     [:input {:type :button :id :edit-bird :value "edit-bird"}]]
+                                   [:p (str "user found" x)])))
                        (ui/message-to-user (str "user found" x))
                        (.datepicker ($ :.bird-date) )
-                       (listen! (by-id :update-bird) :click update-bird)
                        (ui/finish-loading)
 
                        
                        
                      ))
-
+(listen! (by-id :edit-bird) :click update-user)
     (js/console.dir (-> (current-target evt) (.getAttribute "bird"))))
   
   
   )
 
-(defn update-bird []
+(defn update-user
 
   (ui/init-loading)
   (let [name (get-value "bird-name")
@@ -123,24 +112,11 @@
         ended (get-value "bird-ended")
         id (get-value "bird-id")
         ]
-    (remote-callback :update-user [id name mail password started ended] (fn [x] (ui/finish-loading "user updated ok!")))
+    (remote-callback :update-new-user [id name mail password started ended] (fn [x] (ui/finish-loading "user updated ok!")))
     )
 
 
   )
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 (defn delete-all-users []
 ;  (hidden-results)
@@ -186,7 +162,28 @@
   (js/console.info "INFOOO working ns"));; This buffer is for notes you don't want to save, and for Lisp evaluation.
 
 
-          
 
 
-  
+
+;; If you want to create a file, visit that file with C-x C-f,
+
+;; then enter the text in that file's own buffer.
+
+ <!-- form action="login.php" method="post" id="loginForm"  novalidate>
+        <fieldset>
+            <legend>Login</legend>
+            <div>
+              <label for="email">Email Address</label>
+              <input type="email" name="email" id="email" required>
+            </div>
+            <div>
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" required>
+            </div>
+            <div>
+              <label for="submit"></label>
+              <input type="button" value="Login &rarr;" id="new-user">
+            </div>
+
+                 </fieldset>
+          </form-- >

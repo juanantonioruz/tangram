@@ -9,6 +9,7 @@
   )
 
 (defn init-loading []
+  
   (-> ($ :body) (add-class :loading))
   )
 
