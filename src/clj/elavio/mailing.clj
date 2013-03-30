@@ -42,6 +42,7 @@
       (javax.mail.Transport/send msg))))
 
 
+
 (defn mi-test-mail []
   (mail :user (System/getenv "SENDGRID_USERNAME")
        :password (System/getenv "SENDGRID_PASSWORD")
