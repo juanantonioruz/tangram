@@ -1,39 +1,69 @@
-(ns elavio.birds
-  (:require
-   [shoreleave.remotes.http-rpc :refer [remote-callback]]
-   [elavio.ui :as ui]
-   [elavio.logging :as logging]
-   [domina.events :refer [listen! prevent-default current-target target]])
-  (:require-macros [hiccups.core :as hiccups])
-  (:use
-   [domina :only [by-id by-class value set-styles! set-value! text attr]]
-   [jayq.core :only [$ css inner hide show attr add-class remove-class fade-in fade-out]]
-   )
-  )
+(send-message ^{:host "smtp.sendgrid.net"
+                             :user (System/getenv "SENDGRID_USERNAME")
+                             :pass (System/getenv "SENDGRID_PASSWORD")}
+                           {:from "me@draines.enjava.com"
+                            :to "juanantonioruz@gmail.com"
+                            :subject "Hi!"
+                            :body "Test."})
+
+
+(comment (defn mi-test-mail []
+   (mail :user (System/getenv "SENDGRID_USERNAME")
+         :password (System/getenv "SENDGRID_PASSWORD")
+         :host "smtp.gmail.com"
+         :port 465
+         :ssl true
+         :to ["juanantonioruz@gmail.com" ]
+         :subject "I Have Rebooted." 
+         :text "I Have Rebooted.")))
+
+(comment (defn mail [& m]
+   (let [mail (apply hash-map m)
+         props (java.util.Properties.)
+         SMTP_HOST_NAME "smtp.sendgrid.net"]
+
+     (doto props
+
+       (.put "mail.transport.protocol" "smtp")
+       (.put "mail.smtp.host" SMTP_HOST_NAME)
+       (.put "mail.smtp.port" 587)
+       (.put "mail.smtp.user" (:user mail))
+       (.put "mail.smtp.socketFactory.port"  (:port mail))
+       (.put "mail.smtp.auth" "true"))
+
+     (if (= (:ssl mail) true)
+       (doto props
+         (.put "mail.smtp.starttls.enable" "true")
+         (.put "mail.smtp.socketFactory.class" 
+               "javax.net.ssl.SSLSocketFactory")
+         (.put "mail.smtp.socketFactory.fallback" "false")))
+
+     (let [authenticator (proxy [javax.mail.Authenticator] [] 
+                           (getPasswordAuthentication 
+                             []
+                             (javax.mail.PasswordAuthentication. 
+                              (:user mail) (:password mail))))
+           recipients (reduce #(str % "," %2) (:to mail))
+           session (javax.mail.Session/getInstance props authenticator)
+           msg     (javax.mail.internet.MimeMessage. session)]
+
+       (.setFrom msg (javax.mail.internet.InternetAddress. (:user mail)))
+
+       (.setRecipients msg 
+                       (javax.mail.Message$RecipientType/TO)
+                       (javax.mail.internet.InternetAddress/parse recipients))
+
+       (.setSubject msg (:subject mail))
+       (.setText msg (:text mail))
+       (javax.mail.Transport/send msg)))))
+
 
 (defn show-users-results [res]
   (let [$interface ($ :#interface)
-        html-user-list  [
-                         :div [:table {:border 1 :width "100%"}
-                               [:tr [:th "name"] [:th "mail"][:th "started"][:th "ended"][:th "..."]]
-                          (for [x res]
-                            [:tr
-                             [:td (:name x)]
-                             [:td (:mail x)]
-                             [:td (:started x)]
-                             [:td (:ended x)]
-                             [:td
-                              [:a {:href "#" :bird (:id x ) :class :edit-bird} "edit"] " - "
-                              [:a {:href "#" :bird (:id x ) :class :remove-bird} "remove"] " - "
-                              [:a {:href "#" :bird (:id x ) :class :mail-data} "data mailing"]
-                              ] 
-
-                             ])]
-                         (comment [:ul {:class "foo"}
-                           (for [x res]
-                             [:li (str  (:name x) "-" (:mail x)  "-" (:started x)  "-" (:ended x) ) [:a {:href "#" :bird (:id x ) :class :edit-bird} "edit"]])
-                           ])
-                         ] 
+        html-user-list  [:ul {:class "foo"}
+                 (for [x res]
+                   [:li (str  (:name x) "-" (:mail x)  "-" (:started x)  "-" (:ended x) ) [:a {:href "#" :bird (:id x ) :class :edit-bird} "edit"]])
+                 ] 
         html-delete-all-button [:a {:href "#" :id :delete-all-users :value :delete-all-users} :delete-all-users]
         html-new-user [
                  :div {:id "new-bird-div"}
@@ -58,7 +88,7 @@
         inner-html (hiccups/html
                     [:div {:id "tabs"}
                      [:ul
-                      [:li [:a {:href "#tabs-1" :id :user-list} "User List"]]
+                      [:li [:a {:href "#tabs-1"} "User List"]]
                       [:li [:a {:href "#tabs-2"} "New User"]]
                       [:li [:a {:href "#tabs-3"} "Delete All Users"]]
                       ]
@@ -77,76 +107,13 @@
   (listen! (by-id :delete-all-users) :click delete-all-users)
   (listen! (by-id :new-bird) :click send-new-user)
   (listen! (by-class :edit-bird) :click (fn [evt] (edit-bird evt)))
-  (listen! (by-class :remove-bird) :click (fn [evt] (remove-bird evt)))
-  (listen! (by-class :mail-data) :click (fn [evt] (mail-data-bird evt)))
-  (listen! (by-id :user-list) :click print-users)
 
   (.tabs ($ :#tabs) )
   (.datepicker ($ :.bird-date) )
   
   )
 
-(defn remove-bird [evt]
-
-    (ui/init-loading)
-  (let [bird-id (-> (current-target evt) (.getAttribute "bird"))]
-    (remote-callback :find-user  [bird-id]
-                     (fn [x]
-                           
-                       (-> ($ :#tabs-1)
-                           (show)
-                           (css {:background "pink"})        
-                           (inner (hiccups/html
-                                   [:div {:id "edit-bird-div"}
-                                    [:h1 "Are you sure?"]
-                                    [:br]
-                                     [:input {:type :hidden :id :bird-id :value (:id x) } ]
-                                     [:input {:type :button :id :confirm-remove-bird :value "confirm-remove-bird"}]]
-                                   (comment [:p (str "user found" x)]))))
-                       (ui/message-to-user (str "user found" x))
-                       (.datepicker ($ :.bird-date) )
-                       (listen! (by-id :confirm-remove-bird) :click confirm-remove-bird)
-                       (ui/finish-loading)
-
-                       
-                       
-                     ))
-
-)
-  
-  
-  )
-
-(defn mail-data-bird [evt]
-
-    (ui/init-loading)
-  (let [bird-id (-> (current-target evt) (.getAttribute "bird"))]
-    (remote-callback :mail-data-user  [bird-id]
-                     (fn [x]
-                       (let [message (if x "problem sending mail, contact to webmaster" "data sended correctly")]
-                        (-> ($ :#tabs-1)
-                            (show)
-                            (css {:background "pink"})        
-                            (inner (hiccups/html
-                                    [:div 
-                                     [:h1 message]
-                                     [:br]]
-                                    )))
-                        (ui/message-to-user message)
-                        (ui/finish-loading))
-                     ))
-
-)
-
-  
-  
-  )
-
-
-
-
 (defn edit-bird [evt]
-
     (ui/init-loading)
   (let [bird-id (-> (current-target evt) (.getAttribute "bird"))]
     (remote-callback :find-user  [bird-id]
@@ -158,9 +125,9 @@
                            (inner (hiccups/html
                                    [:div {:id "edit-bird-div"}
                                     [:h1 "Edit user"]
-                                    (comment [:label "bird-id"])
-                                    [:input {:type :hidden :id :bird-id :value (:id x) } ]
-                                    (comment [:br])
+                                    [:label "bird-id"]
+                                    [:input {:type :text :id :bird-id :value (:id x) } ]
+                                    [:br]
                                     [:label "bird-name"]
                                      [:input {:type :text :id :bird-name :value (:name x) } ]
                                      [:br]
@@ -176,41 +143,22 @@
                                      [:label "bird-ended"]
                                      [:input {:type :text :id :bird-ended :class :bird-date :value (:ended x)}  ]
                                      [:br]
-                                     [:input {:type :button :id :update-bird :value "update-bird"}]]
-                                   (comment [:p (str "user found" x)]))))
+                                     [:input {:type :button :id :edit-bird :value "edit-bird"}]]
+                                   [:p (str "user found" x)])))
                        (ui/message-to-user (str "user found" x))
                        (.datepicker ($ :.bird-date) )
-                       (listen! (by-id :update-bird) :click update-bird)
                        (ui/finish-loading)
 
                        
                        
                      ))
-
+(listen! (by-id :edit-bird) :click update-user)
     (js/console.dir (-> (current-target evt) (.getAttribute "bird"))))
   
   
   )
 
-
-(defn confirm-remove-bird []
-
-  (ui/init-loading)
-  (let [id (get-value "bird-id")
-        ]
-    (remote-callback :remove-user [id]
-                     (fn [x]
-                         (-> ($ :#tabs-1)
-                           (show)
-                           (css {:background "pink"})        
-                           (inner "permanently erased"))
-                         (ui/finish-loading "user removed ok!")))
-    )
-
-
-  )
-
-(defn update-bird []
+(defn update-user
 
   (ui/init-loading)
   (let [name (get-value "bird-name")
@@ -220,19 +168,11 @@
         ended (get-value "bird-ended")
         id (get-value "bird-id")
         ]
-    (remote-callback :update-user [id name mail password started ended]
-                     (fn [x]
-                         (-> ($ :#tabs-1)
-                           (show)
-                           (css {:background "pink"})        
-                           (inner "OLE"))
-                         (ui/finish-loading "user updated ok!")))
+    (remote-callback :update-new-user [id name mail password started ended] (fn [x] (ui/finish-loading "user updated ok!")))
     )
 
 
   )
-
-
 
 (defn delete-all-users []
 ;  (hidden-results)
@@ -278,7 +218,28 @@
   (js/console.info "INFOOO working ns"));; This buffer is for notes you don't want to save, and for Lisp evaluation.
 
 
-          
 
 
-  
+
+;; If you want to create a file, visit that file with C-x C-f,
+
+;; then enter the text in that file's own buffer.
+
+ <!-- form action="login.php" method="post" id="loginForm"  novalidate>
+        <fieldset>
+            <legend>Login</legend>
+            <div>
+              <label for="email">Email Address</label>
+              <input type="email" name="email" id="email" required>
+            </div>
+            <div>
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" required>
+            </div>
+            <div>
+              <label for="submit"></label>
+              <input type="button" value="Login &rarr;" id="new-user">
+            </div>
+
+                 </fieldset>
+          </form-- >
