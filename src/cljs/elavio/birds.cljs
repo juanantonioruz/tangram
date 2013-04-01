@@ -123,7 +123,7 @@
   (let [bird-id (-> (current-target evt) (.getAttribute "bird"))]
     (remote-callback :mail-data-user  [bird-id]
                      (fn [x]
-                       (let [message (if x "problem sending mail, contact to webmaster" "data sended correctly")]
+                       (let [message (if-not (= x :success) "problem sending mail, contact to webmaster" "data sended correctly")]
                         (-> ($ :#tabs-1)
                             (show)
                             (css {:background "pink"})        
