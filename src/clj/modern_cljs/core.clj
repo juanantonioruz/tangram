@@ -2,6 +2,7 @@
   (:use [compojure.core][ring.middleware.session]  )
   (:require
    [compojure.handler :as handler]
+   [ring.util.response :as resp]
    [ring.adapter.jetty :as jetty]
    [compojure.route :as route]
    [modern-cljs.models.user :as user]))
@@ -12,7 +13,7 @@
 
 (defroutes app-routes
   ; to serve document root address
-  (GET "/" [] "<p>Hello from compojure</p>")
+  (GET "/" [] (resp/redirect "/pub/simple.html"))
   (GET "/jor" [] "<p>JOR</p>")
   (GET "/insert-user/:name" [name]
        (user/insert {:name name})
