@@ -4,6 +4,7 @@
   (:require
    [somnium.congomongo :as m]
    [elavio.models.bird :as bird]
+   [elavio.mailing :as mailing]
    [modern-cljs.core :refer [handler]]
    [compojure.handler :refer [site]]
    [shoreleave.middleware.rpc :refer [defremote wrap-rpc]]))
@@ -20,6 +21,13 @@
 (defremote remove-user [id]
   (:mail (bird/remove-bird id))
   )
+
+(defremote mail-data-user [id]
+  (let [bird (bird/fetch-by-id id)]
+    (:error (mailing/mailto (:mail bird) "your data!" "hello bird!"))
+    )
+  )
+
 
 (defremote login [name pass]
   (if (and (= pass "jaruz") (= name "jaruz"))

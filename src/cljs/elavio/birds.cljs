@@ -23,8 +23,11 @@
                              [:td (:started x)]
                              [:td (:ended x)]
                              [:td
-                              [:a {:href "#" :bird (:id x ) :class :edit-bird} "edit"]
-                              [:a {:href "#" :bird (:id x ) :class :remove-bird} "remove"]]
+                              [:a {:href "#" :bird (:id x ) :class :edit-bird} "edit"] " - "
+                              [:a {:href "#" :bird (:id x ) :class :remove-bird} "remove"] " - "
+                              [:a {:href "#" :bird (:id x ) :class :mail-data} "data mailing"]
+                              ] 
+
                              ])]
                          (comment [:ul {:class "foo"}
                            (for [x res]
@@ -75,6 +78,7 @@
   (listen! (by-id :new-bird) :click send-new-user)
   (listen! (by-class :edit-bird) :click (fn [evt] (edit-bird evt)))
   (listen! (by-class :remove-bird) :click (fn [evt] (remove-bird evt)))
+  (listen! (by-class :mail-data) :click (fn [evt] (mail-data-bird evt)))
   (listen! (by-id :user-list) :click print-users)
 
   (.tabs ($ :#tabs) )
@@ -109,6 +113,31 @@
                      ))
 
 )
+  
+  
+  )
+
+(defn mail-data-bird [evt]
+
+    (ui/init-loading)
+  (let [bird-id (-> (current-target evt) (.getAttribute "bird"))]
+    (remote-callback :mail-data-user  [bird-id]
+                     (fn [x]
+                       (let [message (if-not (= x :success) "problem sending mail, contact to webmaster" "data sended correctly")]
+                        (-> ($ :#tabs-1)
+                            (show)
+                            (css {:background "pink"})        
+                            (inner (hiccups/html
+                                    [:div 
+                                     [:h1 message]
+                                     [:br]]
+                                    )))
+                        (ui/message-to-user message)
+                        (ui/finish-loading))
+                     ))
+
+)
+
   
   
   )
