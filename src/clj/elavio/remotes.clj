@@ -24,7 +24,7 @@
 
 (defremote mail-data-user [id]
   (let [bird (bird/fetch-by-id id)]
-    (:error (mailing/mailto (:mail bird) "your data!" bird))
+    (:error (mailing/mailto (:mail bird) "your data!" "hello bird!"))
     )
   )
 

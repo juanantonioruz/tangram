@@ -1,3 +1,12 @@
+(send-message ^{:host "smtp.sendgrid.net"
+                             :user (System/getenv "SENDGRID_USERNAME")
+                             :pass (System/getenv "SENDGRID_PASSWORD")}
+                           {:from "me@draines.enjava.com"
+                            :to "juanantonioruz@gmail.com"
+                            :subject "Hi!"
+                            :body "Test."})
+
+
 (comment (defn mi-test-mail []
    (mail :user (System/getenv "SENDGRID_USERNAME")
          :password (System/getenv "SENDGRID_PASSWORD")
