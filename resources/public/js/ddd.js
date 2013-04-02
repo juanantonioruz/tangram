@@ -51,12 +51,13 @@ function draw(){
     .enter()
     .append("g")
     .attr("display", "none")
+
     .attr("id",  val(["month", "year"],"-"))  
     .append("text")
     .text(val(["month", "year"],"-"))
-    .attr("x", function(d){return random(w)}
+  .attr("x", function(d){return random(w)}
          )
-    .attr("y",300 );
+    .attr("y",400);
 
 
   
@@ -85,7 +86,7 @@ function draw(){
     }
          )
     .on("mouseover", function(ev) {
-      var sel= d3.select("svg rect");
+      
       d3.select(this).transition().style("fill", "red");
     })
     .on("mouseout", function(ev) {
@@ -93,11 +94,23 @@ function draw(){
       d3.select(this).transition().style("fill", "white");
     })
     .on("click", function(d) {
-      var sel= d3.select("svg rect");
       var id=format(d,["month", "year"],"-");
-      //alert("#"+id+"");
-      var related_g=d3.select("svg #"+id);
-      related_g.attr("display", "visible");
+
+      var text_related=d3.select("svg #"+id+" text");
+      var x=d3.select(this).attr("x");
+
+
+   
+
+      var g_related=d3.select("svg #"+id);
+      g_related.attr("x", x);
+
+      g_related.transition()
+        .duration(2000)
+        .attr("display", "visible")
+
+        .attr("transform", "translate("+(x-text_related.attr("x"))+",-200)");
+
     })
     .style("fill", "white");
   
