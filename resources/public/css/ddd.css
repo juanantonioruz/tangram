@@ -17,3 +17,18 @@ div.bar {
     font-family: sans-serif;
     font-size: 11px;
   }
+ g.node {
+            font-family: Verdana, Helvetica;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        circle.node-dot {
+            fill: gray;
+            stroke: cyan;
+            stroke-width: 1px;
+        }
+
+        path.link {
+            fill: none;
+            stroke: cyan;
+        }

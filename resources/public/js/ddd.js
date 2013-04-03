@@ -1,6 +1,6 @@
 var circles, svg;
 var w=1000;
-var h=500;
+var h=1000;
 var internal_padding=5;
 
 
@@ -45,6 +45,41 @@ function draw(){
   d3.select("svg").attr("width", w).attr("height", h).style("background", "gray");
   //  alert(log(months));
 
+  var months_tree_data=months
+    .map(
+      function(o){
+        var f=Object.create(o);
+        f.contents=[];
+        return f;
+      }
+    );
+
+
+  var _0m=months_tree_data
+    .map(
+      function(o){
+        return o.month;
+      }
+    );
+  
+  //alert(_0m.join(","));
+  months_tree_data={
+    id:0,
+    month:"mio",
+    contents:months_tree_data
+  };
+  
+  //alert(ex.log(months_tree_data));
+  
+
+
+
+
+
+
+
+
+
 
   var g = d3.select("svg").selectAll("g").select("text")
     .data(ex.the_data)
@@ -66,6 +101,10 @@ function draw(){
     .data(ex.the_data)
     .enter()
     .append("rect")
+    .attr("id", function(d) {
+      return format(d,["month", "year"],"_");
+
+          })
     .attr("x", 
           function(d,i){ 
             return i*(w/ex.the_data.length);
@@ -134,7 +173,130 @@ function draw(){
   
 
 
+/**
+BEGINNIG TREE
+**/
 
+ var radius=10;
+
+  var tree=d3.layout.tree()
+    .sort(null)
+    .size([400, 400])
+    .children(function(d)
+              {
+                return (!d.contents || d.contents.length === 0) ? null : d.contents;
+              });
+  
+  var nodes = tree.nodes(months_tree_data);
+  var links = tree.links(nodes);
+  
+
+ var layoutRoot = d3.select("svg")
+     .append("g")
+     .attr("class", "container")
+     .attr("transform", "translate( 100,400)");
+
+  var link = d3.svg.diagonal()
+    .projection(function(d)
+                {
+                  return [d.y, d.x];
+                });
+
+  layoutRoot.selectAll("path.link")
+    .data(links)
+    .enter()
+    .append("path")
+    .attr("class", "link")
+    .attr("d", link);
+
+
+ /*
+     Nodes as
+     <g class="node">
+         <circle class="node-dot" />
+         <text />
+     </g>
+  */
+ var nodeGroup = layoutRoot.selectAll("g.node")
+     .data(nodes)
+     .enter()
+     .append("g")
+     .attr("class", "node")
+     .attr("transform", function(d)
+     {
+         return "translate(" + d.y + "," + d.x + ")";
+     });
+
+ nodeGroup.append("circle")
+     .attr("class", "node-dot")
+     .attr("r", radius);
+
+
+function changeColor(selection_fn, color){
+  return function(d) {
+    var selection_str=selection_fn(d);
+    var e=d3.select(selection_str);    
+    e.transition().style("fill", color);
+//      alert(ev.date);
+    }
+};
+
+
+var ap=nodeGroup.append("text");
+
+function activate(){
+
+}
+
+ap.ey=function(event, color){
+  var originalColor=this.style("fill");
+  alert(originalColor);
+  
+  function selection_fn(d){
+   return  "svg #"+format(d,["month", "year"],"_");
+  }
+
+  return this.on("mouseover", changeColor(selection_fn, color))
+  .on("mouseout", changeColor(selection_fn, originalColor));
+//  return this.on(event, changeColor(color));
+};
+
+ ap
+     .attr("text-anchor", function(d)
+     {
+         return d.children ? "end" : "start";
+     })
+     .attr("dx", function(d)
+     {
+         var gap = 2 * radius;
+         return d.children ? -gap : gap;
+     })
+     .attr("dy", 3)
+    .style("fill", "white")
+   // .on("mouseover", changeColor("blue"))
+    .ey("", "red")
+     .text(function(d)
+     {
+         return d.month;
+     });
+  
+;
+
+
+console.dir(ap);
+
+// TRYING TO reuse components or callbacks
+
+/**
+   to reuse callbacks it must been the same data in the same order 
+
+   to reuse components ??
+
+   it would be the same as to clone ".on("event",callback)" but with
+   eventType and callback differences
+
+
+**/
 
 
 }
