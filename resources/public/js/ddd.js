@@ -24,21 +24,21 @@ function val(keyArray, join){
 
 
 
-var ex, ddd_lib;
+var ex, ddd_lib, domain_lib;
 
 function my_d3(){
 require.config({
     urlArgs: "bust=" + (new Date()).getTime()
 });
 
-  require([ "copy", "ddd_lib"], function(_exp, d) {
+  require([ "copy", "ddd_lib", "domain_lib"], function(_exp, d, _domain) {
 //    console.dir(_exp);
-    console.dir(d);    
-
+//    console.dir(d);    
     // alert(_exp.months);
     // alert(_exp.log);
        ex=_exp;
     ddd_lib=d;
+    domain_lib=_domain;
     draw();
   });
 
@@ -224,10 +224,13 @@ BEGINNIG TREE
      </g>
   */
  var nodeGroup = layoutRoot.selectAll("g.node")
-     .data(nodes)
-     .enter()
-     .append("g")
+     .data(nodes);
+     nodeGroup.enter().append("g");
+
+
+ ddd_lib.addMethodToSelection(nodeGroup, domain_lib.changeColorRectRelatedOnMouseEvents)
      .attr("class", "node")
+    .changeColorRectRelatedOnMouseEvents( "black", "blue")
      .attr("transform", function(d)
      {
          return "translate(" + d.y + "," + d.x + ")";
@@ -237,21 +240,10 @@ BEGINNIG TREE
      .attr("class", "node-dot")
      .attr("r", radius);
 
-
-
-
-
+//nodeGroup.exit();
+// here is an error with selection and overlay of onmouse methods
 var ap=nodeGroup.append("text");
-
-
-function  personalized_func(color, color2){
-  
-  return ddd_lib.lib_func.call(this, ddd_lib.selectingRectById, color, color2);
-}
-
-ap.changeColorRectRelatedOnMouseEvents=personalized_func;
-
- ap
+ ddd_lib.addMethodToSelection(ap, domain_lib.changeColorRectRelatedOnMouseEvents)
      .attr("text-anchor", function(d)
      {
          return d.children ? "end" : "start";
@@ -272,7 +264,7 @@ ap.changeColorRectRelatedOnMouseEvents=personalized_func;
 ;
 
 
-console.dir(ap);
+
 
 // TRYING TO reuse components or callbacks
 
