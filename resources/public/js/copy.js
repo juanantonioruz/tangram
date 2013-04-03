@@ -60,4 +60,17 @@ while(today.getTime()!=lastToday.getTime()){
   lastToday=changed;
 }
 
+
 //log(months);
+
+
+
+
+
+define(
+function(){
+  return {months:months, log:log, isTodayMonthYear:isTodayMonthYear, isTodayBeforeMonthYear:isTodayBeforeMonthYear};
+}
+
+       
+)

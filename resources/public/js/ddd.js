@@ -24,15 +24,21 @@ function val(keyArray, join){
 
 
 
-var ex;
+var ex, ddd_lib;
 
 function my_d3(){
+require.config({
+    urlArgs: "bust=" + (new Date()).getTime()
+});
 
-  require(["experiments"], function(exp) {
-    ex=this;
-    ex.the_data=this.months;
+  require([ "copy", "ddd_lib"], function(_exp, d) {
+//    console.dir(_exp);
+    console.dir(d);    
 
-    //    ex.the_log=log;
+    // alert(_exp.months);
+    // alert(_exp.log);
+       ex=_exp;
+    ddd_lib=d;
     draw();
   });
 
@@ -82,7 +88,7 @@ function draw(){
 
 
   var g = d3.select("svg").selectAll("g").select("text")
-    .data(ex.the_data)
+    .data(ex.months)
     .enter()
     .append("g")
     .attr("display", "none")
@@ -98,7 +104,7 @@ function draw(){
   
   d3.select("svg")
     .selectAll("rect")
-    .data(ex.the_data)
+    .data(ex.months)
     .enter()
     .append("rect")
     .attr("id", function(d) {
@@ -107,13 +113,13 @@ function draw(){
           })
     .attr("x", 
           function(d,i){ 
-            return i*(w/ex.the_data.length);
+            return i*(w/ex.months.length);
           })
     .attr("y", 
           function(d, i){ 
             return 100;
           })
-    .attr("width", (w/ex.the_data.length)-10)
+    .attr("width", (w/ex.months.length)-10)
     .attr("height", 100)
     .attr("fill-opacity", function(d,i){
       if(ex.isTodayMonthYear(d.date))
@@ -156,7 +162,7 @@ function draw(){
 
   d3.select("svg")
     .selectAll("rect").select("text")
-    .data(ex.the_data)
+    .data(ex.months)
     .enter()
     .append("text")
     .text(val(["month", "year"], "/" ))
@@ -165,7 +171,7 @@ function draw(){
     .attr("fill", "white")
     .attr("x", 
           function(d,i){ 
-            return i*(w/ex.the_data.length);})
+            return i*(w/ex.months.length);})
     .attr("y", 
           function(d){ 
             return 100});
@@ -232,34 +238,18 @@ BEGINNIG TREE
      .attr("r", radius);
 
 
-function changeColor(selection_fn, color){
-  return function(d) {
-    var selection_str=selection_fn(d);
-    var e=d3.select(selection_str);    
-    e.transition().style("fill", color);
-//      alert(ev.date);
-    }
-};
+
 
 
 var ap=nodeGroup.append("text");
 
-function activate(){
 
+function  personalized_func(color, color2){
+  
+  return ddd_lib.lib_func.call(this, ddd_lib.selectingRectById, color, color2);
 }
 
-ap.ey=function(event, color){
-  var originalColor=this.style("fill");
-  alert(originalColor);
-  
-  function selection_fn(d){
-   return  "svg #"+format(d,["month", "year"],"_");
-  }
-
-  return this.on("mouseover", changeColor(selection_fn, color))
-  .on("mouseout", changeColor(selection_fn, originalColor));
-//  return this.on(event, changeColor(color));
-};
+ap.changeColorRectRelatedOnMouseEvents=personalized_func;
 
  ap
      .attr("text-anchor", function(d)
@@ -273,8 +263,7 @@ ap.ey=function(event, color){
      })
      .attr("dy", 3)
     .style("fill", "white")
-   // .on("mouseover", changeColor("blue"))
-    .ey("", "red")
+    .changeColorRectRelatedOnMouseEvents( "white", "red")
      .text(function(d)
      {
          return d.month;
