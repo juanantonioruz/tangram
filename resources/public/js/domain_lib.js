@@ -15,7 +15,21 @@ define( ["./ddd_lib"],
           MonthDisplayable.prototype.setM=function(v){
             MonthDisplayable.prototype.selectedMonth=v;
           };
-          
+          MonthDisplayable.prototype.getActualX=function(){
+            var pos=this.display_data.length-1;
+            if(this.display_increment==1)
+              pos=0;
+            return this.display_data[pos].x;
+          };
+          MonthDisplayable.prototype.getActualY=function(){
+            var pos=this.display_data.length-1;
+            if(this.display_increment==1)
+              pos=0;
+            return this.display_data[pos].y;
+
+
+       
+          };
           /**
            //check if is the same node clicked twice times // in this case hide element
            **/
@@ -46,14 +60,55 @@ define( ["./ddd_lib"],
               .attr("transform", ddd_lib.translate(selection.datum().m))
             // moving down and scaling
               .each("end", function(){
-                console.log("first!")
+                console.log("first!");
+                 d3.select("svg").selectAll("path").remove();
             }
                   )
               .transition()
               .duration(250)
               .attr("transform", ddd_lib.translate(selection.datum().m))
               .each("end", function(){
-                console.log("end second transition! ")
+                console.log("end second transition! ");
+                
+
+                var line = d3.svg.line()
+                  .x(function(d) {return d[0]; })     
+                  .y(function(d) { return d[1]; });
+
+
+                
+                var paths=[];
+                //TODO is not saving the y value when display svg:g
+                d3.selectAll("svg g")
+                  .filter(function(d, i) { 
+
+                    var isTrue=d.active && d.date!=selection.datum().date;
+                    if(isTrue)
+                      paths.push([d.m.getActualX(), d.m.getActualY()]);
+                    return isTrue;
+                  });
+                
+                console.dir(paths);
+               if(selection.datum().active) 
+                d3.select("svg").selectAll("path").data(paths).enter()
+                  .append("path")
+                  .attr("d", function(d) {
+                    var sel_x=selection.datum().m.getActualX(), sel_y=selection.datum().m.getActualY();
+                    var t_x=d[0], t_y=d[1];
+                    // sel_y=100;
+                    // sel_x=w/2;
+
+
+
+
+
+                    var array = [[sel_x, sel_y],
+                                 [t_x, t_y]];
+                    return line(array) }) 
+                  .attr("class", "line")
+                  .style("stroke", "black" )
+                  .attr('fill', 'none');
+                console.dir(selection);
               }
                   );
               

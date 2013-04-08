@@ -40,6 +40,7 @@ define(
       var res="translate("+the_display_data.x+","+the_display_data.y+") scale("+the_display_data.scale+")";
 
       data_displayable.display_data_pos=data_displayable.display_data_pos+data_displayable.display_increment;
+
       return res;
     };
 
