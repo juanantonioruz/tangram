@@ -1,3 +1,9 @@
+  define([ "model", "ddd_lib", "domain_lib", "helper_view"], function(_exp, d, _domain, _viewHelper) {
+    ex=_exp;
+    ddd_lib=d;
+    domain_lib=_domain;
+    viewHelper=_viewHelper;
+
 
 
   /**
@@ -23,7 +29,14 @@
 
   var tree=d3.layout.tree()
     .sort(null)
-    .size([1000, 500])
+    .size([800, 1100])
+    .separation(function separation(a, b) {
+      // console.log("A");
+      // console.dir(a);
+      // console.log("B");
+      // console.dir(b);
+      return 1;
+})
     .children(function(d)
               {
                 return (!d.contents || d.contents.length === 0) ? null : d.contents;
@@ -126,3 +139,6 @@
     contents:[]
   };
   updateNodesLinks(months_tree_data);
+ 
+
+  });

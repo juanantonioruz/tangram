@@ -1,6 +1,6 @@
 var circles, svg;
 var w=1500;
-var h=1000;
+var h=800;
 var internal_padding=5;
 
 
@@ -11,31 +11,24 @@ var ex, ddd_lib, domain_lib, viewHelper;
    using require.js 
 **/
 function my_d3(){
+  
   require.config({
     urlArgs: "bust=" + (new Date()).getTime()
   });
 
-  require([ "model", "ddd_lib", "domain_lib", "helper_view"], function(_exp, d, _domain, _viewHelper) {
-    ex=_exp;
-    ddd_lib=d;
-    domain_lib=_domain;
-    viewHelper=_viewHelper;
+//  require([
+//  "tree_dates_visualization","rects_chain_visualization","ddd_lib"],
+//  function(tree_dates_visualization,rects_chain_visualization, _ddd_lib) {
+
+  require([ "rects_chain_visualization","ddd_lib"], function(rects_chain_visualization, _ddd_lib) {
+    ddd_lib=_ddd_lib;
     run_visualization();
   });
-
 };
 
-
+// the visualization have already started (or can do it) in the loading external files/resources [require.js]
 function run_visualization(){
-  
-  
   d3.select("svg").attr("width", w).attr("height", h).style("background", "gray");
-
-
-  
-  
-
-
 }
 
 // using requirejs plugin to call the init function

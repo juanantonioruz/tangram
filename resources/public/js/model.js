@@ -51,7 +51,11 @@ while(today.getTime()!=lastToday.getTime()){
   //log(lastToday);
   var changed=new Date(lastToday);
   changed.setMonth(lastToday.getMonth()+1);
-  months.push({id:1, month:changed.getMonth()+1, year:changed.getFullYear(), date:changed}
+  // the display_data property is designed to maintain states history
+  // so you can return to a previous (origin) state... i think can be
+  // interesting inside animations 
+  months.push({id:1, month:changed.getMonth()+1, year:changed.getFullYear(), date:changed, display_data:[], display_data_pos:0, display_increment:1
+                  }
              );
   lastToday=changed;
 }

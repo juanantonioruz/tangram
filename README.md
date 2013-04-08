@@ -94,3 +94,8 @@ https://github.com/magomimmo/modern-cljs
 
 http://thecomputersarewinning.com/post/clojure-heroku-noir-mongo/
 
+
+to deploy d3 impl lib..
+
+cd ../d3
+rm d3.js ../tangram/resources/public/js/d3.v3/d3.js ; make d3.js ; cp d3.js ../tangram/resources/public/js/d3.v3/d3.js
