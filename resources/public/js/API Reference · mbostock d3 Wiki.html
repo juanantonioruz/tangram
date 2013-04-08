@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://github.com/mbostock/d3/wiki/API-Reference -->
+<html style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths no-csspositionsticky filereader eventsource xhr2"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# githubog: http://ogp.me/ns/fb/githubog#"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>API Reference · mbostock/d3 Wiki</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://github.com/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://github.com/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://github.com/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://github.com/apple-touch-icon-144.png">
+    <link rel="logo" type="image/svg" href="http://github-media-downloads.s3.amazonaws.com/github-logo.svg">
+    <link rel="xhr-socket" href="https://github.com/_sockets">
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+
+    
+    
+    <link rel="icon" type="image/x-icon" href="https://github.com/favicon.ico">
+
+    <meta content="authenticity_token" name="csrf-param">
+<meta content="BtoLZNp4xWv6xaPI5EBxZe6eeLPc+wXKtjl23qnAAjE=" name="csrf-token">
+
+    <link href="./API Reference · mbostock d3 Wiki_files/github-821bbed259d46e5d6b74d76c79635696f4250cec.css" media="all" rel="stylesheet" type="text/css">
+    <link href="./API Reference · mbostock d3 Wiki_files/github2-7a4dbbe68d3ae5fa8a5f35a6d6079c2295669ee7.css" media="all" rel="stylesheet" type="text/css">
+    
+
+
+      <script type="text/javascript" async="" id="gauges-tracker" data-site-id="4f5634b5613f5d0429000010" src="./API Reference · mbostock d3 Wiki_files/track.js"></script><script src="./API Reference · mbostock d3 Wiki_files/frameworks-bafee0a321be765ed924edd4c746d8af68510845.js" type="text/javascript"></script>
+      <script src="./API Reference · mbostock d3 Wiki_files/github-910894cfe52346d227f4d0a2a0020fba7bd08f8b.js" type="text/javascript"></script><script type="text/javascript" async="" src="./API Reference · mbostock d3 Wiki_files/ga.js"></script>
+      
+      <meta http-equiv="x-pjax-version" content="12613ac09d5e82fcd14602a78d37793e">
+
+        <script src="./API Reference · mbostock d3 Wiki_files/wiki-2b7f3b57da1d8b8bff7f8127337f649607090339.js" type="text/javascript"></script>
+    <meta property="og:title" content="d3">
+    <meta property="og:type" content="githubog:gitrepository">
+    <meta property="og:url" content="https://github.com/mbostock/d3">
+    <meta property="og:image" content="https://secure.gravatar.com/avatar/005a27e09fe946ebef64bf4d134efc0a?s=420&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png">
+    <meta property="og:site_name" content="GitHub">
+    <meta property="og:description" content="d3 - A JavaScript visualization library for HTML and SVG.">
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:site" content="@GitHub">
+    <meta property="twitter:title" content="mbostock/d3">
+
+    <meta name="description" content="d3 - A JavaScript visualization library for HTML and SVG.">
+
+  <link href="https://github.com/mbostock/d3/commits/master.atom" rel="alternate" title="Recent Commits to d3:master" type="application/atom+xml">
+
+  </head>
+
+
+  <body class="logged_in  macintosh vis-public env-production  ">
+    <div id="wrapper">
+
+      
+
+      
+      
+      
+
+      <div class="header header-logged-in true">
+  <div class="container clearfix">
+
+    <a class="header-logo-blacktocat" href="https://github.com/">
+  <span class="mega-icon mega-icon-blacktocat"></span>
+</a>
+
+    <div class="divider-vertical"></div>
+
+    
+  <a href="https://github.com/notifications" class="notification-indicator tooltipped downwards" original-title="You have unread notifications">
+    <span class="mail-status unread"></span>
+  </a>
+  <div class="divider-vertical"></div>
+
+
+      <div class="command-bar js-command-bar  ">
+            <form accept-charset="UTF-8" action="https://github.com/search" class="command-bar-form" id="top_search_form" method="get">
+  <a href="https://github.com/search/advanced" class="advanced-search-icon tooltipped downwards command-bar-search" id="advanced_search" original-title="Advanced search"><span class="mini-icon mini-icon-advanced-search "></span></a>
+
+  <input type="text" data-hotkey="/ s" name="q" id="js-command-bar-field" placeholder="Search or type a command" tabindex="1" data-username="juanantonioruz" autocapitalize="off">
+
+  <span class="mini-icon help tooltipped downwards" original-title="Show command bar help">
+    <span class="mini-icon mini-icon-help"></span>
+  </span>
+
+  <input type="hidden" name="ref" value="cmdform">
+
+    <input type="hidden" class="js-repository-name-with-owner" value="mbostock/d3">
+    <input type="hidden" class="js-repository-branch" value="master">
+    <input type="hidden" class="js-repository-tree-sha" value="cd3d7e3d8ad2037aeb067481f4d661b3fca01ae6">
+
+  <div class="divider-vertical"></div>
+</form>
+        <ul class="top-nav">
+            <li class="explore"><a href="https://github.com/explore">Explore</a></li>
+            <li><a href="https://gist.github.com/">Gist</a></li>
+            <li><a href="https://github.com/blog">Blog</a></li>
+          <li><a href="http://help.github.com/">Help</a></li>
+        </ul>
+      </div>
+
+    
+
+  
+    <ul id="user-links">
+      <li>
+        <a href="https://github.com/juanantonioruz" class="name">
+          <img height="20" src="./API Reference · mbostock d3 Wiki_files/7495c5f8025a56c874dd708b6bb4b96d" width="20"> juanantonioruz
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/new" id="new_repo" class="tooltipped downwards" original-title="Create a new repo">
+          <span class="mini-icon mini-icon-create"></span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/settings/profile" id="account_settings" class="tooltipped downwards" original-title="Account settings ">
+          <span class="mini-icon mini-icon-account-settings"></span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/logout" data-method="post" id="logout" class="tooltipped downwards" original-title="Sign out">
+          <span class="mini-icon mini-icon-logout"></span>
+        </a>
+      </li>
+    </ul>
+
+
+
+    
+  </div>
+</div>
+
+      
+
+      
+
+      
+
+
+            <div class="site hfeed" itemscope="" itemtype="http://schema.org/WebPage">
+      <div class="hentry">
+        
+        <div class="pagehead repohead instapaper_ignore readability-menu ">
+          <div class="container">
+            <div class="title-actions-bar">
+              
+
+
+<ul class="pagehead-actions">
+
+
+    <li class="subscription">
+      <form accept-charset="UTF-8" action="https://github.com/notifications/subscribe" data-autosubmit="true" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="BtoLZNp4xWv6xaPI5EBxZe6eeLPc+wXKtjl23qnAAjE="></div>  <input id="repository_id" name="repository_id" type="hidden" value="943149">
+
+    <div class="select-menu js-menu-container js-select-menu">
+      <span class="minibutton select-menu-button js-menu-target">
+        <span class="js-select-button">
+          <span class="mini-icon mini-icon-watching"></span>
+          Watch
+        </span>
+      </span>
+
+      <div class="select-menu-modal-holder js-menu-content">
+        <div class="select-menu-modal">
+          <div class="select-menu-header">
+            <span class="select-menu-title">Notification status</span>
+            <span class="mini-icon mini-icon-remove-close js-menu-close"></span>
+          </div> <!-- /.select-menu-header -->
+
+          <div class="select-menu-list js-navigation-container">
+
+            <div class="select-menu-item js-navigation-item js-navigation-target selected">
+              <span class="select-menu-item-icon mini-icon mini-icon-confirm"></span>
+              <div class="select-menu-item-text">
+                <input checked="checked" id="do_included" name="do" type="radio" value="included">
+                <h4>Not watching</h4>
+                <span class="description">You only receive notifications for discussions in which you participate or are @mentioned.</span>
+                <span class="js-select-button-text hidden-select-button-text">
+                  <span class="mini-icon mini-icon-watching"></span>
+                  Watch
+                </span>
+              </div>
+            </div> <!-- /.select-menu-item -->
+
+            <div class="select-menu-item js-navigation-item js-navigation-target ">
+              <span class="select-menu-item-icon mini-icon mini-icon-confirm"></span>
+              <div class="select-menu-item-text">
+                <input id="do_subscribed" name="do" type="radio" value="subscribed">
+                <h4>Watching</h4>
+                <span class="description">You receive notifications for all discussions in this repository.</span>
+                <span class="js-select-button-text hidden-select-button-text">
+                  <span class="mini-icon mini-icon-unwatch"></span>
+                  Unwatch
+                </span>
+              </div>
+            </div> <!-- /.select-menu-item -->
+
+            <div class="select-menu-item js-navigation-item js-navigation-target ">
+              <span class="select-menu-item-icon mini-icon mini-icon-confirm"></span>
+              <div class="select-menu-item-text">
+                <input id="do_ignore" name="do" type="radio" value="ignore">
+                <h4>Ignoring</h4>
+                <span class="description">You do not receive any notifications for discussions in this repository.</span>
+                <span class="js-select-button-text hidden-select-button-text">
+                  <span class="mini-icon mini-icon-mute"></span>
+                  Stop ignoring
+                </span>
+              </div>
+            </div> <!-- /.select-menu-item -->
+
+          </div> <!-- /.select-menu-list -->
+
+        </div> <!-- /.select-menu-modal -->
+      </div> <!-- /.select-menu-modal-holder -->
+    </div> <!-- /.select-menu -->
+
+</form>
+    </li>
+
+    <li class="js-toggler-container js-social-container starring-container on">
+      <a href="https://github.com/mbostock/d3/unstar" class="minibutton js-toggler-target star-button starred upwards" title="Unstar this repo" data-remote="true" data-method="post" rel="nofollow">
+        <span class="mini-icon mini-icon-remove-star"></span>
+        <span class="text">Unstar</span>
+      </a>
+      <a href="https://github.com/mbostock/d3/star" class="minibutton js-toggler-target star-button unstarred upwards" title="Star this repo" data-remote="true" data-method="post" rel="nofollow">
+        <span class="mini-icon mini-icon-star"></span>
+        <span class="text">Star</span>
+      </a>
+      <a class="social-count js-social-count" href="https://github.com/mbostock/d3/stargazers">14,049</a>
+    </li>
+
+        <li>
+          <a href="https://github.com/mbostock/d3/fork" class="minibutton js-toggler-target fork-button lighter upwards" title="Fork this repo" rel="nofollow" data-method="post">
+            <span class="mini-icon mini-icon-branch-create"></span>
+            <span class="text">Fork</span>
+          </a>
+          <a href="https://github.com/mbostock/d3/network" class="social-count">2,416</a>
+        </li>
+
+
+</ul>
+
+              <h1 itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public">
+                <span class="repo-label"><span>public</span></span>
+                <span class="mega-icon mega-icon-public-repo"></span>
+                <span class="author vcard">
+                  <a href="https://github.com/mbostock" class="url fn" itemprop="url" rel="author">
+                  <span itemprop="title">mbostock</span>
+                  </a></span> /
+                <strong><a href="https://github.com/mbostock/d3" class="js-current-repository">d3</a></strong>
+              </h1>
+            </div>
+
+            
+  <ul class="tabs">
+    <li><a href="https://github.com/mbostock/d3" highlight="repo_source repo_downloads repo_commits repo_tags repo_branches">Code</a></li>
+    <li><a href="https://github.com/mbostock/d3/network" highlight="repo_network">Network</a></li>
+    <li><a href="https://github.com/mbostock/d3/pulls" highlight="repo_pulls">Pull Requests <span class="counter">37</span></a></li>
+
+      <li><a href="https://github.com/mbostock/d3/issues" highlight="repo_issues">Issues <span class="counter">130</span></a></li>
+
+      <li><a href="https://github.com/mbostock/d3/wiki" class="selected" highlight="repo_wiki">Wiki</a></li>
+
+
+    <li><a href="https://github.com/mbostock/d3/graphs" highlight="repo_graphs repo_contributors">Graphs</a></li>
+
+
+  </ul>
+  
+  
+  
+  <div class="tabnav">
+  <ul class="tabnav-tabs">
+    <li><a href="https://github.com/mbostock/d3/wiki" class="tabnav-tab">Home</a></li>
+    <li><a href="https://github.com/mbostock/d3/wiki/_pages" class="tabnav-tab">Pages</a></li>
+    <li><a href="https://github.com/mbostock/d3/wiki/_history" class="tabnav-tab">Wiki History</a></li>
+    <li><a href="https://github.com/mbostock/d3/wiki/_access" class="tabnav-tab">Git Access</a></li>
+  </ul>
+</div>
+
+
+
+            
+          </div>
+        </div><!-- /.repohead -->
+
+        <div id="js-repo-pjax-container" class="container context-loader-container" data-pjax-container="">
+          
+
+
+<div id="wiki-wrapper" class="page">
+<div id="head">
+  <ul class="wiki-actions readability-extra">
+    <li class="gollum-minibutton">
+      <a href="https://github.com/mbostock/d3/wiki/_new" class="button minibutton bigger js-new-wiki-page">New Page</a>
+    </li>
+    <li class="gollum-minibutton"><a href="https://github.com/mbostock/d3/wiki/API-Reference/_edit" class="minibutton bigger action-edit-page">
+       Edit Page
+     </a></li>
+    <li class="gollum-minibutton"><a href="https://github.com/mbostock/d3/wiki/API-Reference/_history" class="minibutton bigger action-page-history">
+       Page History
+     </a></li>
+  </ul>
+  <h1 class="instapaper_title">API Reference</h1>
+</div>
+<div id="wiki-content">
+  <div class="wrap">
+  <div id="wiki-body" class="gollum-markdown-content instapaper_body">
+    <div class="markdown-body">
+      <blockquote>
+<p><a href="https://github.com/mbostock/d3/wiki/Home">Wiki</a> ▸ <strong>API Reference</strong></p>
+</blockquote>
+
+<p>Everything in D3 is scoped under the <code>d3</code> namespace. D3 uses <a href="http://semver.org/">semantic versioning</a>. You can find the current version of D3 as <code>d3.version</code>.</p>
+
+<h2>
+<a name="d3-core" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#d3-core"><span class="mini-icon mini-icon-link"></span></a><a href="https://github.com/mbostock/d3/wiki/Core">d3 (core)</a>
+</h2>
+
+<h3>
+<a name="selections" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#selections"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections">Selections</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-d3_select">d3.select</a> - select an element from the current document.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-d3_selectAll">d3.selectAll</a> - select multiple elements from the current document.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-attr">selection.attr</a> - get or set attribute values.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-classed">selection.classed</a> - add or remove CSS classes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-style">selection.style</a> - get or set style properties.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-property">selection.property</a> - get or set raw properties.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-text">selection.text</a> - get or set text content.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-html">selection.html</a> - get or set inner HTML content.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-append">selection.append</a> - create and append new elements.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-insert">selection.insert</a> - create and insert new elements before existing elements.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-remove">selection.remove</a> - remove elements from the document.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-data">selection.data</a> - get or set data for a group of elements, while computing a relational join.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-enter">selection.enter</a> - returns placeholders for missing elements.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-exit">selection.exit</a> - returns elements that are no longer needed.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-datum">selection.datum</a> - get or set data for individual elements, without computing a join.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-filter">selection.filter</a> - filter a selection based on data.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-sort">selection.sort</a> - sort elements in the document based on data.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-order">selection.order</a> - reorders elements in the document to match the selection.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-on">selection.on</a> - add or remove event listeners for interaction.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-transition">selection.transition</a> - start a transition on the selected elements.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-each">selection.each</a> - call a function for each selected element.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-call">selection.call</a> - call a function passing in the current selection.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-empty">selection.empty</a> - returns true if the selection is empty.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-node">selection.node</a> - access the first node in a selection.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-select">selection.select</a> - subselect a descendant element for each selected element.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-selectAll">selection.selectAll</a> - subselect multiple descendants for each selected element.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-d3_selection">d3.selection</a> - augment the selection prototype, or test instance types.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-d3_event">d3.event</a> - access the current user event for interaction.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-d3_mouse">d3.mouse</a> - gets the mouse position relative to a specified container.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Selections#wiki-d3_touches">d3.touches</a> - gets the touch positions relative to a specified container.</li>
+</ul><h3>
+<a name="transitions" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#transitions"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions">Transitions</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_transition">d3.transition</a> - start an animated transition.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-delay">transition.delay</a> - specify per-element delay in milliseconds.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-duration">transition.duration</a> - specify per-element duration in milliseconds.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-ease">transition.ease</a> - specify transition easing function.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-attr">transition.attr</a> - smoothly transition to the new attribute value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-attrTween">transition.attrTween</a> - smoothly transition between two attribute values.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-style">transition.style</a> - smoothly transition to the new style property value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-styleTween">transition.styleTween</a> - smoothly transition between two style property values.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-text">transition.text</a> - set the text content when the transition starts.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-tween">transition.tween</a> - specify a custom tween operator to run as part of the transition.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-select">transition.select</a> - start a transition on a descendant element for each selected element.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-selectAll">transition.selectAll</a> - start a transition on multiple descendants for each selected element.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-filter">transition.filter</a> - filter a transition based on data.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-transition">transition.transition</a> - when this transition ends, start another one on the same elements.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-remove">transition.remove</a> - remove selected elements at the end of a transition.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-each">transition.each</a> - add a listener for transition end events.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-call">transition.call</a> - call a function passing in the current transition.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_ease">d3.ease</a> - customize transition timing.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-_ease">ease</a> - a parametric easing function.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_timer">d3.timer</a> - start a custom animation timer.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_timer_flush">d3.timer.flush</a> - immediately execute any zero-delay timers.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_interpolate">d3.interpolate</a> - interpolate two values.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-_interpolate">interpolate</a> - a parametric interpolation function.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_interpolateNumber">d3.interpolateNumber</a> - interpolate two numbers.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_interpolateRound">d3.interpolateRound</a> - interpolate two integers.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_interpolateString">d3.interpolateString</a> - interpolate two strings.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_interpolateRgb">d3.interpolateRgb</a> - interpolate two RGB colors.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_interpolateHsl">d3.interpolateHsl</a> - interpolate two HSL colors.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_interpolateLab">d3.interpolateLab</a> - interpolate two L*a*b* colors.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_interpolateHcl">d3.interpolateHcl</a> - interpolate two HCL colors.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_interpolateArray">d3.interpolateArray</a> - interpolate two arrays of values.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_interpolateObject">d3.interpolateObject</a> - interpolate two arbitrary objects.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_interpolateTransform">d3.interpolateTransform</a> - interpolate two 2D matrix transforms.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_interpolators">d3.interpolators</a> - register a custom interpolator.</li>
+</ul><h3>
+<a name="working-with-arrays" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#working-with-arrays"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays">Working with Arrays</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_ascending">d3.ascending</a> - compare two values for sorting.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_descending">d3.descending</a> - compare two values for sorting.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_min">d3.min</a> - find the minimum value in an array.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_max">d3.max</a> - find the maximum value in an array.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_extent">d3.extent</a> - find the minimum and maximum value in an array.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_sum">d3.sum</a> - compute the sum of an array of numbers.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_mean">d3.mean</a> - compute the arithmetic mean of an array of numbers.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_median">d3.median</a> - compute the median of an array of numbers (the 0.5-quantile).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_quantile">d3.quantile</a> - compute a quantile for a sorted array of numbers.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_bisect">d3.bisect</a> - search for a value in a sorted array.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_bisectRight">d3.bisectRight</a> - search for a value in a sorted array.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_bisectLeft">d3.bisectLeft</a> - search for a value in a sorted array.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_bisector">d3.bisector</a> - bisect using an accessor.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_shuffle">d3.shuffle</a> - randomize the order of an array.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_permute">d3.permute</a> - reorder an array of elements according to an array of indexes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_zip">d3.zip</a> - transpose a variable number of arrays.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_transpose">d3.transpose</a> - transpose an array of arrays.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_keys">d3.keys</a> - list the keys of an associative array.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_values">d3.values</a> - list the values of an associated array.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_entries">d3.entries</a> - list the key-value entries of an associative array.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_merge">d3.merge</a> - merge multiple arrays into one array.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_range">d3.range</a> - generate a range of numeric values.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_nest">d3.nest</a> - group array elements hierarchically.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-nest_key">nest.key</a> - add a level to the nest hierarchy.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-nest_sortKeys">nest.sortKeys</a> - sort the current nest level by key.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-nest_sortValues">nest.sortValues</a> - sort the leaf nest level by value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-nest_rollup">nest.rollup</a> - specify a rollup function for leaf values.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-nest_map">nest.map</a> - evaluate the nest operator, returning an associative array.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Arrays#wiki-nest_entries">nest.entries</a> - evaluate the nest operator, returning an array of key-values tuples.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_map">d3.map</a> - a shim for ES6 maps, since objects are not hashes!</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-map_has">map.has</a> - returns true if the map contains the specified key.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-map_get">map.get</a> - returns the value for the specified key.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-map_set">map.set</a> - sets the value for the specified key.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-map_remove">map.remove</a> - removes the entry for specified key.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-map_keys">map.keys</a> - returns the map’s array of keys.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-map_values">map.values</a> - returns the map’s array of values.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-map_entries">map.entries</a> - returns the map’s array of entries (key-values objects).</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-map_forEach">map.forEach</a> - calls the specified function for each entry in the map.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-d3_set">d3.set</a> - a shim for ES6 sets, since objects are not hashes!</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-set_has">set.has</a> - returns true if the set contains the specified value.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-set_add">set.add</a> - adds the specified value.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-set_remove">set.remove</a> - removes the specified value.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-set_values">set.values</a> - returns the set’s array of values.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Arrays#wiki-set_forEach">set.forEach</a> - calls the specified function for each value in the set.</li>
+</ul><h3>
+<a name="math" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#math"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Math">Math</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Math#wiki-random_normal">d3.random.normal</a> - generate a random number with a normal distribution.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Math#wiki-random_logNormal">d3.random.logNormal</a> - generate a random number with a log-normal distribution.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Math#wiki-random_irwinHall">d3.random.irwinHall</a> - generate a random number with an Irwin–Hall distribution.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Math#wiki-transform">d3.transform</a> - compute the standard form of a 2D matrix transform.</li>
+</ul><h3>
+<a name="loading-external-resources" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#loading-external-resources"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Requests">Loading External Resources</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Requests#wiki-d3_xhr">d3.xhr</a> - request a resource using XMLHttpRequest.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Requests#wiki-header">xhr.header</a> - set a request header.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Requests#wiki-mimeType">xhr.mimeType</a> - set the Accept request header and override the response MIME type.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Requests#wiki-response">xhr.response</a> - set a response mapping function.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Requests#wiki-get">xhr.get</a> - issue a GET request.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Requests#wiki-post">xhr.post</a> - issue a POST request.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Requests#wiki-send">xhr.send</a> - issue a request with the specified method and data.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Requests#wiki-abort">xhr.abort</a> - abort an outstanding request.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Requests#wiki-on">xhr.on</a> - add an event listener for "progress", "load" or "error" events.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Requests#wiki-d3_text">d3.text</a> - request a text file.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Requests#wiki-d3_json">d3.json</a> - request a JSON blob.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Requests#wiki-d3_html">d3.html</a> - request an HTML document fragment.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Requests#wiki-d3_xml">d3.xml</a> - request an XML document fragment.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/CSV">d3.csv</a> - request a comma-separated values (CSV) file.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/CSV#wiki-tsv">d3.tsv</a> - request a tab-separated values (TSV) file.</li>
+</ul><h3>
+<a name="string-formatting" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#string-formatting"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Formatting">String Formatting</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Formatting#wiki-d3_format">d3.format</a> - format a number as a string.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Formatting#wiki-d3_formatPrefix">d3.formatPrefix</a> - returns the [SI prefix] for the specified value and precision.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Formatting#wiki-d3_requote">d3.requote</a> - quote a string for use in a regular expression.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Formatting#wiki-d3_round">d3.round</a> - rounds a value to some digits after the decimal point.</li>
+</ul><h3>
+<a name="csv-formatting-d3csv" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#csv-formatting-d3csv"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/CSV">CSV Formatting (d3.csv)</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/CSV#wiki-csv">d3.csv</a> - request a comma-separated values (CSV) file.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/CSV#wiki-parse">d3.csv.parse</a> - parse a CSV string into objects using the header row.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/CSV#wiki-parseRows">d3.csv.parseRows</a> - parse a CSV string into tuples, ignoring the header row.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/CSV#wiki-format">d3.csv.format</a> - format an array of objects into a CSV string.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/CSV#wiki-formatRows">d3.csv.formatRows</a> - format an array of tuples into a CSV string.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/CSV#wiki-tsv">d3.tsv</a> - request a tab-separated values (TSV) file.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/CSV#wiki-tsv_parse">d3.tsv.parse</a> - parse a TSV string into objects using the header row.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/CSV#wiki-tsv_parseRows">d3.tsv.parseRows</a> - parse a TSV string into tuples, ignoring the header row.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/CSV#wiki-tsv_format">d3.tsv.format</a> - format an array of objects into a TSV string.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/CSV#wiki-tsv_formatRows">d3.tsv.formatRows</a> - format an array of tuples into a TSV string.</li>
+</ul><h3>
+<a name="colors" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#colors"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors">Colors</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-d3_rgb">d3.rgb</a> - specify a color in RGB space.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-rgb_brighter">rgb.brighter</a> - increase RGB channels by some exponential factor (gamma).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-rgb_darker">rgb.darker</a> - decrease RGB channels by some exponential factor (gamma).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-rgb_hsl">rgb.hsl</a> - convert from RGB to HSL.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-rgb_toString">rgb.toString</a> - convert an RGB color to a string.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-d3_hsl">d3.hsl</a> - specify a color in HSL space.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-hsl_brighter">hsl.brighter</a> - increase lightness by some exponential factor (gamma).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-hsl_darker">hsl.darker</a> - decrease lightness by some exponential factor (gamma).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-hsl_rgb">hsl.rgb</a> - convert from HSL to RGB.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-hsl_toString">hsl.toString</a> - convert an HSL color to a string.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-d3_lab">d3.lab</a> - specify a color in L*a*b* space.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-lab_brighter">lab.brighter</a> - increase lightness by some exponential factor (gamma).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-lab_darker">lab.darker</a> - decrease lightness by some exponential factor (gamma).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-lab_rgb">lab.rgb</a> - convert from L*a*b* to RGB.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-lab_toString">lab.toString</a> - convert a L*a*b* color to a string.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-d3_hcl">d3.hcl</a> - specify a color in HCL space.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-hcl_brighter">hcl.brighter</a> - increase lightness by some exponential factor (gamma).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-hcl_darker">hcl.darker</a> - decrease lightness by some exponential factor (gamma).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-hcl_rgb">hcl.rgb</a> - convert from HCL to RGB.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Colors#wiki-hcl_toString">hcl.toString</a> - convert an HCL color to a string.</li>
+</ul><h3>
+<a name="namespaces" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#namespaces"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Namespaces">Namespaces</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Namespaces#wiki-prefix">d3.ns.prefix</a> - access or extend known XML namespaces.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Namespaces#wiki-qualify">d3.ns.qualify</a> - qualify a prefixed name, such as "xlink:href".</li>
+</ul><h3>
+<a name="internals" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#internals"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Internals">Internals</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Internals#wiki-functor">d3.functor</a> - create a function that returns a constant.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Internals#wiki-rebind">d3.rebind</a> - rebind an inherited getter/setter method to a subclass.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Internals#wiki-d3_dispatch">d3.dispatch</a> - create custom event dispatchers.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Internals#wiki-dispatch_on">dispatch.on</a> - register an event listener.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Internals#wiki-_dispatch">dispatch</a> - dispatch an event to registered listeners.</li>
+</ul><h2>
+<a name="d3scale-scales" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#d3scale-scales"><span class="mini-icon mini-icon-link"></span></a><a href="https://github.com/mbostock/d3/wiki/Scales">d3.scale (Scales)</a>
+</h2>
+
+<h3>
+<a name="quantitative" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#quantitative"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-quantitative">Quantitative</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-linear">d3.scale.linear</a> - construct a linear quantitative scale.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-_linear">linear</a> - get the range value corresponding to a given domain value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-linear_invert">linear.invert</a> - get the domain value corresponding to a given range value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-linear_domain">linear.domain</a> - get or set the scale's input domain.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-linear_range">linear.range</a> - get or set the scale's output range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-linear_rangeRound">linear.rangeRound</a> - set the scale's output range, and enable rounding.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-linear_interpolate">linear.interpolate</a> - get or set the scale's output interpolator.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-linear_clamp">linear.clamp</a> - enable or disable clamping of the output range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-linear_nice">linear.nice</a> - extend the scale domain to nice round numbers.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-linear_ticks">linear.ticks</a> - get representative values from the input domain.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-linear_tickFormat">linear.tickFormat</a> - get a formatter for displaying tick values.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-linear_copy">linear.copy</a> - create a new scale from an existing scale.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-sqrt">d3.scale.sqrt</a> - construct a quantitative scale with a square root transform.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-pow">d3.scale.pow</a> - construct a quantitative scale with an exponential transform.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-_pow">pow</a> - get the range value corresponding to a given domain value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-pow_invert">pow.invert</a> - get the domain value corresponding to a given range value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-pow_domain">pow.domain</a> - get or set the scale's input domain.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-pow_range">pow.range</a> - get or set the scale's output range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-pow_rangeRound">pow.rangeRound</a> - set the scale's output range, and enable rounding.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-pow_interpolate">pow.interpolate</a> - get or set the scale's output interpolator.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-pow_clamp">pow.clamp</a> - enable or disable clamping of the output range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-pow_nice">pow.nice</a> - extend the scale domain to nice round numbers.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-pow_ticks">pow.ticks</a> - get representative values from the input domain.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-pow_tickFormat">pow.tickFormat</a> - get a formatter for displaying tick values.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-pow_exponent">pow.exponent</a> - get or set the exponent power.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-pow_copy">pow.copy</a> - create a new scale from an existing scale.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-log">d3.scale.log</a> - construct a quantitative scale with an logarithmic transform.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-_log">log</a> - get the range value corresponding to a given domain value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-log_invert">log.invert</a> - get the domain value corresponding to a given range value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-log_domain">log.domain</a> - get or set the scale's input domain.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-log_range">log.range</a> - get or set the scale's output range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-log_rangeRound">log.rangeRound</a> - set the scale's output range, and enable rounding.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-log_interpolate">log.interpolate</a> - get or set the scale's output interpolator.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-log_clamp">log.clamp</a> - enable or disable clamping of the output range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-log_nice">log.nice</a> - extend the scale domain to nice powers of ten.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-log_ticks">log.ticks</a> - get representative values from the input domain.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-log_tickFormat">log.tickFormat</a> - get a formatter for displaying tick values.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-log_copy">log.copy</a> - create a new scale from an existing scale.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-quantize">d3.scale.quantize</a> - construct a linear quantitative scale with a discrete output range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-_quantize">quantize</a> - get the range value corresponding to a given domain value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-quantize_domain">quantize.domain</a> - get or set the scale's input domain.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-quantize_range">quantize.range</a> - get or set the scale's output range (as discrete values).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-quantize_copy">quantize.copy</a> - create a new scale from an existing scale.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-threshold">d3.scale.threshold</a> - construct a threshold scale with a discrete output range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-_threshold">threshold</a> - get the range value corresponding to a given domain value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-threshold_domain">threshold.domain</a> - get or set the scale's input domain.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-threshold_range">threshold.range</a> - get or set the scale's output range (as discrete values).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-threshold_copy">threshold.copy</a> - create a new scale from an existing scale.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-quantile">d3.scale.quantile</a> - construct a quantitative scale mapping to quantiles.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-_quantile">quantile</a> - get the range value corresponding to a given domain value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-quantile_domain">quantile.domain</a> - get or set the scale's input domain (as discrete values).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-quantile_range">quantile.range</a> - get or set the scale's output range (as discrete values).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-quantile_quantiles">quantile.quantiles</a> - get the scale's quantile bin thresholds.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-quantile_copy">quantile.copy</a> - create a new scale from an existing scale.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-identity">d3.scale.identity</a> - construct a linear identity scale.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-_identity">identity</a> - the identity function.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-_identity">identity.invert</a> - equivalent to identity; the identity function.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-identity_domain">identity.domain</a> - get or set the scale's domain and range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-identity_domain">identity.range</a> - equivalent to identity.domain.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-identity_ticks">identity.ticks</a> - get representative values from the domain.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-identity_tickFormat">identity.tickFormat</a> - get a formatter for displaying tick values.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#wiki-identity_copy">identity.copy</a> - create a new scale from an existing scale.</li>
+</ul><h3>
+<a name="ordinal" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#ordinal"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-ordinal">Ordinal</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-ordinal">d3.scale.ordinal</a> - construct an ordinal scale.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-_ordinal">ordinal</a> - get the range value corresponding to a given domain value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-ordinal_domain">ordinal.domain</a> - get or set the scale's input domain.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-ordinal_range">ordinal.range</a> - get or set the scale's output range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-ordinal_rangePoints">ordinal.rangePoints</a> - divide a continuous output range for discrete points.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-ordinal_rangeBands">ordinal.rangeBands</a> - divide a continuous output range for discrete bands.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-ordinal_rangeRoundBands">ordinal.rangeRoundBands</a> - divide a continuous output range for discrete bands.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-ordinal_rangeBand">ordinal.rangeBand</a> - get the discrete range band width.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-ordinal_rangeExtent">ordinal.rangeExtent</a> - get the minimum and maximum values of the output range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-ordinal_copy">ordinal.copy</a> - create a new scale from an existing scale.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-category10">d3.scale.category10</a> - construct an ordinal scale with ten categorical colors.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-category20">d3.scale.category20</a> - construct an ordinal scale with twenty categorical colors.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-category20b">d3.scale.category20b</a> - construct an ordinal scale with twenty categorical colors.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#wiki-category20c">d3.scale.category20c</a> - construct an ordinal scale with twenty categorical colors.</li>
+</ul><h2>
+<a name="d3svg-svg" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#d3svg-svg"><span class="mini-icon mini-icon-link"></span></a><a href="https://github.com/mbostock/d3/wiki/SVG">d3.svg (SVG)</a>
+</h2>
+
+<h3>
+<a name="shapes" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#shapes"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes">Shapes</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line">d3.svg.line</a> - create a new line generator.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-_line">line</a> - generate a piecewise linear curve, as in a line chart.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line_x">line.x</a> - get or set the <em>x</em>-coordinate accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line_y">line.y</a> - get or set the <em>y</em>-coordinate accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line_interpolate">line.interpolate</a> - get or set the interpolation mode.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line_tension">line.tension</a> - get or set the cardinal spline tension.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line_defined">line.defined</a> - control whether the line is defined at a given point.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line_radial">d3.svg.line.radial</a> - create a new radial line generator.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-_line_radial">line</a> - generate a piecewise linear curve, as in a polar line chart.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line_radial_radius">line.radius</a> - get or set the <em>radius</em> accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line_radial_angle">line.angle</a> - get or set the <em>angle</em> accessor.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line_radial_defined">line.defined</a> - control whether the line is defined at a given point.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area">d3.svg.area</a> - create a new area generator.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-_area">area</a> - generate a piecewise linear area, as in an area chart.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_x">area.x</a> - get or set the <em>x</em>-coordinate accessors.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_x0">area.x0</a> - get or set the <em>x0</em>-coordinate (baseline) accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_x1">area.x1</a> - get or set the <em>x1</em>-coordinate (topline) accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_y">area.y</a> - get or set the <em>y</em>-coordinate accessors.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_y0">area.y0</a> - get or set the <em>y0</em>-coordinate (baseline) accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_y1">area.y1</a> - get or set the <em>y1</em>-coordinate (topline) accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_interpolate">area.interpolate</a> - get or set the interpolation mode.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_tension">area.tension</a> - get or set the cardinal spline tension.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_defined">area.defined</a> - control whether the area is defined at a given point.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_radial">d3.svg.area.radial</a> - create a new area generator.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-_area_radial">area</a> - generate a piecewise linear area, as in a polar area chart.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_radial_radius">area.radius</a> - get or set the <em>radius</em> accessors.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_radial_innerRadius">area.innerRadius</a> - get or set the inner <em>radius</em> (baseline) accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_radial_outerRadius">area.outerRadius</a> - get or set the outer <em>radius</em> (topline) accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_radial_angle">area.angle</a> - get or set the <em>angle</em> accessors.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_radial_startAngle">area.startAngle</a> - get or set the <em>angle</em> (baseline) accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_radial_endAngle">area.endAngle</a> - get or set the <em>angle</em> (topline) accessor.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_radial_defined">area.defined</a> - control whether the area is defined at a given point.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-arc">d3.svg.arc</a> - create a new arc generator.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-_arc">arc</a> - generate a solid arc, as in a pie or donut chart.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-arc_innerRadius">arc.innerRadius</a> - get or set the inner radius accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-arc_outerRadius">arc.outerRadius</a> - get or set the outer radius accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-arc_startAngle">arc.startAngle</a> - get or set the start angle accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-arc_endAngle">arc.endAngle</a> - get or set the end angle accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-arc_centroid">arc.centroid</a> - compute the arc centroid.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-symbol">d3.svg.symbol</a> - create a new symbol generator.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-_symbol">symbol</a> - generate categorical symbols, as in a scatterplot.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-symbol_type">symbol.type</a> - get or set the symbol type accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-symbol_size">symbol.size</a> - get or set the symbol size (in square pixels) accessor.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-symbolTypes">d3.svg.symbolTypes</a> - the array of supported symbol types.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-chord">d3.svg.chord</a> - create a new chord generator.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-_chord">chord</a> - generate a quadratic Bézier connecting two arcs, as in a chord diagram.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-chord_radius">chord.radius</a> - get or set the arc radius accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-chord_startAngle">chord.startAngle</a> - get or set the arc start angle accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-chord_endAngle">chord.endAngle</a> - get or set the arc end angle accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-chord_source">chord.source</a> - get or set the source arc accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-chord_target">chord.target</a> - get or set the target arc accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-diagonal">d3.svg.diagonal</a> - create a new diagonal generator.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-_diagonal">diagonal</a> - generate a two-dimensional Bézier connector, as in a node-link diagram.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-diagonal_source">diagonal.source</a> - get or set the source point accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-diagonal_target">diagonal.target</a> - get or set the target point accessor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-diagonal_projection">diagonal.projection</a> - get or set an optional point transform.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-diagonal_radial">d3.svg.diagonal.radial</a> - create a new diagonal generator.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-_diagonal_radial">diagonal</a> - generate a two-dimensional Bézier connector, as in a node-link diagram.</li>
+</ul><h3>
+<a name="axes" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#axes"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Axes">Axes</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-axis">d3.svg.axis</a> - create a new axis generator.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-_axis">axis</a> - creates or updates an axis for the given selection or transition.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-scale">axis.scale</a> - get or set the axis scale.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-orient">axis.orient</a> - get or set the axis orientation.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-ticks">axis.ticks</a> - control how ticks are generated for the axis.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickValues">axis.tickValues</a> - specify tick values explicitly.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickSubdivide">axis.tickSubdivide</a> - optionally subdivide ticks uniformly.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickSize">axis.tickSize</a> - specify the size of major, minor and end ticks.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickPadding">axis.tickPadding</a> - specify padding between ticks and tick labels.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickFormat">axis.tickFormat</a> - override the tick formatting for labels.</li>
+</ul><h3>
+<a name="controls" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#controls"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Controls">Controls</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Controls#wiki-brush">d3.svg.brush</a> - click and drag to select one- or two-dimensional regions.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Controls#wiki-_brush">brush</a> - creates or updates a brush for the given selection or transition.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Controls#wiki-brush_x">brush.x</a> - get or set the brush’s x-scale.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Controls#wiki-brush_y">brush.y</a> - get or set the brush’s y-scale.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Controls#wiki-brush_extent">brush.extent</a> - get or set the brush’s extent.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Controls#wiki-brush_clear">brush.clear</a> - reset the brush extent.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Controls#wiki-brush_empty">brush.empty</a> - returns true if the brush extent is empty.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/SVG-Controls#wiki-brush_on">brush.on</a> - respond to events when the brush is moved.</li>
+</ul><h2>
+<a name="d3time-time" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#d3time-time"><span class="mini-icon mini-icon-link"></span></a><a href="https://github.com/mbostock/d3/wiki/Time">d3.time (Time)</a>
+</h2>
+
+<h3>
+<a name="time-formatting" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#time-formatting"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Formatting">Time Formatting</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Formatting#wiki-format">d3.time.format</a> - create a new local time formatter for a given specifier.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Formatting#wiki-_format">format</a> - format a date into a string.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Formatting#wiki-parse">format.parse</a> - parse a string into a date.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Formatting#wiki-format_utc">d3.time.format.utc</a> - create a new UTC time formatter for a given specifier.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Formatting#wiki-format_iso">d3.time.format.iso</a> - the ISO 8601 UTC time formatter.</li>
+</ul><h3>
+<a name="time-scales" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#time-scales"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Scales">Time Scales</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Scales#wiki-scale">d3.time.scale</a> - construct a linear time scale.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Scales#wiki-_scale">scale</a> - get the range value corresponding to a given domain value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Scales#wiki-invert">scale.invert</a> - get the domain value corresponding to a given range value.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Scales#wiki-domain">scale.domain</a> - get or set the scale's input domain.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Scales#wiki-range">scale.range</a> - get or set the scale's output range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Scales#wiki-rangeRound">scale.rangeRound</a> - set the scale's output range, and enable rounding.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Scales#wiki-interpolate">scale.interpolate</a> - get or set the scale's output interpolator.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Scales#wiki-clamp">scale.clamp</a> - enable or disable clamping of the output range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Scales#wiki-ticks">scale.ticks</a> - get representative values from the input domain.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Scales#wiki-tickFormat">scale.tickFormat</a> - get a formatter for displaying tick values.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Scales#wiki-copy">scale.copy</a> - create a new scale from an existing scale.</li>
+</ul><h3>
+<a name="time-intervals" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#time-intervals"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals">Time Intervals</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-interval">d3.time.interval</a> - a time interval in local time.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-_interval">interval</a> - alias for interval.floor.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-interval_range">interval.range</a> - returns dates within the specified range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-interval_floor">interval.floor</a> - rounds down to the nearest interval.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-interval_round">interval.round</a> - rounds up or down to the nearest interval.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-interval_ceil">interval.ceil</a> - rounds up to the nearest interval.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-interval_offset">interval.offset</a> - returns a date offset by some interval.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-interval_utc">interval.utc</a> - returns the UTC-equivalent time interval.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-day">d3.time.day</a> - every day (12:00 AM).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-day">d3.time.days</a> - alias for day.range.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-dayOfYear">d3.time.dayOfYear</a> - computes the day number.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-hour">d3.time.hour</a> - every hour (e.g., 1:00 AM).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-hours">d3.time.hours</a> - alias for hour.range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-minute">d3.time.minute</a> - every minute (e.g., 1:02 AM).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-minutes">d3.time.minutes</a> - alias for minute.range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-month">d3.time.month</a> - every month (e.g., February 1, 12:00 AM).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-months">d3.time.months</a> - alias for month.range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-second">d3.time.second</a> - every second (e.g., 1:02:03 AM).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-seconds">d3.time.seconds</a> - alias for second.range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-sunday">d3.time.sunday</a> - every Sunday (e.g., February 5, 12:00 AM).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-sundays">d3.time.sundays</a> - alias for sunday.range.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-sundayOfYear">d3.time.sundayOfYear</a> - computes the sunday-based week number.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-monday">d3.time.monday</a> - every Monday (e.g., February 5, 12:00 AM).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-mondays">d3.time.mondays</a> - alias for monday.range.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-mondayOfYear">d3.time.mondayOfYear</a> - computes the monday-based week number.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-tuesday">d3.time.tuesday</a> - every Tuesday (e.g., February 5, 12:00 AM).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-tuesdays">d3.time.tuesdays</a> - alias for tuesday.range.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-tuesdayOfYear">d3.time.tuesdayOfYear</a> - computes the tuesday-based week number.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-wednesday">d3.time.wednesday</a> - every Wednesday (e.g., February 5, 12:00 AM).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-wednesdays">d3.time.wednesdays</a> - alias for wednesday.range.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-tuesdayOfYear">d3.time.wednesdayOfYear</a> - computes the wednesday-based week number.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-thursday">d3.time.thursday</a> - every Thursday (e.g., February 5, 12:00 AM).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-thursdays">d3.time.thursdays</a> - alias for thursday.range.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-thursdayOfYear">d3.time.thursdayOfYear</a> - computes the thursday-based week number.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-friday">d3.time.friday</a> - every Friday (e.g., February 5, 12:00 AM).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-fridays">d3.time.fridays</a> - alias for friday.range.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-fridayOfYear">d3.time.fridayOfYear</a> - computes the friday-based week number.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-saturday">d3.time.saturday</a> - every Saturday (e.g., February 5, 12:00 AM).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-saturdays">d3.time.saturdays</a> - alias for saturday.range.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-saturdayOfYear">d3.time.saturdayOfYear</a> - computes the saturday-based week number.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-week">d3.time.week</a> - alias for sunday.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-weeks">d3.time.weeks</a> - alias for sunday.range.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-weekOfYear">d3.time.weekOfYear</a> - alias for sundayOfYear.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-year">d3.time.year</a> - every year (e.g., January 1, 12:00 AM).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Time-Intervals#wiki-years">d3.time.years</a> - alias for year.range.</li>
+</ul><h2>
+<a name="d3layout-layouts" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#d3layout-layouts"><span class="mini-icon mini-icon-link"></span></a><a href="https://github.com/mbostock/d3/wiki/Layouts">d3.layout (Layouts)</a>
+</h2>
+
+<h3>
+<a name="bundle" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#bundle"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Bundle-Layout">Bundle</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Bundle-Layout#wiki-bundle">d3.layout.bundle</a> - construct a new default bundle layout.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Bundle-Layout#wiki-_bundle">bundle</a> - apply Holten's <em>hierarchical bundling</em> algorithm to edges.</li>
+</ul><h3>
+<a name="chord" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#chord"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Chord-Layout">Chord</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Chord-Layout#wiki-chord">d3.layout.chord</a> - produce a chord diagram from a matrix of relationships.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Chord-Layout#wiki-matrix">chord.matrix</a> - get or set the matrix data backing the layout.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Chord-Layout#wiki-padding">chord.padding</a> - get or set the angular padding between chord segments.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Chord-Layout#wiki-sortGroups">chord.sortGroups</a> - get or set the comparator function for groups.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Chord-Layout#wiki-sortSubgroups">chord.sortSubgroups</a> - get or set the comparator function for subgroups.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Chord-Layout#wiki-sortChords">chord.sortChords</a> - get or set the comparator function for chords (z-order).</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Chord-Layout#wiki-chords">chord.chords</a> - retrieve the computed chord angles.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Chord-Layout#wiki-groups">chord.groups</a> - retrieve the computed group angles.</li>
+</ul><h3>
+<a name="cluster" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#cluster"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Cluster-Layout">Cluster</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Cluster-Layout#wiki-cluster">d3.layout.cluster</a> - cluster entities into a dendrogram.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Cluster-Layout#wiki-sort">cluster.sort</a> - get or set the comparator function for sibling nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Cluster-Layout#wiki-children">cluster.children</a> - get or set the accessor function for child nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Cluster-Layout#wiki-nodes">cluster.nodes</a> - compute the cluster layout and return the array of nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Cluster-Layout#wiki-links">cluster.links</a> - compute the parent-child links between tree nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Cluster-Layout#wiki-separation">cluster.separation</a> - get or set the spacing function between neighboring nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Cluster-Layout#wiki-size">cluster.size</a> - get or set the layout size in <em>x</em> and <em>y</em>.</li>
+</ul><h3>
+<a name="force" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#force"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout">Force</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-force">d3.layout.force</a> - position linked nodes using physical simulation.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-on">force.on</a> - listen to updates in the computed layout positions.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-nodes">force.nodes</a> - get or set the array of nodes to layout.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-links">force.links</a> - get or set the array of links between nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-size">force.size</a> - get or set the layout size in <em>x</em> and <em>y</em>.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-linkDistance">force.linkDistance</a> - get or set the link distance.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-linkStrength">force.linkStrength</a> - get or set the link strength.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-friction">force.friction</a> - get or set the friction coefficient.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-charge">force.charge</a> - get or set the charge strength.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-gravity">force.gravity</a> - get or set the gravity strength.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-theta">force.theta</a> - get or set the accuracy of the charge interaction.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-start">force.start</a> - start or restart the simulation when the nodes change.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-resume">force.resume</a> - reheat the cooling parameter and restart simulation.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-stop">force.stop</a> - immediately terminate the simulation.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-alpha">force.alpha</a> - get or set the layout's cooling parameter.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-tick">force.tick</a> - run the layout simulation one step.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-drag">force.drag</a> - bind a behavior to nodes to allow interactive dragging.</li>
+</ul><h3>
+<a name="hierarchy" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#hierarchy"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Hierarchy-Layout">Hierarchy</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Hierarchy-Layout#wiki-hierarchy">d3.layout.hierarchy</a> - derive a custom hierarchical layout implementation.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Hierarchy-Layout#wiki-sort">hierarchy.sort</a> - get or set the comparator function for sibling nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Hierarchy-Layout#wiki-children">hierarchy.children</a> - get or set the accessor function for child nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Hierarchy-Layout#wiki-nodes">hierarchy.nodes</a> - compute the layout and return the array of nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Hierarchy-Layout#wiki-links">hierarchy.links</a> - compute the parent-child links between tree nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Hierarchy-Layout#wiki-value">hierarchy.value</a> - get or set the value accessor function.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Hierarchy-Layout#wiki-revalue">hierarchy.revalue</a> - recompute the hierarchy values.</li>
+</ul><h3>
+<a name="histogram" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#histogram"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Histogram-Layout">Histogram</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Histogram-Layout#wiki-histogram">d3.layout.histogram</a> - construct a new default histogram layout.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Histogram-Layout#wiki-_histogram">histogram</a> - compute the distribution of data using quantized bins.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Histogram-Layout#wiki-value">histogram.value</a> - get or set the value accessor function.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Histogram-Layout#wiki-range">histogram.range</a> - get or set the considered value range.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Histogram-Layout#wiki-bins">histogram.bins</a> - specify how values are organized into bins.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Histogram-Layout#wiki-frequency">histogram.frequency</a> - compute the distribution as counts or probabilities.</li>
+</ul><h3>
+<a name="pack" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#pack"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Pack-Layout">Pack</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Pack-Layout#wiki-pack">d3.layout.pack</a> - produce a hierarchical layout using recursive circle-packing.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Pack-Layout#wiki-sort">pack.sort</a> - control the order in which sibling nodes are traversed.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Pack-Layout#wiki-children">pack.children</a> - get or set the children accessor function.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Pack-Layout#wiki-nodes">pack.nodes</a> - compute the pack layout and return the array of nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Pack-Layout#wiki-links">pack.links</a> - compute the parent-child links between tree nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Pack-Layout#wiki-value">pack.value</a> - get or set the value accessor used to size circles.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Pack-Layout#wiki-size">pack.size</a> - specify the layout size in <em>x</em> and <em>y</em>.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Pack-Layout#wiki-padding">pack.padding</a> - specify the layout padding in (approximate) pixels.</li>
+</ul><h3>
+<a name="partition" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#partition"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Partition-Layout">Partition</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Partition-Layout#wiki-partition">d3.layout.partition</a> - recursively partition a node tree into a sunburst or icicle.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Partition-Layout#wiki-sort">partition.sort</a> - control the order in which sibling nodes are traversed.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Partition-Layout#wiki-children">partition.children</a> - get or set the children accessor function.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Partition-Layout#wiki-nodes">partition.nodes</a> - compute the partition layout and return the array of nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Partition-Layout#wiki-links">partition.links</a> - compute the parent-child links between tree nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Partition-Layout#wiki-value">partition.value</a> - get or set the value accessor used to size circles.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Partition-Layout#wiki-size">partition.size</a> - specify the layout size in <em>x</em> and <em>y</em>.</li>
+</ul><h3>
+<a name="pie" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#pie"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Pie-Layout">Pie</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Pie-Layout#wiki-pie">d3.layout.pie</a> - construct a new default pie layout.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Pie-Layout#wiki-_pie">pie</a> - compute the start and end angles for arcs in a pie or donut chart.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Pie-Layout#wiki-value">pie.value</a> - get or set the value accessor function.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Pie-Layout#wiki-sort">pie.sort</a> - control the clockwise order of pie slices.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Pie-Layout#wiki-startAngle">pie.startAngle</a> - get or set the overall start angle of the pie.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Pie-Layout#wiki-endAngle">pie.endAngle</a> - get or set the overall end angle of the pie.</li>
+</ul><h3>
+<a name="stack" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#stack"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Stack-Layout">Stack</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Stack-Layout#wiki-stack">d3.layout.stack</a> - construct a new default stack layout.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Stack-Layout#wiki-_stack">stack</a> - compute the baseline for each series in a stacked bar or area chart.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Stack-Layout#wiki-values">stack.values</a> - get or set the values accessor function per series.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Stack-Layout#wiki-order">stack.order</a> - control the order in which series are stacked.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Stack-Layout#wiki-offset">stack.offset</a> - specify the overall baseline algorithm.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Stack-Layout#wiki-x">stack.x</a> - get or set the <em>x</em>-dimension accessor function.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Stack-Layout#wiki-y">stack.y</a> - get or set the <em>y</em>-dimension accessor function.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Stack-Layout#wiki-out">stack.out</a> - get or set the output function for storing the baseline.</li>
+</ul><h3>
+<a name="tree" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#tree"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Tree-Layout">Tree</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Tree-Layout#wiki-tree">d3.layout.tree</a> - position a tree of nodes tidily.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Tree-Layout#wiki-sort">tree.sort</a> - control the order in which sibling nodes are traversed.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Tree-Layout#wiki-children">tree.children</a> - get or set the children accessor function.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Tree-Layout#wiki-nodes">tree.nodes</a> - compute the tree layout and return the array of nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Tree-Layout#wiki-links">tree.links</a> - compute the parent-child links between tree nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Tree-Layout#wiki-separation">tree.separation</a> - get or set the spacing function between neighboring nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Tree-Layout#wiki-size">tree.size</a> - specify the layout size in <em>x</em> and <em>y</em>.</li>
+</ul><h3>
+<a name="treemap" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#treemap"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Treemap-Layout">Treemap</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Treemap-Layout#wiki-treemap">d3.layout.treemap</a> - use recursive spatial subdivision to display a tree of nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Treemap-Layout#wiki-sort">treemap.sort</a> - control the order in which sibling nodes are traversed.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Treemap-Layout#wiki-children">treemap.children</a> - get or set the children accessor function.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Treemap-Layout#wiki-nodes">treemap.nodes</a> - compute the treemap layout and return the array of nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Treemap-Layout#wiki-links">treemap.links</a> - compute the parent-child links between tree nodes.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Treemap-Layout#wiki-value">treemap.value</a> - get or set the value accessor used to size treemap cells.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Treemap-Layout#wiki-size">treemap.size</a> - specify the layout size in <em>x</em> and <em>y</em>.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Treemap-Layout#wiki-padding">treemap.padding</a> - specify the padding between a parent and its children.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Treemap-Layout#wiki-round">treemap.round</a> - enable or disable rounding to exact pixels.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Treemap-Layout#wiki-sticky">treemap.sticky</a> - make the layout sticky for stable updates.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Treemap-Layout#wiki-mode">treemap.mode</a> - change the treemap layout algorithm.</li>
+</ul><h2>
+<a name="d3geo-geography" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#d3geo-geography"><span class="mini-icon mini-icon-link"></span></a><a href="https://github.com/mbostock/d3/wiki/Geo">d3.geo (Geography)</a>
+</h2>
+
+<h3>
+<a name="paths" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#paths"><span class="mini-icon mini-icon-link"></span></a><a href="https://github.com/mbostock/d3/wiki/Geo-Paths">Paths</a>
+</h3>
+
+<ul>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-path">d3.geo.path</a> - create a new geographic path generator.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-_path">path</a> - project the specified feature and render it to the context.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-projection">path.projection</a> - get or set the geographic projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-context">path.context</a> - get or set the render context.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-pointRadius">path.pointRadius</a> - get or set the radius to display point features.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-area">path.area</a> - compute the projected area of a given feature.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-centroid">path.centroid</a> - compute the projected centroid of a given feature.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-bounds">path.bounds</a> - compute the projected bounds of a given feature.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-circle">d3.geo.circle</a> - create a circle generator.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-_circle">circle</a> - generate a piecewise circle as a Polygon. </li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-circle_origin">circle.origin</a> - specify the origin in latitude and longitude.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-circle_angle">circle.angle</a> - specify the angular radius in degrees.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-circle_precision">circle.precision</a> - specify the precision of the piecewise circle.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-d3_geo_area">d3.geo.area</a> - compute the spherical area of a given feature.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-d3_geo_bounds">d3.geo.bounds</a> - compute the latitude-longitude bounding box for a given feature.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-d3_geo_centroid">d3.geo.centroid</a> - compute the spherical centroid of a given feature.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-d3_geo_distance">d3.geo.distance</a> - compute the great-arc distance between two points.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-d3_geo_interpolate">d3.geo.interpolate</a> - interpolate between two points along a great arc.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Paths#wiki-d3_geo_length">d3.geo.length</a> - compute the length of a line string or the circumference of a polygon.</li>
+</ul><h3>
+<a name="projections" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#projections"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Geo-Projections">Projections</a>
+</h3>
+
+<ul>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-projection">d3.geo.projection</a> - create a standard projection from a raw projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-_projection">projection</a> - project the specified location.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-invert">projection.invert</a> - invert the projection for the specified point.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-rotate">projection.rotate</a> - get or set the projection’s three-axis rotation.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-center">projection.center</a> - get or set the projection’s center location.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-translate">projection.translate</a> - get or set the projection’s translation position.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-scale">projection.scale</a> - get or set the projection’s scale factor.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-clipAngle">projection.clipAngle</a> - get or set the radius of the projection’s clip circle.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-clipExtent">projection.clipExtent</a> - get or set the projection’s viewport clip extent, in pixels.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-precision">projection.precision</a> - get or set the precision threshold for adaptive resampling.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-stream">projection.stream</a> - wrap the specified stream listener, projecting input geometry.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-projectionMutator">d3.geo.projectionMutator</a> - create a standard projection from a mutable raw projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-albers">d3.geo.albers</a> - the Albers equal-area conic projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-albers_parallels">albers.parallels</a> - get or set the projection's two standard parallels.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-albersUsa">d3.geo.albersUsa</a> - a composite Albers projection for the United States.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-azimuthalEqualArea">d3.geo.azimuthalEqualArea</a> - the azimuthal equal-area projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-azimuthalEquidistant">d3.geo.azimuthalEquidistant</a> - the azimuthal equidistant projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-conicConformal">d3.geo.conicConformal</a> - the conic conformal projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-conicEquidistant">d3.geo.conicEquidistant</a> - the conic equidistant projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-conicEqualArea">d3.geo.conicEqualArea</a> the conic equal-area (a.k.a. Albers) projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-equirectangular">d3.geo.equirectangular</a> - the equirectangular (plate carreé) projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-gnomonic">d3.geo.gnomonic</a> - the gnomonic projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-mercator">d3.geo.mercator</a> - the spherical Mercator projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-orthographic">d3.geo.orthographic</a> - the azimuthal orthographic projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-stereographic">d3.geo.stereographic</a> - the azimuthal stereographic projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-azimuthalEqualArea_raw">d3.geo.azimuthalEqualArea.raw</a> - the raw azimuthal equal-area projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-azimuthalEquidistant_raw">d3.geo.azimuthalEquidistant.raw</a> - the azimuthal equidistant projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-conicConformal_raw">d3.geo.conicConformal.raw</a> - the raw conic conformal projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-conicEquidistant_raw">d3.geo.conicEquidistant.raw</a> - the raw conic equidistant projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-conicEqualArea_raw">d3.geo.conicEqualArea.raw</a> the raw conic equal-area (a.k.a. Albers) projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-equirectangular_raw">d3.geo.equirectangular.raw</a> - the raw equirectangular (plate carrée) projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-gnomonic_raw">d3.geo.gnomonic.raw</a> - the raw gnomonic projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-mercator_raw">d3.geo.mercator.raw</a> - the raw Mercator projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-orthographic_raw">d3.geo.orthographic.raw</a> - the raw azimuthal orthographic projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-stereographic_raw">d3.geo.stereographic.raw</a> - the raw azimuthal stereographic projection.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-transverseMercator_raw">d3.geo.transverseMercator.raw</a> - the raw transverse Mercator projection.</li>
+</ul><h3>
+<a name="streams" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#streams"><span class="mini-icon mini-icon-link"></span></a><a href="https://github.com/mbostock/d3/wiki/Geo-Streams">Streams</a>
+</h3>
+
+<ul>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Streams#d3_geo_stream">d3.geo.stream</a> - convert a GeoJSON object to a geometry stream.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Streams#point">stream.point</a> - indicate an <em>x</em>, <em>y</em> (and optionally <em>z</em>) coordinate.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Streams#lineStart">stream.lineStart</a> - indicate the start of a line or ring.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Streams#lineEnd">stream.lineEnd</a> - indicate the end of a line or ring.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Streams#polygonStart">stream.polygonStart</a> - indicate the start of a polygon.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Streams#polygonEnd">stream.polygonEnd</a> - indicate the end of a polygon.</li>
+<li>
+<a href="https://github.com/mbostock/d3/wiki/Geo-Streams#sphere">stream.sphere</a> - indicate a sphere.</li>
+</ul><h2>
+<a name="d3geom-geometry" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#d3geom-geometry"><span class="mini-icon mini-icon-link"></span></a><a href="https://github.com/mbostock/d3/wiki/Geometry">d3.geom (Geometry)</a>
+</h2>
+
+<h3>
+<a name="voronoi" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#voronoi"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Voronoi-Geom">Voronoi</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Voronoi-Geom#wiki-voronoi">d3.geom.voronoi</a> - compute the Voronoi diagram for the specified points.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Voronoi-Geom#wiki-delaunay">d3.geom.delaunay</a> - compute the Delaunay triangulation for the specified points.</li>
+</ul><h3>
+<a name="quadtree" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#quadtree"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Quadtree-Geom">Quadtree</a>
+</h3>
+
+<ul>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quadtree-Geom#wiki-quadtree">d3.geom.quadtree</a> - constructs a quadtree for an array of points.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quadtree-Geom#wiki-add">quadtree.add</a> - add a point to the quadtree.</li>
+<li>
+<a class="internal present" href="https://github.com/mbostock/d3/wiki/Quadtree-Geom#wiki-visit">quadtree.visit</a> - recursively visit nodes in the quadtree.</li>
+</ul><h3>
+<a name="polygon" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#polygon"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Polygon-Geom">Polygon</a>
+</h3>
+
+<ul>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Polygon-Geom#wiki-polygon">d3.geom.polygon</a></li>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Polygon-Geom#wiki-area">polygon.area</a></li>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Polygon-Geom#wiki-centroid">polygon.centroid</a></li>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Polygon-Geom#wiki-clip">polygon.clip</a></li>
+</ul><h3>
+<a name="hull" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#hull"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Hull-Geom">Hull</a>
+</h3>
+
+<ul>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Hull-Geom#wiki-hull">d3.geom.hull</a></li>
+</ul><h2>
+<a name="d3behavior-behaviors" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#d3behavior-behaviors"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Behaviors">d3.behavior (Behaviors)</a>
+</h2>
+
+<h3>
+<a name="drag" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#drag"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Drag-Behavior">Drag</a>
+</h3>
+
+<ul>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Drag-Behavior#wiki-drag">d3.behavior.drag</a></li>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Drag-Behavior#wiki-origin">drag.origin</a></li>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Drag-Behavior#wiki-on">drag.on</a></li>
+</ul><h3>
+<a name="zoom" class="anchor" href="https://github.com/mbostock/d3/wiki/API-Reference#zoom"><span class="mini-icon mini-icon-link"></span></a><a class="internal present" href="https://github.com/mbostock/d3/wiki/Zoom-Behavior">Zoom</a>
+</h3>
+
+<ul>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Zoom-Behavior#wiki-zoom">d3.behavior.zoom</a></li>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Zoom-Behavior#wiki-on">zoom.on</a></li>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Zoom-Behavior#wiki-scale">zoom.scale</a></li>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Zoom-Behavior#wiki-translate">zoom.translate</a></li>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Zoom-Behavior#wiki-scaleExtent">zoom.scaleExtent</a></li>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Zoom-Behavior#wiki-x">zoom.x</a></li>
+<li><a class="internal present" href="https://github.com/mbostock/d3/wiki/Zoom-Behavior#wiki-y">zoom.y</a></li>
+</ul>
+    </div>
+  </div>
+  </div>
+
+</div>
+<div id="gollum-footer">
+  <p id="last-edit">
+    Last edited by mbostock, <time class="js-relative-date" datetime="2013-03-22T12:53:20-07:00" title="2013-03-22 12:53:20">17 days ago</time>
+  </p>
+</div>
+</div>
+
+
+        </div>
+      </div>
+      <div class="context-overlay"></div>
+    </div>
+
+      <div id="footer-push"></div><!-- hack for sticky footer -->
+    </div><!-- end of wrapper - hack for sticky footer -->
+
+      <!-- footer -->
+      <div id="footer">
+  <div class="container clearfix">
+
+      <dl class="footer_nav">
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/about">About us</a></dd>
+        <dd><a href="https://github.com/blog">Blog</a></dd>
+        <dd><a href="https://github.com/contact">Contact &amp; support</a></dd>
+        <dd><a href="http://enterprise.github.com/">GitHub Enterprise</a></dd>
+        <dd><a href="http://status.github.com/">Site status</a></dd>
+      </dl>
+
+      <dl class="footer_nav">
+        <dt>Applications</dt>
+        <dd><a href="http://mac.github.com/">GitHub for Mac</a></dd>
+        <dd><a href="http://windows.github.com/">GitHub for Windows</a></dd>
+        <dd><a href="http://eclipse.github.com/">GitHub for Eclipse</a></dd>
+        <dd><a href="http://mobile.github.com/">GitHub mobile apps</a></dd>
+      </dl>
+
+      <dl class="footer_nav">
+        <dt>Services</dt>
+        <dd><a href="http://get.gaug.es/">Gauges: Web analytics</a></dd>
+        <dd><a href="http://speakerdeck.com/">Speaker Deck: Presentations</a></dd>
+        <dd><a href="https://gist.github.com/">Gist: Code snippets</a></dd>
+        <dd><a href="http://jobs.github.com/">Job board</a></dd>
+      </dl>
+
+      <dl class="footer_nav">
+        <dt>Documentation</dt>
+        <dd><a href="http://help.github.com/">GitHub Help</a></dd>
+        <dd><a href="http://developer.github.com/">Developer API</a></dd>
+        <dd><a href="http://github.github.com/github-flavored-markdown/">GitHub Flavored Markdown</a></dd>
+        <dd><a href="http://pages.github.com/">GitHub Pages</a></dd>
+      </dl>
+
+      <dl class="footer_nav">
+        <dt>More</dt>
+        <dd><a href="http://training.github.com/">Training</a></dd>
+        <dd><a href="https://github.com/edu">Students &amp; teachers</a></dd>
+        <dd><a href="http://shop.github.com/">The Shop</a></dd>
+        <dd><a href="https://github.com/plans">Plans &amp; pricing</a></dd>
+        <dd><a href="http://octodex.github.com/">The Octodex</a></dd>
+      </dl>
+
+      <hr class="footer-divider">
+
+
+    <p class="right">© 2013 <span title="0.13082s from fe3.rs.github.com">GitHub</span>, Inc. All rights reserved.</p>
+    <a class="left" href="https://github.com/">
+      <span class="mega-icon mega-icon-invertocat"></span>
+    </a>
+    <ul id="legal">
+        <li><a href="https://github.com/site/terms">Terms of Service</a></li>
+        <li><a href="https://github.com/site/privacy">Privacy</a></li>
+        <li><a href="https://github.com/security">Security</a></li>
+    </ul>
+
+  </div><!-- /.container -->
+
+</div><!-- /.#footer -->
+
+
+    <div class="fullscreen-overlay js-fullscreen-overlay" id="fullscreen_overlay">
+  <div class="fullscreen-container js-fullscreen-container">
+    <div class="textarea-wrap">
+      <textarea name="fullscreen-contents" id="fullscreen-contents" class="js-fullscreen-contents" placeholder="" data-suggester="fullscreen_suggester"></textarea>
+          <div class="suggester-container">
+              <div class="suggester fullscreen-suggester js-navigation-container" id="fullscreen_suggester" data-url="/mbostock/d3/suggestions/commit">
+              </div>
+          </div>
+    </div>
+  </div>
+  <div class="fullscreen-sidebar">
+    <a href="https://github.com/mbostock/d3/wiki/API-Reference#" class="exit-fullscreen js-exit-fullscreen tooltipped leftwards" original-title="Exit Zen Mode">
+      <span class="mega-icon mega-icon-normalscreen"></span>
+    </a>
+    <a href="https://github.com/mbostock/d3/wiki/API-Reference#" class="theme-switcher js-theme-switcher tooltipped leftwards" original-title="Switch themes">
+      <span class="mini-icon mini-icon-brightness"></span>
+    </a>
+  </div>
+</div>
+
+
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span class="mini-icon mini-icon-exclamation"></span>
+      Something went wrong with that request. Please try again.
+      <a href="https://github.com/mbostock/d3/wiki/API-Reference#" class="mini-icon mini-icon-remove-close ajax-error-dismiss"></a>
+    </div>
+
+    
+    
+    <span id="server_response_time" data-time="0.13145" data-host="fe3"></span>
+    
+  
+
+
+</body></html>

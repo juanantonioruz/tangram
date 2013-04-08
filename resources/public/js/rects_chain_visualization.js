@@ -29,51 +29,55 @@ define([ "model", "ddd_lib", "domain_lib", "helper_view"], function(_exp, d, _do
            )
       .on("mouseover", function(ev) {
         d3.select(this).transition().style("fill", "red");
+        
       })
       .on("mouseout", function(ev) {
         var sel= d3.select("svg rect");
         d3.select(this).transition().style("fill", "white");
+        //selectedNode is a svg:g component
+        
       })
       .on("click", function(d) {
         
-        var id=domain_lib.format(d,["month", "year"],"-");
-        var g_related=d3.select("#"+id);
+        //selectedNode is a svg:g component
+        var selectedNode=d3.select(this.parentNode);
 
-        var datum=g_related.datum();
-        //        g_related.attr("x", x);
+        //only listen click if is expanded
+        if(selectedNode.datum().m.display_increment>0){
 
-       
+          selectedNode.datum().m.check(selectedNode);
+
+          selectedNode.datum().m.monthListenClick(selectedNode);
+
+          selectedNode
+            .append("rect")
+            .classed("menu", "true")
+            .attr("x",  0)
+            .attr("y", 0)
+            .attr("width", 10)
+            .attr("height", 10)
+            .style("fill", "black" )
+            .on("click", function(){
+              selectedNode.datum().m.check(selectedNode);
+              selectedNode.selectAll("rect.menu").remove();
+              selectedNode.datum().m.monthListenClick(selectedNode);
+            });          
+
           
-        g_related
-        //movin up
-          .transition()
-          .duration(200)
-          .attr("transform", function(d){
-            return ddd_lib.translate(d);
-          }
-               )
-//        moving down and scaling
-          .transition()
-          .duration(500)
-          .attr("transform", function(d){
-            return ddd_lib.translate(d);
-          })
-;
+          
+
+//          console.dir(selectedNode.datum());
+
+        }
+        
+        
 
         
-        g_related
-          .append("text").text("eyyyy")  .attr("x", 100)
-          .attr("y", 100);
-        ;
+
         
-//        g_related.select("rect")
-
-        // console.dir(g_related.select("rect").datum().date);
-
-        // console.dir(g_related.datum());
-
       })
     
+    ;
     ;
 
   }
@@ -87,19 +91,24 @@ define([ "model", "ddd_lib", "domain_lib", "helper_view"], function(_exp, d, _do
 
   allGs
     .call(function (selection){
+
       return selection.attr("display", "visible");
     })
     .attr("transform", function(d,i){ 
-      var the_x=(i*(w/ex.months.length));
-      // d.display_data[0].x=the_x;
-      // d.display_data[0].y=100;
-      // d.display_data[0].scale=1;
-      // var n={x:the_x, y:100, scale:1};
-      d.display_data.push({x:the_x, y:0, scale:1});
-      d.display_data.push({x:the_x, y:100, scale:1});
-      d.display_data.push({x:(w/2)-200, y:300, scale:3});
+      // extending svg:g.d3 object instead extending function class beacuse is now more agil 
+      // but maybe can be shared this strategy because object must contain the mutable data and function class the inmutable (in this case)
+      d.ayuda=function(){ console.log("you are using help mode in this selection"+this.date)};
 
-      return ddd_lib.translate(d);
+      var m=new domain_lib.MonthDisplayable();
+      d.monthListenClick=m.monthListenClick;
+      d.m=m;
+      var the_x=(i*(w/ex.months.length));
+      
+      m.display_data.push({x:the_x, y:h-120, scale:1});
+      m.display_data.push({x:the_x, y:0, scale:0.1});
+      m.display_data.push({x:(w/2)-200, y:50, scale:6});
+
+      return ddd_lib.translate(d.m);
 
     })
     .attr("id",  domain_lib.val(["month", "year"],"-"));  
@@ -109,28 +118,45 @@ define([ "model", "ddd_lib", "domain_lib", "helper_view"], function(_exp, d, _do
     .append("rect")
     .call(configureRects);
 
+  
+
+  var the_menu_rect=allGs
+    .append("rect");
+  the_menu_rect.classed("active", "true")
+    .attr("x",  10)
+    .attr("y", 10)
+    .attr("width", 10)
+    .attr("height", 10)
+    .style("fill", function(d){
+      return d.active? "green" :"red";
+    }
+          )
+    .on("click", function(d){
+      (d.active? d.active=false: d.active=true);
+      var d3_element=d3.select(this);
+      (!d.active? d3_element.style("fill", "red") :d3_element.style("fill", "green"));
+    });
   var textsInsideGs=allGs.append("text")
     .text(domain_lib.val(["month", "year"],"-"))
     .attr("x", 0)
     .attr("y",rectHeight);
   
 
-  svg
-    .selectAll("rect").select("text")
-    .data(ex.months)
-    .enter()
-    .append("text")
-    .text(domain_lib.val(["month", "year"], "/" ))
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "15px")
-    .attr("fill", "white")
-    .attr("x", 
-          function(d,i){ 
-            return i*(w/ex.months.length);})
-    .attr("y", 
-          function(d){ 
-            return 300});
-
+  
 
 }
       );
+
+// DOCUMENTATION
+
+/*
+  var id=domain_lib.format(d,["month", "year"],"-");
+  var g_related=d3.select("#"+id);
+
+  var datum=g_related.datum();
+  // you can select through id component or with the parentChild relation between components
+  */
+
+// TWO WAYS FOR DOING THE SAME, CALL  A FUNCTION WITH THE NODE CONTEXT
+//1-        selectedNode.call(functio(selectNode){});
+//2-        monthListenClick(selectedNode);        

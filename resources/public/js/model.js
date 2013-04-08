@@ -1,103 +1,112 @@
-/**
-   model.js
-   is a conceptual mix for encapsulating (to create library as a namespace [the same that: group related functions with a prefix name])
-   ... for encapsulating data model (db info) and query model (prepared statements)
+define( ["./domain_lib"],
+        function(domain_lib){
 
-   :)  I like that!  
-**/
+          /**
+             model.js
+             is a conceptual mix for encapsulating (to create library as a namespace [the same that: group related functions with a prefix name])
+             ... for encapsulating data model (db info) and query model (prepared statements)
 
-
-// example of model class
-function Bird(){
-  this.name;
-  this.refs={};
-  
-}
-Bird.prototype.greeting=function(){
-  return "Hi, I'm a bird "+this.name;
-};
-
-// instance of class
-var bird=new Bird();
-bird.name="Parrot";
+             :)  I like that!  
+          **/
 
 
-// trying to reflect into the object
-var toType = function(obj) {
-  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
-}
+          // example of model class
+          function Bird(){
+            this.name;
+            this.refs={};
+            
+          }
+          Bird.prototype.greeting=function(){
+            return "Hi, I'm a bird "+this.name;
+          };
+
+          // instance of class
+          var bird=new Bird();
+          bird.name="Parrot";
 
 
-for(var prop in bird){
-  // console.info(toType(bird[prop])+prop);
-}
+          // trying to reflect into the object
+          var toType = function(obj) {
+            return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+          }
+
+
+          for(var prop in bird){
+            // console.info(toType(bird[prop])+prop);
+          }
 
 
 
-// playing with dates! ... making dates as data to visualization 
+          // playing with dates! ... making dates as data to visualization 
 
-var today=new Date();
+          var today=new Date();
 
-var lastToday=new Date(today.getTime());
+          var lastToday=new Date(today.getTime());
 
-lastToday.setFullYear(today.getFullYear()-1);
+          lastToday.setFullYear(today.getFullYear()-1);
 
-today.setMonth(today.getMonth()+1);
-//log(lastToday+"--->"+today);
+          today.setMonth(today.getMonth()+1);
+          //log(lastToday+"--->"+today);
 
-var months=[];
-
-while(today.getTime()!=lastToday.getTime()){
-  //log(lastToday);
-  var changed=new Date(lastToday);
-  changed.setMonth(lastToday.getMonth()+1);
-  // the display_data property is designed to maintain states history
-  // so you can return to a previous (origin) state... i think can be
-  // interesting inside animations 
-  months.push({id:1, month:changed.getMonth()+1, year:changed.getFullYear(), date:changed, display_data:[], display_data_pos:0, display_increment:1
-                  }
-             );
-  lastToday=changed;
-}
-
-
-//log(months);
-
-function isTodayMonthYear(d){
-  var today=new Date();
-  return (d.getMonth() == today.getMonth() && d.getFullYear()==today.getFullYear());
-};
-
-function isTodayBeforeMonthYear(d){
-  var today=new Date();
-  return (d.getTime()<today.getTime());
-};
+          var months=[];
+          while(today.getTime()!=lastToday.getTime()){
+            //log(lastToday);
+            var changed=new Date(lastToday);
+            changed.setMonth(lastToday.getMonth()+1);
+            // the display_data property is designed to maintain states history
+            // so you can return to a previous (origin) state... i think can be
+            // interesting inside animations 
+            months.push(
+              {id:1, 
+               month:changed.getMonth()+1, 
+               year:changed.getFullYear(), 
+               date:changed, 
+               active:(Math.random() >= 0.5),
+               displayable:new domain_lib.MonthDisplayable()
+                        }
+                       );
+            lastToday=changed;
+          }
 
 
-function getDaysOfTheMonth(_date){
-  var d_1=new Date(_date);
 
-  d_1.setDate(1);
+          //console.dir(months);
 
-  var current_month=d_1.getMonth();
-  var days=[];
+          function isTodayMonthYear(d){
+            var today=new Date();
+            return (d.getMonth() == today.getMonth() && d.getFullYear()==today.getFullYear());
+          };
 
-  while(current_month==d_1.getMonth()){
-    days.push(new Date(d_1.getTime()));    
-    d_1.setDate(d_1.getDate()+1);
-
-  }
-  return days;
-}
+          function isTodayBeforeMonthYear(d){
+            var today=new Date();
+            return (d.getTime()<today.getTime());
+          };
 
 
-//console.log(getDaysOfTheMonth(new Date()));
+          function getDaysOfTheMonth(_date){
+            var d_1=new Date(_date);
+
+            d_1.setDate(1);
+
+            var current_month=d_1.getMonth();
+            var days=[];
+
+            while(current_month==d_1.getMonth()){
+              days.push(new Date(d_1.getTime()));    
+              d_1.setDate(d_1.getDate()+1);
+
+            }
+            return days;
+          }
 
 
-define(
-  function(){
-    return {months:months,  isTodayMonthYear:isTodayMonthYear, isTodayBeforeMonthYear:isTodayBeforeMonthYear, getDaysOfTheMonth:getDaysOfTheMonth};
-  }
+          //console.log(getDaysOfTheMonth(new Date()));
 
-  
-)
+
+          return {
+            months:months,  
+            isTodayMonthYear:isTodayMonthYear,
+            isTodayBeforeMonthYear:isTodayBeforeMonthYear,
+            getDaysOfTheMonth:getDaysOfTheMonth};
+        });
+
