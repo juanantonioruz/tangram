@@ -32528,20 +32528,21 @@ goog.require("elavio.logging");
 goog.require("elavio.ui");
 goog.require("shoreleave.remotes.http_rpc");
 elavio.birds.show_users_results = function show_users_results(res) {
-  var $interface_15881 = jayq.core.$.call(null, "\ufdd0'#interface");
-  var html_user_list_15882 = cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'table", cljs.core.ObjMap.fromObject(["\ufdd0'border", "\ufdd0'width"], {"\ufdd0'border":1, "\ufdd0'width":"100%"}), cljs.core.PersistentVector.fromArray(["\ufdd0'tr", cljs.core.PersistentVector.fromArray(["\ufdd0'th", "name"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'th", "mail"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'th", "started"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'th", 
+  var $interface_16998 = jayq.core.$.call(null, "\ufdd0'#interface");
+  var html_user_list_16999 = cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'table", cljs.core.ObjMap.fromObject(["\ufdd0'border", "\ufdd0'width"], {"\ufdd0'border":1, "\ufdd0'width":"100%"}), cljs.core.PersistentVector.fromArray(["\ufdd0'tr", cljs.core.PersistentVector.fromArray(["\ufdd0'th", "name"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'th", "mail"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'th", "started"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'th", 
   "ended"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'th", "..."], true)], true), function() {
-    var iter__2609__auto__ = function iter__15877(s__15878) {
+    var iter__2609__auto__ = function iter__16994(s__16995) {
       return new cljs.core.LazySeq(null, false, function() {
-        var s__15878__$1 = s__15878;
+        var s__16995__$1 = s__16995;
         while(true) {
-          var temp__4092__auto__ = cljs.core.seq.call(null, s__15878__$1);
+          var temp__4092__auto__ = cljs.core.seq.call(null, s__16995__$1);
           if(temp__4092__auto__) {
             var xs__4579__auto__ = temp__4092__auto__;
             var x = cljs.core.first.call(null, xs__4579__auto__);
             return cljs.core.cons.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'tr", cljs.core.PersistentVector.fromArray(["\ufdd0'td", (new cljs.core.Keyword("\ufdd0'name")).call(null, x)], true), cljs.core.PersistentVector.fromArray(["\ufdd0'td", (new cljs.core.Keyword("\ufdd0'mail")).call(null, x)], true), cljs.core.PersistentVector.fromArray(["\ufdd0'td", (new cljs.core.Keyword("\ufdd0'started")).call(null, x)], true), cljs.core.PersistentVector.fromArray(["\ufdd0'td", (new cljs.core.Keyword("\ufdd0'ended")).call(null, 
             x)], true), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'bird", "\ufdd0'class"], {"\ufdd0'href":"#", "\ufdd0'bird":(new cljs.core.Keyword("\ufdd0'id")).call(null, x), "\ufdd0'class":"\ufdd0'edit-bird"}), "edit"], true), " - ", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'bird", "\ufdd0'class"], {"\ufdd0'href":"#", "\ufdd0'bird":(new cljs.core.Keyword("\ufdd0'id")).call(null, 
-            x), "\ufdd0'class":"\ufdd0'remove-bird"}), "remove"], true), " - ", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'bird", "\ufdd0'class"], {"\ufdd0'href":"#", "\ufdd0'bird":(new cljs.core.Keyword("\ufdd0'id")).call(null, x), "\ufdd0'class":"\ufdd0'mail-data"}), "data mailing"], true)], true)], true), iter__15877.call(null, cljs.core.rest.call(null, s__15878__$1)))
+            x), "\ufdd0'class":"\ufdd0'remove-bird"}), "remove"], true), " - ", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'bird", "\ufdd0'class"], {"\ufdd0'href":"#", "\ufdd0'bird":(new cljs.core.Keyword("\ufdd0'id")).call(null, x), "\ufdd0'class":"\ufdd0'mail-data"}), "data mailing"], true), " - ", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'class"], {"\ufdd0'href":[cljs.core.str("./exercise_dynamic_data_d3.html?id="), 
+            cljs.core.str((new cljs.core.Keyword("\ufdd0'id")).call(null, x))].join(""), "\ufdd0'class":"\ufdd0'months-data"}), "months"], true)], true)], true), iter__16994.call(null, cljs.core.rest.call(null, s__16995__$1)))
           }else {
             return null
           }
@@ -32551,15 +32552,15 @@ elavio.birds.show_users_results = function show_users_results(res) {
     };
     return iter__2609__auto__.call(null, res)
   }()], true), null], true);
-  var html_delete_all_button_15883 = cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'id", "\ufdd0'value"], {"\ufdd0'href":"#", "\ufdd0'id":"\ufdd0'delete-all-users", "\ufdd0'value":"\ufdd0'delete-all-users"}), "\ufdd0'delete-all-users"], true);
-  var html_new_user_15884 = cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":"new-bird-div"}), cljs.core.PersistentVector.fromArray(["\ufdd0'h1", "insert new user"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'label", "bird-name"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'input", cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'id"], {"\ufdd0'type":"\ufdd0'text", "\ufdd0'id":"\ufdd0'bird-name"})], true), cljs.core.PersistentVector.fromArray(["\ufdd0'br"], 
+  var html_delete_all_button_17000 = cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'id", "\ufdd0'value"], {"\ufdd0'href":"#", "\ufdd0'id":"\ufdd0'delete-all-users", "\ufdd0'value":"\ufdd0'delete-all-users"}), "\ufdd0'delete-all-users"], true);
+  var html_new_user_17001 = cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":"new-bird-div"}), cljs.core.PersistentVector.fromArray(["\ufdd0'h1", "insert new user"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'label", "bird-name"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'input", cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'id"], {"\ufdd0'type":"\ufdd0'text", "\ufdd0'id":"\ufdd0'bird-name"})], true), cljs.core.PersistentVector.fromArray(["\ufdd0'br"], 
   true), cljs.core.PersistentVector.fromArray(["\ufdd0'label", "bird-mail"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'input", cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'id"], {"\ufdd0'type":"\ufdd0'text", "\ufdd0'id":"\ufdd0'bird-mail"})], true), cljs.core.PersistentVector.fromArray(["\ufdd0'br"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'label", "bird-password"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'input", cljs.core.ObjMap.fromObject(["\ufdd0'type", 
   "\ufdd0'id"], {"\ufdd0'type":"\ufdd0'password", "\ufdd0'id":"\ufdd0'bird-password"})], true), cljs.core.PersistentVector.fromArray(["\ufdd0'br"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'label", "bird-started"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'input", cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'id", "\ufdd0'class"], {"\ufdd0'type":"\ufdd0'text", "\ufdd0'id":"\ufdd0'bird-started", "\ufdd0'class":"\ufdd0'bird-date"})], true), cljs.core.PersistentVector.fromArray(["\ufdd0'br"], 
   true), cljs.core.PersistentVector.fromArray(["\ufdd0'label", "bird-ended"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'input", cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'id", "\ufdd0'class"], {"\ufdd0'type":"\ufdd0'text", "\ufdd0'id":"\ufdd0'bird-ended", "\ufdd0'class":"\ufdd0'bird-date"})], true), cljs.core.PersistentVector.fromArray(["\ufdd0'br"], true), cljs.core.PersistentVector.fromArray(["\ufdd0'input", cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'id", "\ufdd0'value"], 
   {"\ufdd0'type":"\ufdd0'button", "\ufdd0'id":"\ufdd0'new-bird", "\ufdd0'value":"new-bird"})], true)], true);
-  var inner_html_15885 = [cljs.core.str("<div"), cljs.core.str(' id="tabs"'), cljs.core.str(">"), cljs.core.str('<ul><li><a href="#tabs-1" id="user-list">User List</a></li><li><a href="#tabs-2">New User</a></li><li><a href="#tabs-3">Delete All Users</a></li></ul>'), cljs.core.str("<div"), cljs.core.str(' id="tabs-1"'), cljs.core.str(">"), cljs.core.str(hiccups.runtime.render_html.call(null, html_user_list_15882)), cljs.core.str("</div>"), cljs.core.str("<div"), cljs.core.str(' id="tabs-2"'), cljs.core.str(">"), 
-  cljs.core.str(hiccups.runtime.render_html.call(null, html_new_user_15884)), cljs.core.str("</div>"), cljs.core.str("<div"), cljs.core.str(' id="tabs-3"'), cljs.core.str(">"), cljs.core.str(hiccups.runtime.render_html.call(null, html_delete_all_button_15883)), cljs.core.str("</div>"), cljs.core.str("</div>")].join("");
-  jayq.core.inner.call(null, jayq.core.css.call(null, jayq.core.show.call(null, $interface_15881), cljs.core.ObjMap.fromObject(["\ufdd0'background"], {"\ufdd0'background":"pink"})), inner_html_15885);
+  var inner_html_17002 = [cljs.core.str("<div"), cljs.core.str(' id="tabs"'), cljs.core.str(">"), cljs.core.str('<ul><li><a href="#tabs-1" id="user-list">User List</a></li><li><a href="#tabs-2">New User</a></li><li><a href="#tabs-3">Delete All Users</a></li></ul>'), cljs.core.str("<div"), cljs.core.str(' id="tabs-1"'), cljs.core.str(">"), cljs.core.str(hiccups.runtime.render_html.call(null, html_user_list_16999)), cljs.core.str("</div>"), cljs.core.str("<div"), cljs.core.str(' id="tabs-2"'), cljs.core.str(">"), 
+  cljs.core.str(hiccups.runtime.render_html.call(null, html_new_user_17001)), cljs.core.str("</div>"), cljs.core.str("<div"), cljs.core.str(' id="tabs-3"'), cljs.core.str(">"), cljs.core.str(hiccups.runtime.render_html.call(null, html_delete_all_button_17000)), cljs.core.str("</div>"), cljs.core.str("</div>")].join("");
+  jayq.core.inner.call(null, jayq.core.css.call(null, jayq.core.show.call(null, $interface_16998), cljs.core.ObjMap.fromObject(["\ufdd0'background"], {"\ufdd0'background":"pink"})), inner_html_17002);
   jayq.core.attr.call(null, jayq.core.$.call(null, "\ufdd0'#user-list"), "value", "hidde users");
   domina.events.listen_BANG_.call(null, domina.by_id.call(null, "\ufdd0'delete-all-users"), "\ufdd0'click", elavio.birds.delete_all_users);
   domina.events.listen_BANG_.call(null, domina.by_id.call(null, "\ufdd0'new-bird"), "\ufdd0'click", elavio.birds.send_new_user);
@@ -32594,11 +32595,11 @@ elavio.birds.mail_data_bird = function mail_data_bird(evt) {
   return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'mail-data-user", cljs.core.PersistentVector.fromArray([bird_id], true), function(x) {
     var message = !cljs.core._EQ_.call(null, x, "\ufdd0'success") ? "problem sending mail, contact to webmaster" : "data sended correctly";
     jayq.core.inner.call(null, jayq.core.css.call(null, jayq.core.show.call(null, jayq.core.$.call(null, "\ufdd0'#tabs-1")), cljs.core.ObjMap.fromObject(["\ufdd0'background"], {"\ufdd0'background":"pink"})), [cljs.core.str("<div"), cljs.core.str(""), cljs.core.str(">"), cljs.core.str(function() {
-      var attrs15901 = message;
-      if(cljs.core.map_QMARK_.call(null, attrs15901)) {
-        return[cljs.core.str("<h1"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.merge.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id", "\ufdd0'class"], {"\ufdd0'id":null, "\ufdd0'class":null}), attrs15901))), cljs.core.str(">"), cljs.core.str("</h1>")].join("")
+      var attrs17018 = message;
+      if(cljs.core.map_QMARK_.call(null, attrs17018)) {
+        return[cljs.core.str("<h1"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.merge.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id", "\ufdd0'class"], {"\ufdd0'id":null, "\ufdd0'class":null}), attrs17018))), cljs.core.str(">"), cljs.core.str("</h1>")].join("")
       }else {
-        return[cljs.core.str("<h1>"), cljs.core.str(hiccups.runtime.render_html.call(null, attrs15901)), cljs.core.str("</h1>")].join("")
+        return[cljs.core.str("<h1>"), cljs.core.str(hiccups.runtime.render_html.call(null, attrs17018)), cljs.core.str("</h1>")].join("")
       }
     }()), cljs.core.str("<br />"), cljs.core.str("</div>")].join(""));
     elavio.ui.message_to_user.call(null, message);
@@ -32658,10 +32659,10 @@ elavio.birds.clj__GT_js = function clj__GT_js(x) {
       return cljs.core.name.call(null, x)
     }else {
       if(cljs.core.map_QMARK_.call(null, x)) {
-        return cljs.core.reduce.call(null, function(m, p__15958) {
-          var vec__15959 = p__15958;
-          var k = cljs.core.nth.call(null, vec__15959, 0, null);
-          var v = cljs.core.nth.call(null, vec__15959, 1, null);
+        return cljs.core.reduce.call(null, function(m, p__17075) {
+          var vec__17076 = p__17075;
+          var k = cljs.core.nth.call(null, vec__17076, 0, null);
+          var v = cljs.core.nth.call(null, vec__17076, 1, null);
           return cljs.core.assoc.call(null, m, clj__GT_js.call(null, k), clj__GT_js.call(null, v))
         }, cljs.core.ObjMap.EMPTY, x).strobj
       }else {

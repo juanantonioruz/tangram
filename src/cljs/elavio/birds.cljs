@@ -25,7 +25,8 @@
                              [:td
                               [:a {:href "#" :bird (:id x ) :class :edit-bird} "edit"] " - "
                               [:a {:href "#" :bird (:id x ) :class :remove-bird} "remove"] " - "
-                              [:a {:href "#" :bird (:id x ) :class :mail-data} "data mailing"]
+                              [:a {:href "#" :bird (:id x ) :class :mail-data} "data mailing"] " - "
+                              [:a {:href (str "./exercise_dynamic_data_d3.html?id=" (:id x )) :class :months-data} "months"]
                               ] 
 
                              ])]
