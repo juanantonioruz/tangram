@@ -39,47 +39,61 @@ define( ["./domain_lib"],
 
           // playing with dates! ... making dates as data to visualization 
 
-          var today=new Date();
+          function getMonths(startDate, endDate){
+//            var lastToday=endDate;
+             endDate.setMonth(endDate.getMonth()+1);
+            // if(_startDate!==undefined){
+            //   lastToday=_startDate;
+              
+            // }else{
+             
+            //   lastToday=new Date(endDate.getTime());
+            //   lastToday.setFullYear(endDate.getFullYear()-1);
+            // }
 
-          var lastToday=new Date(today.getTime());
+            //log(lastToday+"--->"+endDate);
+            
 
-          lastToday.setFullYear(today.getFullYear()-1);
+            var months=[];
+            while(endDate.getTime()>=startDate.getTime()){
+              //log(lastToday);
+              var changed=new Date(startDate);
 
-          today.setMonth(today.getMonth()+1);
-          //log(lastToday+"--->"+today);
-
-          var months=[];
-          while(today.getTime()!=lastToday.getTime()){
-            //log(lastToday);
-            var changed=new Date(lastToday);
-            changed.setMonth(lastToday.getMonth()+1);
-            // the display_data property is designed to maintain states history
-            // so you can return to a previous (origin) state... i think can be
-            // interesting inside animations 
-            months.push(
-              {id:1, 
-               month:changed.getMonth()+1, 
-               year:changed.getFullYear(), 
-               date:changed, 
-               active:(Math.random() >= 0.5),
-               displayable:new domain_lib.MonthDisplayable()
-                        }
-                       );
-            lastToday=changed;
+              // the display_data property is designed to maintain states history
+              // so you can return to a previous (origin) state... i think can be
+              // interesting inside animations 
+              months.push(
+                {id:1, 
+                 month:changed.getMonth()+1, 
+                 year:changed.getFullYear(), 
+                 date:changed, 
+                 active:(Math.random() >= 0.5),
+                 displayable:new domain_lib.MonthDisplayable()
+                }
+              );
+              changed.setMonth(startDate.getMonth()+1);
+              startDate=changed;
+            }
+            return months;
+            
           }
+          
+
+
+       
 
 
 
           //console.dir(months);
 
           function isTodayMonthYear(d){
-            var today=new Date();
-            return (d.getMonth() == today.getMonth() && d.getFullYear()==today.getFullYear());
+            var endDate=new Date();
+            return (d.getMonth() == endDate.getMonth() && d.getFullYear()==endDate.getFullYear());
           };
 
           function isTodayBeforeMonthYear(d){
-            var today=new Date();
-            return (d.getTime()<today.getTime());
+            var endDate=new Date();
+            return (d.getTime()<endDate.getTime());
           };
 
 
@@ -104,7 +118,8 @@ define( ["./domain_lib"],
 
 
           return {
-            months:months,  
+
+            getMonths:getMonths,
             isTodayMonthYear:isTodayMonthYear,
             isTodayBeforeMonthYear:isTodayBeforeMonthYear,
             getDaysOfTheMonth:getDaysOfTheMonth};
