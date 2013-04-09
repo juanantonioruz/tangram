@@ -26,7 +26,7 @@ define(
     };
 
     function translate(data_displayable){
-      console.log(data_displayable.display_data_pos);
+
       var pos=data_displayable.display_data_pos;
       var length=data_displayable.display_data.length;
       var n_pos=pos%length;

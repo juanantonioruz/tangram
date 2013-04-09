@@ -6,15 +6,52 @@
 
   <title>dynamic data with d3</title>
 
+
   <script src="/pub/js/d3.v3/d3.js" charset="utf-8"></script>
   <script data-main="/pub/js/exercise_main_lib" src="/pub/js/require.js"></script>
 
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<script  src="/pub/js/jquery-1.9.1.min.js" ></script>
+<script  src="/pub/js/jquery-ui-1.10.2.custom.js" ></script>
+
   <link type="text/css" rel="stylesheet" charset="UTF-8" href="/pub/css/ddd.css">
+<style>
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('/pub/images/loading.gif') 
+                50% 50% 
+                no-repeat;
+}
+#messages{display:none;
+background:yellow;}
+body.loading {
+   overflow: hidden;   
+}
+
+body.loading .modal {
+    display: block;
+}
+</style>
 
   </head>
   <body >
-
+<div id="messages"></div>
   <svg  > </svg>
+  
+<script>    
+  //    elavio.d3_integration();
+  
+    </script>
+
 
   </body>
   </html>

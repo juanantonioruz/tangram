@@ -9,13 +9,13 @@ define([ "model", "ddd_lib", "domain_lib", "helper_view"], function(_exp, d, _do
 
   
 
-  function configureRects(selection){
+  function configureRects(selection, the_months){
     return selection.attr("id", function(d) {
       return domain_lib.format(d,["month", "year"],"_");
     })
       .attr("x",  0)
       .attr("y", 0)
-      .attr("width", (w/ex.months.length)-10)
+      .attr("width", (w/the_months.length)-10)
       .attr("height", rectHeight)
       .style("fill", "white")
       .attr("fill-opacity", function(d,i){
@@ -82,9 +82,10 @@ define([ "model", "ddd_lib", "domain_lib", "helper_view"], function(_exp, d, _do
 
   }
 
-  var svg=d3.select("svg");
+  function run(the_months){
+var svg=d3.select("svg");
   var enter = svg.selectAll("g")
-    .data(ex.months)
+    .data(the_months)
     .enter();
   
   var allGs=enter.append("g");
@@ -102,7 +103,7 @@ define([ "model", "ddd_lib", "domain_lib", "helper_view"], function(_exp, d, _do
       var m=new domain_lib.MonthDisplayable();
       d.monthListenClick=m.monthListenClick;
       d.m=m;
-      var the_x=(i*(w/ex.months.length));
+      var the_x=(i*(w/the_months.length));
       
       m.display_data.push({x:the_x, y:h-120, scale:1});
       m.display_data.push({x:the_x, y:0, scale:0.1});
@@ -116,11 +117,9 @@ define([ "model", "ddd_lib", "domain_lib", "helper_view"], function(_exp, d, _do
   
   var rectsInsideGs=allGs
     .append("rect")
-    .call(configureRects);
+    .call(configureRects, the_months);
 
-  
-
-  var the_menu_rect=allGs
+    var the_menu_rect=allGs
     .append("rect");
   the_menu_rect.classed("active", "true")
     .attr("x",  10)
@@ -139,10 +138,13 @@ define([ "model", "ddd_lib", "domain_lib", "helper_view"], function(_exp, d, _do
   var textsInsideGs=allGs.append("text")
     .text(domain_lib.val(["month", "year"],"-"))
     .attr("x", 0)
-    .attr("y",rectHeight);
+      .attr}("y",rectHeight);
   
 
+
+
   
+return {run:run};
 
 }
       );

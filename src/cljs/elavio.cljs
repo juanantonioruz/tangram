@@ -56,6 +56,12 @@
            )
   )
 
+(defn ^:export d3-integration []
+        (logging/admin-login)
+  (js/console.info "d3_integration")
+  )
+
+;
 (defn ^:export init []
   ;; verify that js/document exists and that it has a getElementById
   ;; property
