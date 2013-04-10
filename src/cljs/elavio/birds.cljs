@@ -263,14 +263,21 @@
 (defn get-user [id callback]
   
   (remote-callback :find-user [id]
-                   
                    ( fn [res]
                      (callback (clj->js res))
-
                      (comment  doseq [x res]
-                       (callback (clj->js x))
+                               (callback (clj->js x))
                        )
-                     
+                     ) )
+  )
+
+(defn get-users [callback]  
+  (remote-callback :user-list []
+                   ( fn [res]
+                     (callback (clj->js res))
+                     (comment doseq [x res]
+                               (callback (clj->js x))
+                       )
                      ) )
   )
 

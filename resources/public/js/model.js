@@ -1,6 +1,3 @@
-define( ["./domain_lib"],
-        function(domain_lib){
-
           /**
              model.js
              is a conceptual mix for encapsulating (to create library as a namespace [the same that: group related functions with a prefix name])
@@ -8,6 +5,9 @@ define( ["./domain_lib"],
 
              :)  I like that!  
           **/
+
+define( ["./domain_lib"],
+        function(domain_lib){
 
 
           // example of model class
@@ -67,8 +67,8 @@ define( ["./domain_lib"],
                  month:changed.getMonth()+1, 
                  year:changed.getFullYear(), 
                  date:changed, 
-                 active:(Math.random() >= 0.5),
-                 displayable:new domain_lib.MonthDisplayable()
+                 active:(Math.random() >= 0.5)
+
                 }
               );
               changed.setMonth(startDate.getMonth()+1);

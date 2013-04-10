@@ -69,21 +69,22 @@ define([ "model", "ddd_lib", "domain_lib", "helper_view"], function(_exp, d, _do
 //          console.dir(selectedNode.datum());
 
         }
-        
-        
-
-        
-
-        
       })
     
     ;
-    ;
+
 
   }
 
   function run(the_months){
 var svg=d3.select("svg");
+   svg.selectAll("g").filter(
+     function(d,i){
+       return !d3.select(this).classed("user-list");
+
+     }
+                           ).remove();
+    svg.selectAll("path").remove();
   var enter = svg.selectAll("g")
     .data(the_months)
     .enter();

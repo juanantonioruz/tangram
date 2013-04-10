@@ -1,8 +1,12 @@
+/**
+   this layer is for the domain displayable
+**/
 define( ["./ddd_lib"],
         function(ddd_lib){
 
+          
+          
           function MonthDisplayable(){
-            this.d3_g=null;
             this.display_data=[];
             this.display_data_pos=0;
             this.display_increment=1;
@@ -24,9 +28,6 @@ define( ["./ddd_lib"],
             if(this.display_increment==1)
               pos=0;
             return this.display_data[pos].y;
-
-
-            
           };
           /**
            //check if is the same node clicked twice times // in this case hide element
@@ -92,9 +93,12 @@ define( ["./ddd_lib"],
                   
                   d3.selectAll("svg g")
                     .filter(function(d, i) { 
-                      // active month and month is not equal to selected month
-                      var isTrue=d.active && d.date!=selection.datum().date;
-                      if(isTrue)
+                      // active month and month is not equal to
+                      // selected month
+                      
+                      var isTrue=d.active && d.date!=selection.datum().date && !d3.select(this).classed("user-list");
+                      
+                      if(isTrue )
                         months_active.push([d.m.getActualX(), d.m.getActualY()]);
                       return isTrue;
                     });

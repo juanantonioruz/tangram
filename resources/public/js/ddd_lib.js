@@ -1,5 +1,32 @@
 define(
   function(){
+    /*spec: {margin:100, margin_inside:50, width:w, collection:x}*/
+        function HorizontalLayout(spec){
+          this.margin=spec.margin;        
+          this.elements_size=spec.collection.length;
+          this.margin_inside=spec.margin_inside;
+          this.width_available=spec.width-(this.margin*2)-(this.margin*(this.elements_size-1));
+          this.element_width=this.width_available/this.elements_size;
+          
+         this.getElementWidth=(function(t){
+           var that=t;
+           return function(){
+            return that.element_width;
+           }
+         })(this);
+
+        this.getX=(function(t){
+          var that=t;
+         return  function(d,i){
+            var space=0;
+            for(var j=0;j<i;j++)
+              space+=that.element_width+that.margin_inside;
+            return that.margin+space;
+          };
+        })(this);
+          
+          
+        };
     function log(e){
       var v=JSON.stringify(e, null, 4);
       console.log(v);
@@ -47,7 +74,7 @@ define(
 
 
     return {
-      mouseOverOutChangeColor:mouseOverOutChangeColor, 
+      mouseOverOutChangeColor:mouseOverOutChangeColor, HorizontalLayout:HorizontalLayout,
       changeColor:changeColor, random:random, log:log, translate:translate};
     
   });;
