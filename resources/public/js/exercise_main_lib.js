@@ -82,7 +82,7 @@ require(['domReady','modern', 'model','rects_chain_visualization','ddd_lib'], fu
           .attr("width", width);
         }
 
-        var lay=new _ddd_lib.HorizontalLayout({margin:400, margin_inside:50, width:w, collection:x});
+        var lay=new _ddd_lib.HorizontalLayout({margin:100, margin_inside:50, width:w, collection:x});
 
 
         d3.select("svg").append("g").classed("user-list", "true").selectAll("rect").data(x).enter()
