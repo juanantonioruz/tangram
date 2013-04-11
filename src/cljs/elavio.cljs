@@ -9,11 +9,12 @@
    [clojure.string :refer [read-string]]
    [cljs.reader :refer [read-string]]
    [hiccups.runtime :as hiccupsrt]
+   [c2.event :as c2-event]
    [domina.events :refer [listen! prevent-default current-target target]])
   (:require-macros [hiccups.core :as hiccups])
   (:use
    [clojure.string :only [join]]
-   [c2.event :only [on-load]]
+
    [domina :only [by-id value set-styles! set-value! text attr]]
    [jayq.core :only [$ css inner hide show attr add-class remove-class fade-in fade-out]]
    )
@@ -64,51 +65,73 @@
   (js/console.info "d3_integration")
   )
 
-(def visualization {:width 500 :height 500})
+(def visualization {:width 500 :height 500 :margin-ext 50  :margin-int 20})
 
+(defn get-x-width-positions [visualization elements-count]
+   
+  (let [{:keys [width margin-ext margin-int]} visualization
+          width-available ( - width (* 2 margin-ext) (* margin-int (dec elements-count)))
+          rect-width (/ width-available elements-count)           
+          ]
+     ( reduce (fn [init u] (conj init [(+ margin-ext  (* margin-int (count init)) (*  rect-width (count init))) rect-width])) [] (repeat elements-count nil))
+
+      )
+  
+  )
+
+(defn my-transition [x]
+  {:-webkit-transform (str "translateX(" x "px)")
+   :transition-duration "0.5s"
+   :transition-timing-function "ease"})
 
 
 (defn init-app [users]
-  
-  (comment js/console.info (clojure.string/join ", "  (map #(:name %) users)))
-  ( let [users-count (count users)
+(dom/attr (dom/select "#the_svg") :width 500)
+
+( let [users-count (count users)
          svg (dom/select "#the_svg")
-         mappingRects (fn [init u]
-                        (let [{:keys [name mail]} u]
-                          (dom/parent (dom/append! init [:rect {:x 0 :y 0 :width 40 :height 40 :stroke "black" :stroke-width 2 :fill "red" :name name :mail mail}])))
+         append-user-rect (fn [u geo]
+                        (let [{:keys [name mail]} u
+                               [x width] geo
+                              ]
+                          (dom/parent
+                           (dom/append!
+                            svg
+                            [:rect {:x x :class "hola" :y 0 :width width :height 40 :stroke "black" :stroke-width 2 :fill "red" :name name :mail mail}])))
                         )
-         modified-svg (reduce mappingRects  svg users)
-         
+       geo-positions (get-x-width-positions visualization users-count)
+
          ]
-    (comment js/console.dir (str "result " (clojure.string/join ", " (map #(dom/attr % :name)  (dom/select-all "rect")))))
-    (comment js/console.dir (str "result with ->" (->> (dom/select-all "rect") (map #(dom/attr % :name) ) (clojure.string/join ",")) ))
+  (doall (map append-user-rect  users geo-positions))
+  
+  (doseq [raw (dom/select-all ".hola")]
+   (c2-event/on-raw  raw :mouseover
+                     (fn [ e]
+                       (-> (dom/select "circle" )
 
-    
-(comment js/console.dir (dom/attr  (dom/select "rect") :name ))
-    (let [margin-ext 50
-          margin-int 20
-          width-available ( - (:width visualization) (* 2 margin-ext) (* margin-int (dec users-count)))
-          rect-width (/ width-available users-count)
-          x-positions (reduce (fn [init u] (conj init (+ margin-ext  (* margin-int (count init)) (*  rect-width (count init))))) [] (dom/select-all "rect") )
-          ]
-      (doall (map (fn [a b]  (dom/attr b :x a) "joe") x-positions (dom/select-all "rect")))
+                           (dom/style {:fill "blue" :-webkit-transform "translateX(300px)" :-webkit-transition "all 900ms cubic-bezier(0.740, 0.265, 0.250, 0.720)"}) 
+)
+                       (js/console.dir (->(.-target e) (dom/attr :mail) ))
+                       ))
+(c2-event/on-raw  raw :click
+                     (fn [ e]
+                       (-> (dom/select "circle" ) (dom/style {:fill "blue" :-webkit-transform "translateX(0px)" :-webkit-transition "all 900ms cubic-bezier(0.740, 0.265, 0.250, 0.720)"}) )
+                       
+                       (let [el (.-target e)
+                             mail (:mail (dom/attr el))]
+                         (dom/append! "#the_svg" [:text {:value "hola" :y (dom/attr (dom/select "circle") :cy) :x 0 :color "black"} "hola"])
+                         )
+                       (js/console.dir (->(.-target e) (dom/attr :mail) ))
+                       ))
+   )
+       )
 
-      )
-    
-    
-    
-    
-    (comment js/console.dir (dom/select (str "#" (dom/attr  svg :id))))
-    (dom/attr (dom/select "#the_svg") :width 1000)
-    )
+
 
   )
 
-(on-load
-
+(c2-event/on-load
  #(birds/c2-get-users init-app)
-
-
  
  )
                                         ;
