@@ -22,7 +22,7 @@
                  [shoreleave/shoreleave-remote "0.3.0"]
                  [javax.mail/mail "1.4.3"]
                  [com.draines/postal "1.9.0"]
-
+                 [com.keminglabs/c2 "0.2.0-SNAPSHOT"]
                  
                  ]
   

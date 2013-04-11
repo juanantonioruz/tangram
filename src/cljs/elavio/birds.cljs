@@ -271,10 +271,19 @@
                      ) )
   )
 
+(defn c2-get-users [callback]  
+  (remote-callback :user-list []
+                   ( fn [res]
+                     ( callback res)
+                                  ) )
+  )
+
+
 (defn get-users [callback]  
   (remote-callback :user-list []
                    ( fn [res]
-                     (callback (clj->js res))
+             
+                     ( callback (clj->js res))
                      (comment doseq [x res]
                                (callback (clj->js x))
                        )
