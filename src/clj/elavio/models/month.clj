@@ -3,14 +3,7 @@
             [modern-cljs.models.db :as db])
   )
 
-(defn update [id month year]
-  (db/maybe-init db/url_db)
-  (let [monti (fetch-by-id id)]
-    (m/update! :months monti (assoc monti :month month :year year) )
-    )
-  
 
-  )
 (defn remove [id]
   (db/maybe-init db/url_db)
   (let [_id (m/object-id id)]
@@ -29,9 +22,9 @@
   (db/maybe-init db/url_db)
   (m/fetch :months :where {:bird (:_id bird)})
   )
-(defn insert-month [bird month year ]
+(defn insert-month [bird month year paid]
     (db/maybe-init db/url_db )
-    (m/insert! :months {:month month :year year :bird (:_id bird)})
+    (m/insert! :months {:month month :year year :bird (:_id bird) :paid paid})
     )
 
 (defn fetch-by-id
@@ -39,5 +32,13 @@
   [id]
   (db/maybe-init db/url_db)
   (m/fetch-by-id :months (m/object-id id))
+
+  )
+(defn update [id month year paid]
+  (db/maybe-init db/url_db)
+  (let [monti (fetch-by-id id)]
+    (m/update! :months monti (assoc monti :month month :year year :paid paid) )
+    )
+  
 
   )

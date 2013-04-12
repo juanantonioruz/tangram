@@ -23,6 +23,11 @@
   (:mail (bird/remove-bird id))
   )
 
+(defremote remove-month [id]
+  (println (month/remove id))
+  true
+  )
+
 (defremote mail-data-user [id]
   (let [bird (bird/fetch-by-id id)]
     (:error (mailing/mailto (:mail bird) "your data!" "hello bird!"))
@@ -67,10 +72,15 @@
     )
   )
 
-(defremote update-month [[id month  year :as v] ]
-  (month/update id month year )
+(defremote update-month [[id m  y paid :as v] ]
+  (month/update id m y paid )
   true
 
+  )
+
+(defremote insert-month [[bird-id m y paid :as v] ]
+  (month/insert-month (bird/fetch-by-id bird-id) m y paid)
+  true
   )
 
 (defremote find-months [id]

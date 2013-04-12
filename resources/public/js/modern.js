@@ -33799,32 +33799,40 @@ elavio.months.bird_months = function bird_months(evt) {
   elavio.ui.init_loading.call(null);
   var bird_id = domina.events.current_target.call(null, evt).getAttribute("bird");
   return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'find-months", cljs.core.PersistentVector.fromArray([bird_id], true), function(res) {
-    jayq.core.inner.call(null, jayq.core.css.call(null, jayq.core.show.call(null, jayq.core.$.call(null, "\ufdd0'#tabs-1")), cljs.core.ObjMap.fromObject(["\ufdd0'background"], {"\ufdd0'background":"purple"})), [cljs.core.str("<div"), cljs.core.str(""), cljs.core.str(">"), cljs.core.str("<table"), cljs.core.str(' border="1" width="100%"'), cljs.core.str(">"), cljs.core.str("<tr><th>month</th><th>year</th><th>...</th></tr>"), cljs.core.str(cljs.core.apply.call(null, cljs.core.str, function() {
-      var iter__2609__auto__ = function iter__30468(s__30469) {
+    jayq.core.inner.call(null, jayq.core.css.call(null, jayq.core.show.call(null, jayq.core.$.call(null, "\ufdd0'#tabs-1")), cljs.core.ObjMap.fromObject(["\ufdd0'background"], {"\ufdd0'background":"purple"})), [cljs.core.str("<div"), cljs.core.str(""), cljs.core.str(">"), cljs.core.str("<a"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'bird", "\ufdd0'href", "\ufdd0'id", "\ufdd0'class"], {"\ufdd0'bird":bird_id, "\ufdd0'href":"#", "\ufdd0'id":null, 
+    "\ufdd0'class":"\ufdd0'add-month"}))), cljs.core.str(">"), cljs.core.str("add-month"), cljs.core.str("</a>"), cljs.core.str("<hr />"), cljs.core.str("<table"), cljs.core.str(' border="1" width="100%"'), cljs.core.str(">"), cljs.core.str("<tr><th>month</th><th>year</th><th>paid</th><th>...</th></tr>"), cljs.core.str(cljs.core.apply.call(null, cljs.core.str, function() {
+      var iter__2609__auto__ = function iter__41806(s__41807) {
         return new cljs.core.LazySeq(null, false, function() {
-          var s__30469__$1 = s__30469;
+          var s__41807__$1 = s__41807;
           while(true) {
-            var temp__4092__auto__ = cljs.core.seq.call(null, s__30469__$1);
+            var temp__4092__auto__ = cljs.core.seq.call(null, s__41807__$1);
             if(temp__4092__auto__) {
               var xs__4579__auto__ = temp__4092__auto__;
               var x = cljs.core.first.call(null, xs__4579__auto__);
               return cljs.core.cons.call(null, [cljs.core.str("<tr"), cljs.core.str(""), cljs.core.str(">"), cljs.core.str(function() {
-                var attrs30472 = (new cljs.core.Keyword("\ufdd0'month")).call(null, x);
-                if(cljs.core.map_QMARK_.call(null, attrs30472)) {
-                  return[cljs.core.str("<td"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.merge.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id", "\ufdd0'class"], {"\ufdd0'id":null, "\ufdd0'class":null}), attrs30472))), cljs.core.str(" />")].join("")
+                var attrs41811 = (new cljs.core.Keyword("\ufdd0'month")).call(null, x);
+                if(cljs.core.map_QMARK_.call(null, attrs41811)) {
+                  return[cljs.core.str("<td"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.merge.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id", "\ufdd0'class"], {"\ufdd0'id":null, "\ufdd0'class":null}), attrs41811))), cljs.core.str(" />")].join("")
                 }else {
-                  return[cljs.core.str("<td>"), cljs.core.str(hiccups.runtime.render_html.call(null, attrs30472)), cljs.core.str("</td>")].join("")
+                  return[cljs.core.str("<td>"), cljs.core.str(hiccups.runtime.render_html.call(null, attrs41811)), cljs.core.str("</td>")].join("")
                 }
               }()), cljs.core.str(function() {
-                var attrs30473 = (new cljs.core.Keyword("\ufdd0'year")).call(null, x);
-                if(cljs.core.map_QMARK_.call(null, attrs30473)) {
-                  return[cljs.core.str("<td"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.merge.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id", "\ufdd0'class"], {"\ufdd0'id":null, "\ufdd0'class":null}), attrs30473))), cljs.core.str(" />")].join("")
+                var attrs41812 = (new cljs.core.Keyword("\ufdd0'year")).call(null, x);
+                if(cljs.core.map_QMARK_.call(null, attrs41812)) {
+                  return[cljs.core.str("<td"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.merge.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id", "\ufdd0'class"], {"\ufdd0'id":null, "\ufdd0'class":null}), attrs41812))), cljs.core.str(" />")].join("")
                 }else {
-                  return[cljs.core.str("<td>"), cljs.core.str(hiccups.runtime.render_html.call(null, attrs30473)), cljs.core.str("</td>")].join("")
+                  return[cljs.core.str("<td>"), cljs.core.str(hiccups.runtime.render_html.call(null, attrs41812)), cljs.core.str("</td>")].join("")
+                }
+              }()), cljs.core.str(function() {
+                var attrs41813 = (new cljs.core.Keyword("\ufdd0'paid")).call(null, x);
+                if(cljs.core.map_QMARK_.call(null, attrs41813)) {
+                  return[cljs.core.str("<td"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.merge.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id", "\ufdd0'class"], {"\ufdd0'id":null, "\ufdd0'class":null}), attrs41813))), cljs.core.str(" />")].join("")
+                }else {
+                  return[cljs.core.str("<td>"), cljs.core.str(hiccups.runtime.render_html.call(null, attrs41813)), cljs.core.str("</td>")].join("")
                 }
               }()), cljs.core.str("<td"), cljs.core.str(""), cljs.core.str(">"), cljs.core.str("<a"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'month", "\ufdd0'href", "\ufdd0'id", "\ufdd0'class"], {"\ufdd0'month":(new cljs.core.Keyword("\ufdd0'id")).call(null, x), "\ufdd0'href":"#", "\ufdd0'id":null, "\ufdd0'class":"\ufdd0'edit-month"}))), cljs.core.str(">"), cljs.core.str("edit"), cljs.core.str("</a>"), cljs.core.str(" - "), cljs.core.str("<a"), 
-              cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'month", "\ufdd0'href", "\ufdd0'id", "\ufdd0'class"], {"\ufdd0'month":(new cljs.core.Keyword("\ufdd0'id")).call(null, x), "\ufdd0'href":"#", "\ufdd0'id":null, "\ufdd0'class":"\ufdd0'remove-month"}))), cljs.core.str(">"), cljs.core.str("remove"), cljs.core.str("</a>"), cljs.core.str(" - "), cljs.core.str("</td>"), cljs.core.str("</tr>")].join(""), iter__30468.call(null, cljs.core.rest.call(null, 
-              s__30469__$1)))
+              cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'month", "\ufdd0'href", "\ufdd0'id", "\ufdd0'class"], {"\ufdd0'month":(new cljs.core.Keyword("\ufdd0'id")).call(null, x), "\ufdd0'href":"#", "\ufdd0'id":null, "\ufdd0'class":"\ufdd0'remove-month"}))), cljs.core.str(">"), cljs.core.str("remove"), cljs.core.str("</a>"), cljs.core.str(" - "), cljs.core.str("</td>"), cljs.core.str("</tr>")].join(""), iter__41806.call(null, cljs.core.rest.call(null, 
+              s__41807__$1)))
             }else {
               return null
             }
@@ -33835,10 +33843,30 @@ elavio.months.bird_months = function bird_months(evt) {
       return iter__2609__auto__.call(null, res)
     }())), cljs.core.str("</table>"), cljs.core.str("</div>")].join(""));
     elavio.ui.message_to_user.call(null, [cljs.core.str("months found: "), cljs.core.str(cljs.core.count.call(null, res))].join(""));
+    domina.events.listen_BANG_.call(null, domina.by_class.call(null, "\ufdd0'add-month"), "\ufdd0'click", function(evt__$1) {
+      return elavio.months.add_month.call(null, evt__$1)
+    });
     domina.events.listen_BANG_.call(null, domina.by_class.call(null, "\ufdd0'edit-month"), "\ufdd0'click", function(evt__$1) {
       return elavio.months.edit_month.call(null, evt__$1)
     });
+    domina.events.listen_BANG_.call(null, domina.by_class.call(null, "\ufdd0'remove-month"), "\ufdd0'click", function(evt__$1) {
+      return elavio.months.remove_month.call(null, evt__$1)
+    });
     return elavio.ui.finish_loading.call(null)
+  })
+};
+elavio.months.add_month = function add_month(evt) {
+  jayq.core.inner.call(null, jayq.core.css.call(null, jayq.core.show.call(null, jayq.core.$.call(null, "\ufdd0'#tabs-1")), cljs.core.ObjMap.fromObject(["\ufdd0'background"], {"\ufdd0'background":"pink"})), [cljs.core.str("<div"), cljs.core.str(' id="edit-month-div"'), cljs.core.str(">"), cljs.core.str("<h1>add month</h1>"), cljs.core.str("<"), cljs.core.str("input"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'value", "\ufdd0'type", "\ufdd0'id", "\ufdd0'class"], 
+  {"\ufdd0'value":domina.events.current_target.call(null, evt).getAttribute("bird"), "\ufdd0'type":"\ufdd0'hidden", "\ufdd0'id":"\ufdd0'bird-id", "\ufdd0'class":null}))), cljs.core.str(" />"), cljs.core.str("<label>n-month</label>"), cljs.core.str('<input id="n-month" type="text" value="" />'), cljs.core.str("<br />"), cljs.core.str("<label>n-year</label>"), cljs.core.str('<input id="n-year" type="text" value="" />'), cljs.core.str("<label>paid</label>"), cljs.core.str('<input id="paid" type="check" />'), 
+  cljs.core.str("<br />"), cljs.core.str('<input id="add-month" type="button" value="add-month" />'), cljs.core.str("</div>")].join(""));
+  return domina.events.listen_BANG_.call(null, domina.by_id.call(null, "\ufdd0'add-month"), "\ufdd0'click", elavio.months.add_monti)
+};
+elavio.months.add_monti = function add_monti() {
+  elavio.ui.init_loading.call(null);
+  var y = cljs.core.doall.call(null, cljs.core.map.call(null, elavio.months.get_value, cljs.core.PersistentVector.fromArray(["bird-id", "n-month", "n-year", "paid"], true)));
+  return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'insert-month", cljs.core.PersistentVector.fromArray([y], true), function(x) {
+    jayq.core.inner.call(null, jayq.core.css.call(null, jayq.core.show.call(null, jayq.core.$.call(null, "\ufdd0'#tabs-1")), cljs.core.ObjMap.fromObject(["\ufdd0'background"], {"\ufdd0'background":"pink"})), "OLE");
+    return elavio.ui.finish_loading.call(null, "month inserted ok!")
   })
 };
 elavio.months.get_value = function get_value(id) {
@@ -33851,7 +33879,8 @@ elavio.months.edit_month = function edit_month(evt) {
     jayq.core.inner.call(null, jayq.core.css.call(null, jayq.core.show.call(null, jayq.core.$.call(null, "\ufdd0'#tabs-1")), cljs.core.ObjMap.fromObject(["\ufdd0'background"], {"\ufdd0'background":"pink"})), [cljs.core.str("<div"), cljs.core.str(' id="edit-month-div"'), cljs.core.str(">"), cljs.core.str("<h1>Edit month</h1>"), cljs.core.str(hiccups.runtime.render_html.call(null, null)), cljs.core.str("<"), cljs.core.str("input"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'value", 
     "\ufdd0'type", "\ufdd0'id", "\ufdd0'class"], {"\ufdd0'value":(new cljs.core.Keyword("\ufdd0'id")).call(null, x), "\ufdd0'type":"\ufdd0'hidden", "\ufdd0'id":"\ufdd0'month-id", "\ufdd0'class":null}))), cljs.core.str(" />"), cljs.core.str(hiccups.runtime.render_html.call(null, null)), cljs.core.str("<label>n-month</label>"), cljs.core.str("<"), cljs.core.str("input"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'value", "\ufdd0'type", "\ufdd0'id", 
     "\ufdd0'class"], {"\ufdd0'value":(new cljs.core.Keyword("\ufdd0'month")).call(null, x), "\ufdd0'type":"\ufdd0'text", "\ufdd0'id":"\ufdd0'n-month", "\ufdd0'class":null}))), cljs.core.str(" />"), cljs.core.str("<br />"), cljs.core.str("<label>n-year</label>"), cljs.core.str("<"), cljs.core.str("input"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'value", "\ufdd0'type", "\ufdd0'id", "\ufdd0'class"], {"\ufdd0'value":(new cljs.core.Keyword("\ufdd0'year")).call(null, 
-    x), "\ufdd0'type":"\ufdd0'text", "\ufdd0'id":"\ufdd0'n-year", "\ufdd0'class":null}))), cljs.core.str(" />"), cljs.core.str("<br />"), cljs.core.str('<input id="update-month" type="button" value="update-month" />'), cljs.core.str("</div>")].join(""));
+    x), "\ufdd0'type":"\ufdd0'text", "\ufdd0'id":"\ufdd0'n-year", "\ufdd0'class":null}))), cljs.core.str(" />"), cljs.core.str("<label>paid</label>"), cljs.core.str("<"), cljs.core.str("input"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'value", "\ufdd0'type", "\ufdd0'id", "\ufdd0'class"], {"\ufdd0'value":(new cljs.core.Keyword("\ufdd0'paid")).call(null, x), "\ufdd0'type":"\ufdd0'check", "\ufdd0'id":"\ufdd0'paid", "\ufdd0'class":null}))), cljs.core.str(" />"), 
+    cljs.core.str("<br />"), cljs.core.str('<input id="update-month" type="button" value="update-month" />'), cljs.core.str("</div>")].join(""));
     domina.events.listen_BANG_.call(null, domina.by_id.call(null, "\ufdd0'update-month"), "\ufdd0'click", elavio.months.update_month);
     return elavio.ui.finish_loading.call(null)
   })
@@ -33862,6 +33891,25 @@ elavio.months.update_month = function update_month() {
   return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'update-month", cljs.core.PersistentVector.fromArray([y], true), function(x) {
     jayq.core.inner.call(null, jayq.core.css.call(null, jayq.core.show.call(null, jayq.core.$.call(null, "\ufdd0'#tabs-1")), cljs.core.ObjMap.fromObject(["\ufdd0'background"], {"\ufdd0'background":"pink"})), "OLE");
     return elavio.ui.finish_loading.call(null, "month updated ok!")
+  })
+};
+elavio.months.confirm_remove_month = function confirm_remove_month() {
+  elavio.ui.init_loading.call(null);
+  var id = elavio.months.get_value.call(null, "month-id");
+  return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'remove-month", cljs.core.PersistentVector.fromArray([id], true), function(x) {
+    jayq.core.inner.call(null, jayq.core.css.call(null, jayq.core.show.call(null, jayq.core.$.call(null, "\ufdd0'#tabs-1")), cljs.core.ObjMap.fromObject(["\ufdd0'background"], {"\ufdd0'background":"pink"})), "permanently erased");
+    return elavio.ui.finish_loading.call(null, "month removed ok!")
+  })
+};
+elavio.months.remove_month = function remove_month(evt) {
+  elavio.ui.init_loading.call(null);
+  var month_id = domina.events.current_target.call(null, evt).getAttribute("month");
+  return shoreleave.remotes.http_rpc.remote_callback.call(null, "\ufdd0'find-month", cljs.core.PersistentVector.fromArray([month_id], true), function(x) {
+    jayq.core.inner.call(null, jayq.core.css.call(null, jayq.core.show.call(null, jayq.core.$.call(null, "\ufdd0'#tabs-1")), cljs.core.ObjMap.fromObject(["\ufdd0'background"], {"\ufdd0'background":"pink"})), [cljs.core.str("<div"), cljs.core.str(' id="edit-month-div"'), cljs.core.str(">"), cljs.core.str("<h1>Are you sure?</h1>"), cljs.core.str("<br />"), cljs.core.str("<"), cljs.core.str("input"), cljs.core.str(hiccups.runtime.render_attr_map.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'value", 
+    "\ufdd0'type", "\ufdd0'id", "\ufdd0'class"], {"\ufdd0'value":(new cljs.core.Keyword("\ufdd0'id")).call(null, x), "\ufdd0'type":"\ufdd0'hidden", "\ufdd0'id":"\ufdd0'month-id", "\ufdd0'class":null}))), cljs.core.str(" />"), cljs.core.str('<input id="confirm-remove-month" type="button" value="confirm-remove-month" />'), cljs.core.str("</div>")].join(""));
+    elavio.ui.message_to_user.call(null, [cljs.core.str("month found "), cljs.core.str(x)].join(""));
+    domina.events.listen_BANG_.call(null, domina.by_id.call(null, "\ufdd0'confirm-remove-month"), "\ufdd0'click", elavio.months.confirm_remove_month);
+    return elavio.ui.finish_loading.call(null)
   })
 };
 goog.provide("elavio.birds");
