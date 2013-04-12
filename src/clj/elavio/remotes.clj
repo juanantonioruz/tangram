@@ -4,6 +4,7 @@
   (:require
    [somnium.congomongo :as m]
    [elavio.models.bird :as bird]
+   [elavio.models.month :as month]
    [elavio.mailing :as mailing]
    [modern-cljs.core :refer [handler]]
    [compojure.handler :refer [site]]
@@ -36,8 +37,12 @@
     )
   )
 
+(defn get-id-string [item]
+  (first (clojure.string/split (str (:_id item)) #" "))
+  )
+
 (defn transform-ui [item]
-  {:id (first (clojure.string/split (str (:_id item)) #" "))  :mail (:mail item) :password (:password item) :name (:name item) :ended (:ended item) :started (:started item)}
+  {:id (get-id-string item)   :mail (:mail item) :password (:password item) :name (:name item) :ended (:ended item) :started (:started item)}
   )
 
 (defremote user-list []
@@ -53,6 +58,30 @@
 
 (defremote find-user [id]
   (transform-ui (bird/fetch-by-id id))
+  )
+
+(defremote find-month [id]
+  (println id)
+  (let [m (month/fetch-by-id id)]
+    (dissoc (assoc m :id (get-id-string m)) :_id :bird)
+    )
+  )
+
+(defremote update-month [[id month  year :as v] ]
+  (month/update id month year )
+  true
+
+  )
+
+(defremote find-months [id]
+
+  (let [the-bird (bird/fetch-by-id id)
+        months (month/months-bird the-bird)]
+    (doall (map (fn [o]
+                  (dissoc (assoc o :id (get-id-string o)) :_id :bird)
+                  ) months))
+    
+    )
   )
 
 

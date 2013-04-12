@@ -23,6 +23,7 @@
       ;; Create collection named 'firstcollection' if it doesn't exist.
       (or (collection-exists? :firstcollection) (create-collection! :firstcollection))
       (or (collection-exists? :users) (create-collection! :users))
+      (or (collection-exists? :months) (create-collection! :months))
       )))
 
 

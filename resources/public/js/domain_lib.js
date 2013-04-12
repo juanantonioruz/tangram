@@ -3,8 +3,6 @@
 **/
 define( ["./ddd_lib"],
         function(ddd_lib){
-
-          
           
           function MonthDisplayable(){
             this.display_data=[];

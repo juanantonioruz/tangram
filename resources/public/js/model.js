@@ -118,7 +118,6 @@ define( ["./domain_lib"],
 
 
           return {
-
             getMonths:getMonths,
             isTodayMonthYear:isTodayMonthYear,
             isTodayBeforeMonthYear:isTodayBeforeMonthYear,
