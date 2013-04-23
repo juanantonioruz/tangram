@@ -6,6 +6,7 @@
    [domina.events :refer [listen! prevent-default current-target target]])
   (:require-macros [hiccups.core :as hiccups])
   (:use
+  
    [domina :only [by-id by-class value set-styles! set-value! text attr]]
    [jayq.core :only [$ css inner hide show attr add-class remove-class fade-in fade-out]]
    )
@@ -69,8 +70,12 @@
                 [:br]
                 [:label "n-year"]
                 [:input {:type :text :id :n-year :value ""} ]
+                [:br]
                 [:label "paid"]
-                [:input {:type :check :id :paid :value false} ]
+                [:select { :id :paid :value (str (:paid x))}
+                 [:option {:value :true} :true]
+                 [:option {:value :false :selected :true}:false]
+                 ]
 
                 [:br]
                 [:input {:type :button :id :add-month :value "add-month"}]]
@@ -120,9 +125,19 @@
                                      [:br]
                                      [:label "n-year"]
                                      [:input {:type :text :id :n-year :value (:year x) } ]
-                                     [:label "paid"]
-                                     [:input {:type :check :id :paid :value (:paid x)} ]
+                                     [:br]
+                                     [:label "is paid?"]
                                      
+                                     [:select { :id :paid :value (str (:paid x))}
+                                      (if (= (:paid x) "true")
+                                        [:option {:value :true :selected :true}   :true]
+                                        [:option {:value :true} :true]
+                                        )
+                                      (if (= (:paid x) "false")
+                                        [:option {:value :false :selected :true}   :false]
+                                        [:option {:value :false}:false]
+                                        )
+                                      ]
                                      [:br]
                                      [:input {:type :button :id :update-month :value "update-month"}]]
                                     )))
@@ -140,7 +155,7 @@
 
 (defn update-month []
   ( ui/init-loading)
-  (let [y (doall (map get-value [ "month-id" "n-month" "n-year"]))]
+  (let [y (doall (map get-value [ "month-id" "n-month" "n-year" "paid"]))]
     (remote-callback :update-month [y]
                      (fn [x]
                        (-> ($ :#tabs-1)

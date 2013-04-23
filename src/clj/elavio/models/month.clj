@@ -34,11 +34,21 @@
   (m/fetch-by-id :months (m/object-id id))
 
   )
+
 (defn update [id month year paid]
-  (db/maybe-init db/url_db)
+(println paid)  
   (let [monti (fetch-by-id id)]
     (m/update! :months monti (assoc monti :month month :year year :paid paid) )
     )
   
 
   )
+( let [connection (db/maybe-init db/url_db)]
+(doseq [the-month (months-list)]
+       (println (type the-month))
+       (println (assoc the-month :paid false) )
+       (m/update! :months the-month (assoc the-month :paid false) )
+         )
+)
+
+

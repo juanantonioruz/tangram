@@ -73,7 +73,9 @@
   )
 
 (defremote update-month [[id m  y paid :as v] ]
-  (month/update id m y paid )
+
+
+(month/update id m y paid)
   true
 
   )

@@ -34,6 +34,16 @@
       )
     )
   )
+(defn show-users-button []
+   (ui/hidden-results)
+                                    (logging/admin-login)
+                                    (ui/menu-value (hiccups/html [
+                                                                  :div {:id "ADMIN-ZONE"}
+                                                                  [:input {:type :button :id :user-list :value "show users"}]                                                                       ]))
+                                    (listen! (by-id :user-list) :click (fn [evt] (show-users-event evt)))
+                                        ;(birds/print-users)
+
+  )
 
 (defn first-display []
   (ui/interface-value logging/loging-form)
@@ -44,17 +54,7 @@
              (remote-callback :login [(get-value :user-name) (get-value :user-password)]
                               (fn [x]
                                 (if (== x true)
-                                  (do
-                                    (ui/hidden-results)
-                                    (logging/admin-login)
-                                    (ui/menu-value (hiccups/html [
-                                                                  :div {:id "ADMIN-ZONE"}
-                                                                  [:input {:type :button :id :user-list :value "show users"}]                                                                       ]))
-                                    (listen! (by-id :user-list) :click (fn [evt] (show-users-event evt)))
-                                        ;(birds/print-users)
-
-
-                                    )
+                                  (show-users-button)
                                   (ui/message-to-user "INVALID LOGIN!, TRY AGAIN"))
                                 (ui/finish-loading)
                                 )))
@@ -80,6 +80,7 @@
       (first-display)
       (.button ($ (keyword ":button")) )
       (logging/admin-login)
+      (show-users-button)
                                         ;    $( "#tabs" ).tabs();
 
       )

@@ -7,10 +7,20 @@
    [domina.events :refer [listen! prevent-default current-target target]])
   (:require-macros [hiccups.core :as hiccups])
   (:use
+   [clojure.string :only [split join]]
    [domina :only [by-id by-class value set-styles! set-value! text attr]]
    [jayq.core :only [$ css inner hide show attr add-class remove-class fade-in fade-out]]
    )
   )
+
+(defn format-date [s]
+  (let [[m d y :as v]  (split s #"/")
+        ]
+    (str  d "/" m "/" y)
+
+    ) 
+  )
+
 
 (defn show-users-results [res]
   (let [$interface ($ :#interface)
@@ -21,8 +31,8 @@
                                  [:tr
                                   [:td (:name x)]
                                   [:td (:mail x)]
-                                  [:td (:started x)]
-                                  [:td (:ended x)]
+                                  [:td (format-date (:started x) )]
+                                  [:td (format-date (:ended x) ) ]
                                   [:td
                                    [:a {:href "#" :bird (:id x ) :class :bird-months} "months"] " - "
                                    [:a {:href "#" :bird (:id x ) :class :edit-bird} "edit"] " - "
@@ -83,7 +93,9 @@
   (listen! (by-id :user-list) :click print-users)
 
   (.tabs ($ :#tabs) )
-  (.datepicker ($ :.bird-date) )
+(.datepicker ($ :.bird-date ) )
+
+
   
   )
 
@@ -109,6 +121,7 @@
                                    (comment [:p (str "user found" x)]))))
                        (ui/message-to-user (str "user found" x))
                        (.datepicker ($ :.bird-date) )
+                       
                        (listen! (by-id :confirm-remove-bird) :click confirm-remove-bird)
                        (ui/finish-loading)
 
@@ -180,7 +193,8 @@
                                     [:input {:type :button :id :update-bird :value "update-bird"}]]
                                    (comment [:p (str "user found" x)]))))
                        (ui/message-to-user (str "user found" x))
-                       (.datepicker ($ :.bird-date) )
+          
+                         (.datepicker ($ :.bird-date ))
                        (listen! (by-id :update-bird) :click update-bird)
                        (ui/finish-loading)
 
@@ -212,9 +226,15 @@
   )
 
 (defn update-bird []
-
-  (ui/init-loading)
-  (let [name (get-value "bird-name")
+  (let [started (new js/Date (get-value "bird-started"))
+        ended (new js/Date (get-value "bird-ended"))
+        
+        ]
+(if (<= (.getTime ended) (.getTime started))
+      (ui/message-to-user "the dates arent correct!")
+      (do
+        (ui/init-loading)
+        (let [name (get-value "bird-name")
         password (get-value "bird-password")
         mail (get-value "bird-mail")
         started (get-value "bird-started")
@@ -229,6 +249,11 @@
                            (inner "OLE"))
                        (ui/finish-loading "user updated ok!")))
     )
+        )
+      )
+    )
+  
+  
 
 
   )
@@ -237,12 +262,13 @@
 
 (defn delete-all-users []
                                         ;  (hidden-results)
-  (remote-callback :user-delete-all  []
+  (comment remote-callback :user-delete-all  []
                    (fn [x]
                      (ui/hidden-results)
                      (ui/finish-loading)
                      (ui/message-to-user "all users have been deleted now!")
                      ))
+  (ui/message-to-user "this option is not active at the moment !")
   )
 
 (defn clj->js
@@ -308,8 +334,16 @@
   )
 
 (defn  send-new-user []
-  (ui/init-loading)
-  (let [name (get-value "bird-name")
+  (let [started (new js/Date (get-value "bird-started"))
+        ended (new js/Date (get-value "bird-ended"))
+        
+        ]
+    (if (<= (.getTime ended) (.getTime started))
+           (ui/message-to-user "the dates arent correct!")
+      (do
+        ( ui/init-loading)
+  
+  ( let [name (get-value "bird-name")
         password (get-value "bird-password")
         mail (get-value "bird-mail")
         started (get-value "bird-started")
@@ -317,6 +351,11 @@
         ]
     (remote-callback :save-new-user [name mail password started ended] (fn [x] (ui/finish-loading "user saved ok!")))
     )
+        )
+      )
+    )
+
+  
   )
 
 
