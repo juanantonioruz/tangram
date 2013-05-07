@@ -1,15 +1,21 @@
 <!doctype html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>exercise async</title>
-<script type="text/javascript" src="js/async.js"></script>
-<script type="text/javascript" src="js/my_async.js"></script>
+  <head>
+	  <meta charset="utf-8">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>exercise async</title>
+    <script>
+      function toJson(o){
+      return JSON.stringify(o, null, 4);
+      };
+    </script>
+    <script type="text/javascript" src="js/require.js" data-main="js/behaviors/main"></script>
 
 
-</head>
+  </head>
   <body >
-
+<div id="status" ></div>
+<div id="content" style="background-color:pink;"></div>
+<div id="event_history"></div>
   </body>
-  </html>
+</html>
