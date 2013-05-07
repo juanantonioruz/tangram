@@ -5,6 +5,7 @@
   )
 
 
+
 (defn insert [bird]
     (db/maybe-init db/url_db )
     (m/insert! :users bird)
