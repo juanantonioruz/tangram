@@ -31,7 +31,7 @@
             [lein-ring "0.8.3"][lein-swank "1.4.5"]]
 
   ;; ring tasks configuration
-  :ring {:handler elavio.remotes/app}
+;;  :ring {:handler elavio.remotes/app}
 
   ;; cljsbuild tasks configuration
 
