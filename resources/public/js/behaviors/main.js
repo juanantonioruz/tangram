@@ -1,7 +1,10 @@
 require(["js/behaviors/compose_async.js", "js/behaviors/behaviors_service.js","js/jquery-1.9.1.min.js"], function(compose, BS) {
 
 
-    var behaviors_array=[BS.load_history, BS.show_user_history, BS.show_history].reverse();
+    var behaviors_array=[
+        BS.load_history, 
+        BS.show_user_history, 
+        BS.show_history];
 
      //TODO: it must be done in any place in code, currently only works before compose_behaviors invocation Behavior manipulation AOP
     BS.show_history.on_start.push(BS.template_history);
